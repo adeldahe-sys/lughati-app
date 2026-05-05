@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لغتي - تعلم الإنجليزية</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Tahoma,sans-serif;}
+body{background:#F0EDFF;min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:16px;}
+.app{width:100%;max-width:420px;min-height:100vh;background:#fff;border-radius:32px;overflow:hidden;margin:0 auto;box-shadow:0 8px 32px rgba(83,74,183,0.15);}
+.screen{display:none;flex-direction:column;min-height:100vh;}
+.screen.active{display:flex;}
+.hdr{padding:20px;color:#fff;text-align:center;}
+.body{flex:1;padding:16px;overflow-y:auto;}
+.btn{width:100%;padding:14px;border-radius:16px;border:none;font-size:16px;font-weight:600;cursor:pointer;color:#fff;margin-top:10px;transition:opacity 0.2s;}
+.btn:hover{opacity:0.9;}
+.card{background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;border:2.5px solid #D3D1C7;cursor:pointer;display:flex;align-items:center;gap:14px;transition:all 0.2s;}
+.card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.1);}
+.card-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.opt{background:#fff;border-radius:14px;padding:14px;margin-bottom:10px;border:2.5px solid #D3D1C7;cursor:pointer;text-align:center;font-size:16px;font-weight:500;color:#2C2C2A;transition:all 0.2s;}
+.opt:hover{border-color:#534AB7;background:#F0EDFF;}
+.opt.selected{border-color:#534AB7;background:#EEEDFE;color:#3C3489;}
+.opt.correct{border-color:#1D9E75;background:#E1F5EE;color:#085041;pointer-events:none;}
+.opt.wrong{border-color:#E24B4A;background:#FCEBEB;color:#791F1F;pointer-events:none;}
+.opt.disabled{pointer-events:none;opacity:0.6;}
+.progress-bar{background:rgba(255,255,255,0.3);border-radius:8px;height:10px;margin-top:10px;}
+.progress-fill{background:#fff;border-radius:8px;height:10px;transition:width 0.4s;}
+.word-card{background:linear-gradient(135deg,#EEEDFE,#DDD8FB);border-radius:24px;padding:28px;text-align:center;margin-bottom:18px;border:3px solid #AFA9EC;}
+.word-en{font-size:32px;font-weight:600;color:#26215C;margin-bottom:6px;}
+.word-hint{font-size:13px;color:#7F77DD;cursor:pointer;}
+.word-hint:hover{color:#534AB7;}
+.feedback{border-radius:16px;padding:14px;text-align:center;font-size:15px;font-weight:500;margin-top:12px;display:none;}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.stat-card{border-radius:16px;padding:14px;text-align:center;}
+.stat-num{font-size:26px;font-weight:600;}
+.stat-lbl{font-size:12px;margin-top:3px;}
+.ai-box{background:#EEEDFE;border-radius:16px;padding:14px;border:2px solid #AFA9EC;margin-bottom:14px;}
+.ai-title{font-size:13px;font-weight:600;color:#3C3489;margin-bottom:6px;}
+.ai-text{font-size:13px;color:#534AB7;line-height:1.7;}
+.sem-card{background:#fff;border-radius:20px;padding:20px;margin-bottom:14px;border:3px solid #D3D1C7;cursor:pointer;text-align:center;transition:all 0.2s;}
+.sem-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.1);}
+.back-btn{background:rgba(255,255,255,0.2);border:none;color:#fff;padding:6px 14px;border-radius:20px;cursor:pointer;font-size:13px;margin-bottom:6px;}
+.missed-box{background:#FCEBEB;border-radius:14px;padding:12px;border:2px solid #F09595;margin-bottom:14px;}
+</style>
+</head>
+<body>
+<div class="app">
+ 
+<!-- شاشة البداية -->
+<div class="screen active" id="s0" style="background:linear-gradient(160deg,#667EEA,#764BA2);justify-content:center;align-items:center;">
+  <div style="text-align:center;padding:32px;">
+    <div style="width:100px;height:100px;background:#fff;border-radius:28px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:52px;">🌟</div>
+    <p style="font-size:32px;font-weight:600;color:#fff;margin-bottom:8px;">لغتي</p>
+    <p style="font-size:16px;color:rgba(255,255,255,0.85);margin-bottom:48px;">تعلّم الإنجليزي بطريقة ممتعة</p>
+    <button class="btn" style="background:#fff;color:#534AB7;font-size:18px;padding:18px;" onclick="go('s1')">ابدأ الآن ✨</button>
+  </div>
+</div>
+ 
+<!-- اختيار المرحلة -->
+<div class="screen" id="s1">
+  <div class="hdr" style="background:linear-gradient(135deg,#534AB7,#764BA2);">
+    <p style="font-size:14px;opacity:0.85;margin-bottom:4px;">أهلاً بك 👋</p>
+    <p style="font-size:22px;font-weight:600;">اختر مرحلتك الدراسية</p>
+  </div>
+  <div class="body" style="background:#F0EDFF;">
+    <div style="height:16px;"></div>
+    <div class="card" style="border-color:#5DCAA5;" onclick="chooseStage('primary','#1D9E75','#E1F5EE','#085041')">
+      <div class="card-icon" style="background:#E1F5EE;">🏫</div>
+      <div><p style="font-size:17px;font-weight:600;color:#085041;">ابتدائي</p><p style="font-size:13px;color:#1D9E75;">الصف الخامس فقط</p></div>
+    </div>
+    <div class="card" style="border-color:#AFA9EC;" onclick="chooseStage('middle','#534AB7','#EEEDFE','#3C3489')">
+      <div class="card-icon" style="background:#EEEDFE;">📚</div>
+      <div><p style="font-size:17px;font-weight:600;color:#3C3489;">متوسط</p><p style="font-size:13px;color:#534AB7;">الصف 6 — 9</p></div>
+    </div>
+    <div class="card" style="border-color:#EF9F27;" onclick="chooseStage('high','#BA7517','#FAEEDA','#412402')">
+      <div class="card-icon" style="background:#FAEEDA;">🎓</div>
+      <div><p style="font-size:17px;font-weight:600;color:#412402;">ثانوي</p><p style="font-size:13px;color:#854F0B;">الصف 10 — 12</p></div>
+    </div>
+  </div>
+</div>
+ 
+<!-- اختيار الصف -->
+<div class="screen" id="s2">
+  <div class="hdr" id="s2hdr" style="background:#534AB7;">
+    <button class="back-btn" onclick="go('s1')">← رجوع</button>
+    <p style="font-size:22px;font-weight:600;">اختر صفك الدراسي</p>
+  </div>
+  <div class="body" id="s2body" style="background:#F0EDFF;"></div>
+</div>
+ 
+<!-- اختيار الفصل -->
+<div class="screen" id="s3">
+  <div class="hdr" id="s3hdr" style="background:#534AB7;">
+    <button class="back-btn" onclick="go('s2')">← رجوع</button>
+    <p style="font-size:22px;font-weight:600;" id="s3title">اختر الفصل الدراسي</p>
+  </div>
+  <div class="body" style="background:#FFFDF0;padding:20px;">
+    <div class="sem-card" style="border-color:#EF9F27;" onclick="chooseSem(1)">
+      <div style="font-size:44px;margin-bottom:10px;">☀️</div>
+      <p style="font-size:18px;font-weight:600;color:#412402;">الفصل الأول</p>
+      <p style="font-size:13px;color:#854F0B;margin-top:6px;" id="sem1info">5 كلمات تجريبية</p>
+    </div>
+    <div class="sem-card" style="border-color:#85B7EB;" onclick="chooseSem(2)">
+      <div style="font-size:44px;margin-bottom:10px;">🌸</div>
+      <p style="font-size:18px;font-weight:600;color:#0C447C;">الفصل الثاني</p>
+      <p style="font-size:13px;color:#185FA5;margin-top:6px;" id="sem2info">5 كلمات تجريبية</p>
+    </div>
+  </div>
+</div>
+ 
+<!-- اللعبة -->
+<div class="screen" id="s4">
+  <div class="hdr" id="s4hdr" style="background:#1D9E75;padding:14px 18px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div id="hearts" style="font-size:18px;letter-spacing:3px;">❤️❤️❤️❤️❤️</div>
+      <div id="qcount" style="background:rgba(255,255,255,0.25);border-radius:20px;padding:4px 14px;font-size:13px;color:#fff;">1/5</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="pfill" style="width:0%"></div></div>
+  </div>
+  <div class="body" style="background:#F0FFF8;">
+    <div style="height:12px;"></div>
+    <p style="font-size:14px;color:#085041;text-align:center;margin-bottom:12px;font-weight:600;" id="qtitle">🤔 ما معنى هذه الكلمة؟</p>
+    <div class="word-card">
+      <div class="word-en" id="word-en">Ambitious</div>
+      <div class="word-hint" onclick="speak()" id="word-hint">🔊 اضغط للاستماع</div>
+    </div>
+    <div id="options"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="btn" id="nextbtn" style="background:#1D9E75;display:none;margin-top:14px;" onclick="nextQ()">التالي ›</button>
+  </div>
+</div>
+ 
+<!-- النتائج -->
+<div class="screen" id="s5">
+  <div class="hdr" style="background:linear-gradient(135deg,#534AB7,#764BA2);padding:28px 20px;">
+    <div style="font-size:56px;text-align:center;margin-bottom:10px;">🏆</div>
+    <p style="font-size:24px;font-weight:600;text-align:center;">أحسنت!</p>
+    <p style="font-size:14px;opacity:0.85;text-align:center;margin-top:4px;" id="r-grade">الصف العاشر — الفصل الأول</p>
+  </div>
+  <div class="body" style="background:#F0EDFF;">
+    <div style="height:14px;"></div>
+    <div class="stat-grid">
+      <div class="stat-card" style="background:#E1F5EE;border:2px solid #5DCAA5;">
+        <div class="stat-num" id="r-correct" style="color:#085041;">-</div>
+        <div class="stat-lbl" style="color:#0F6E56;">إجابات صحيحة ✓</div>
+      </div>
+      <div class="stat-card" style="background:#EEEDFE;border:2px solid #AFA9EC;">
+        <div class="stat-num" id="r-xp" style="color:#3C3489;">- ⭐</div>
+        <div class="stat-lbl" style="color:#534AB7;">نقاط XP</div>
+      </div>
+    </div>
+    <div class="ai-box">
+      <div class="ai-title">🤖 تحليل الذكاء الاصطناعي</div>
+      <div class="ai-text" id="ai-feedback">جاري التحليل...</div>
+    </div>
+    <div id="missed-words"></div>
+    <button class="btn" style="background:#534AB7;" onclick="go('s1')">جولة جديدة 🔄</button>
+    <div style="height:20px;"></div>
+  </div>
+</div>
+ 
+</div>
+ 
+<script>
+const words = {
+  primary:{
+    1:[
+      {en:'Apple',ar:'تفاحة',opts:['تفاحة','برتقالة','موزة','عنبة']},
+      {en:'Book',ar:'كتاب',opts:['كتاب','قلم','مسطرة','مقص']},
+      {en:'Dog',ar:'كلب',opts:['قطة','كلب','سمكة','طير']},
+      {en:'Sun',ar:'شمس',opts:['قمر','نجمة','شمس','سحابة']},
+      {en:'Water',ar:'ماء',opts:['عصير','ماء','حليب','شاي']}
+    ],
+    2:[
+      {en:'House',ar:'بيت',opts:['بيت','مدرسة','مسجد','دكان']},
+      {en:'Tree',ar:'شجرة',opts:['زهرة','شجرة','عشب','نبتة']},
+      {en:'Fish',ar:'سمكة',opts:['طير','سمكة','أرنب','تمساح']},
+      {en:'Bread',ar:'خبز',opts:['أرز','خبز','تمر','جبن']},
+      {en:'Ball',ar:'كرة',opts:['كرة','حبل','دراجة','طائرة']}
+    ]
+  },
+  middle:{
+    6:{1:[
+      {en:'Brave',ar:'شجاع',opts:['شجاع','خائف','غضبان','حزين']},
+      {en:'River',ar:'نهر',opts:['بحر','نهر','بحيرة','خليج']},
+      {en:'Hungry',ar:'جائع',opts:['تعبان','جائع','نعسان','مريض']},
+      {en:'Cloud',ar:'سحابة',opts:['مطر','سحابة','ريح','برق']},
+      {en:'Strong',ar:'قوي',opts:['قوي','ضعيف','سريع','بطيء']}
+    ],2:[
+      {en:'Market',ar:'سوق',opts:['سوق','مصنع','مزرعة','مستشفى']},
+      {en:'Desert',ar:'صحراء',opts:['غابة','صحراء','جبل','وادٍ']},
+      {en:'Smile',ar:'ابتسامة',opts:['ابتسامة','بكاء','ضحكة','صراخ']},
+      {en:'Silver',ar:'فضة',opts:['ذهب','فضة','نحاس','حديد']},
+      {en:'Honest',ar:'صادق',opts:['صادق','كاذب','شجاع','كريم']}
+    ]},
+    7:{1:[
+      {en:'Ancient',ar:'قديم',opts:['قديم','جديد','ضخم','صغير']},
+      {en:'Journey',ar:'رحلة',opts:['رحلة','مغامرة','مسافة','وجهة']},
+      {en:'Generous',ar:'كريم',opts:['كريم','بخيل','شجاع','صادق']},
+      {en:'Climate',ar:'مناخ',opts:['مناخ','طقس','درجة حرارة','رطوبة']},
+      {en:'Victory',ar:'انتصار',opts:['انتصار','هزيمة','تعادل','منافسة']}
+    ],2:[
+      {en:'Citizen',ar:'مواطن',opts:['مواطن','غريب','جار','صديق']},
+      {en:'Culture',ar:'ثقافة',opts:['ثقافة','تقاليد','عادات','أعراف']},
+      {en:'Patient',ar:'صبور',opts:['صبور','عصبي','هادئ','مرتاح']},
+      {en:'Treasure',ar:'كنز',opts:['كنز','ثروة','مال','ذهب']},
+      {en:'Explore',ar:'يستكشف',opts:['يستكشف','يبحث','يجد','يكتشف']}
+    ]},
+    8:{1:[
+      {en:'Atmosphere',ar:'غلاف جوي',opts:['غلاف جوي','طبقة أرضية','طبقة مائية','فضاء']},
+      {en:'Conflict',ar:'صراع',opts:['صراع','سلام','حرب','خلاف']},
+      {en:'Efficient',ar:'كفؤ',opts:['كفؤ','بطيء','سريع','ضعيف']},
+      {en:'Harvest',ar:'حصاد',opts:['حصاد','زراعة','ري','حرث']},
+      {en:'Influence',ar:'تأثير',opts:['تأثير','تغيير','قوة','سلطة']}
+    ],2:[
+      {en:'Innovative',ar:'مبتكر',opts:['مبتكر','تقليدي','حديث','قديم']},
+      {en:'Prosperity',ar:'ازدهار',opts:['ازدهار','فقر','نمو','تطور']},
+      {en:'Navigate',ar:'يتنقل',opts:['يتنقل','يسافر','يتوه','يصل']},
+      {en:'Tradition',ar:'تقليد',opts:['تقليد','عادة','ثقافة','موروث']},
+      {en:'Significant',ar:'هام',opts:['هام','بسيط','ضروري','مفيد']}
+    ]},
+    9:{1:[
+      {en:'Phenomenon',ar:'ظاهرة',opts:['ظاهرة','حادثة','معجزة','كارثة']},
+      {en:'Persevere',ar:'يثابر',opts:['يثابر','يستسلم','يصبر','يحاول']},
+      {en:'Sustainable',ar:'مستدام',opts:['مستدام','مؤقت','دائم','متجدد']},
+      {en:'Diplomat',ar:'دبلوماسي',opts:['دبلوماسي','سياسي','مسؤول','ناشط']},
+      {en:'Eloquent',ar:'فصيح',opts:['فصيح','صامت','بليغ','هادئ']}
+    ],2:[
+      {en:'Hypothesis',ar:'فرضية',opts:['فرضية','نظرية','قانون','حقيقة']},
+      {en:'Integrity',ar:'نزاهة',opts:['نزاهة','أمانة','صدق','عدالة']},
+      {en:'Mediate',ar:'يتوسط',opts:['يتوسط','يحكم','يحل','يقرر']},
+      {en:'Resilient',ar:'متكيف',opts:['متكيف','صبور','قوي','شجاع']},
+      {en:'Scarcity',ar:'شُح',opts:['شُح','وفرة','ندرة','قلة']}
+    ]}
+  },
+  high:{
+    10:{1:[
+      {en:'Ambitious',ar:'طموح',opts:['طموح','كسول','جريء','صبور']},
+      {en:'Dedicate',ar:'يُكرّس',opts:['يُكرّس','يتجاهل','يحتفظ','يُخصص']},
+      {en:'Inevitable',ar:'حتمي',opts:['حتمي','ممكن','مؤجل','متوقع']},
+      {en:'Collaborate',ar:'يتعاون',opts:['يتعاون','يتنافس','يتعلم','يتحدث']},
+      {en:'Skeptical',ar:'متشكك',opts:['متشكك','متأكد','فضولي','مندهش']}
+    ],2:[
+      {en:'Consensus',ar:'إجماع',opts:['إجماع','تصويت','قرار','اتفاق']},
+      {en:'Pragmatic',ar:'براغماتي',opts:['براغماتي','مثالي','واقعي','عملي']},
+      {en:'Scrutinize',ar:'يُدقق',opts:['يُدقق','يُراجع','يُقيّم','يختبر']},
+      {en:'Diverse',ar:'متنوع',opts:['متنوع','مختلف','متشابه','متعدد']},
+      {en:'Advocate',ar:'يدعو لـ',opts:['يدعو لـ','يعارض','يدعم','يتحدث']}
+    ]},
+    11:{1:[
+      {en:'Paradigm',ar:'نموذج فكري',opts:['نموذج فكري','مثال','نظرية','مبدأ']},
+      {en:'Mitigate',ar:'يُخفف',opts:['يُخفف','يزيد','يُقلل','يُعالج']},
+      {en:'Affluent',ar:'ثري',opts:['ثري','فقير','مرفّه','ميسور']},
+      {en:'Ambiguous',ar:'غامض',opts:['غامض','واضح','مبهم','ملتبس']},
+      {en:'Coherent',ar:'متماسك',opts:['متماسك','منظم','متسق','واضح']}
+    ],2:[
+      {en:'Sovereignty',ar:'سيادة',opts:['سيادة','حكم','سلطة','نفوذ']},
+      {en:'Perpetual',ar:'دائم',opts:['دائم','مؤقت','متكرر','مستمر']},
+      {en:'Eloquence',ar:'بلاغة',opts:['بلاغة','فصاحة','خطابة','طلاقة']},
+      {en:'Indifferent',ar:'لامبالٍ',opts:['لامبالٍ','مهتم','محايد','بارد']},
+      {en:'Hierarchy',ar:'تسلسل هرمي',opts:['تسلسل هرمي','نظام','ترتيب','هيكل']}
+    ]},
+    12:{1:[
+      {en:'Autonomous',ar:'مستقل',opts:['مستقل','تابع','حر','ذاتي']},
+      {en:'Proliferate',ar:'ينتشر بسرعة',opts:['ينتشر بسرعة','يتضاعف','ينمو','يتوسع']},
+      {en:'Rhetoric',ar:'خطابة',opts:['خطابة','بلاغة','حجة','إقناع']},
+      {en:'Tangible',ar:'ملموس',opts:['ملموس','واضح','حقيقي','مادي']},
+      {en:'Transcend',ar:'يتخطى',opts:['يتخطى','يتجاوز','يعبر','يتفوق']}
+    ],2:[
+      {en:'Versatile',ar:'متعدد المواهب',opts:['متعدد المواهب','مرن','قابل للتكيف','متنوع']},
+      {en:'Meticulous',ar:'دقيق جداً',opts:['دقيق جداً','حذر','منظم','صارم']},
+      {en:'Hegemony',ar:'هيمنة',opts:['هيمنة','سيطرة','سلطة','نفوذ']},
+      {en:'Ephemeral',ar:'زائل',opts:['زائل','مؤقت','عابر','قصير']},
+      {en:'Meticulous',ar:'دقيق جداً',opts:['دقيق جداً','حذر','منظم','صارم']}
+    ]}
+  }
+};
+ 
+let stage='',color='',bgc='',textc='',grade=0,sem=0,qList=[],qi=0,hearts=5,score=0,missed=[];
+ 
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+ 
+function numAr(n){
+  const m={5:'الخامس',6:'السادس',7:'السابع',8:'الثامن',9:'التاسع',10:'العاشر',11:'الحادي عشر',12:'الثاني عشر'};
+  return m[n]||n;
+}
+ 
+function chooseStage(s,c,b,t){
+  stage=s; color=c; bgc=b; textc=t;
+  const grades={primary:[5],middle:[6,7,8,9],high:[10,11,12]};
+  const labels={primary:'ابتدائي',middle:'متوسط',high:'ثانوي'};
+  document.getElementById('s2hdr').style.background=`linear-gradient(135deg,${color},${color}dd)`;
+  const body=document.getElementById('s2body');
+  body.style.background=bgc+'88';
+  body.innerHTML='<div style="height:16px;"></div>';
+  grades[stage].forEach(g=>{
+    const d=document.createElement('div');
+    d.className='card';
+    d.style.borderColor=color;
+    d.innerHTML=`<div class="card-icon" style="background:${bgc};font-size:22px;font-weight:600;color:${color};">${g}</div><div><p style="font-size:17px;font-weight:600;color:${textc};">الصف ${numAr(g)}</p><p style="font-size:13px;color:${color};">فصلان دراسيان</p></div>`;
+    d.onclick=()=>chooseGrade(g);
+    body.appendChild(d);
+  });
+  go('s2');
+}
+ 
+function chooseGrade(g){
+  grade=g;
+  document.getElementById('s3hdr').style.background=`linear-gradient(135deg,${color},${color}dd)`;
+  document.getElementById('s3title').textContent='الصف '+numAr(g)+' — اختر الفصل';
+  go('s3');
+}
+ 
+function chooseSem(s){
+  sem=s;
+  let list;
+  try{
+    if(stage==='primary') list=words.primary[s];
+    else if(stage==='middle') list=words.middle[grade][s];
+    else list=words.high[grade][s];
+  }catch(e){list=null;}
+  if(!list||list.length===0){alert('الكلمات قيد الإعداد! جرب مرحلة أخرى.');return;}
+  qList=shuffle([...list]); qi=0; hearts=5; score=0; missed=[];
+  document.getElementById('s4hdr').style.background=`linear-gradient(135deg,${color},${color}dd)`;
+  loadQ();
+  go('s4');
+}
+ 
+function shuffle(a){
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+ 
+function loadQ(){
+  if(qi>=qList.length){showResults();return;}
+  const q=qList[qi];
+  document.getElementById('qcount').textContent=(qi+1)+'/'+qList.length;
+  document.getElementById('pfill').style.width=((qi/qList.length)*100)+'%';
+  document.getElementById('word-en').textContent=q.en;
+  document.getElementById('hearts').textContent='❤️'.repeat(hearts)+'🖤'.repeat(5-hearts);
+  document.getElementById('feedback').style.display='none';
+  document.getElementById('nextbtn').style.display='none';
+  const opts=shuffle([...q.opts]);
+  const div=document.getElementById('options');
+  div.innerHTML='';
+  opts.forEach(o=>{
+    const b=document.createElement('div');
+    b.className='opt';
+    b.textContent=o;
+    b.onclick=()=>answer(o,q.ar,q.en,b);
+    div.appendChild(b);
+  });
+}
+ 
+function answer(chosen,correct,word,el){
+  document.querySelectorAll('.opt').forEach(o=>{o.classList.add('disabled');o.onclick=null;});
+  const fb=document.getElementById('feedback');
+  fb.style.display='block';
+  if(chosen===correct){
+    el.classList.remove('disabled');
+    el.className='opt correct';
+    fb.style.background='#E1F5EE'; fb.style.color='#085041';
+    fb.innerHTML='✅ ممتاز! <b>'+word+'</b> تعني: '+correct;
+    score++;
+  } else {
+    el.classList.remove('disabled');
+    el.className='opt wrong';
+    document.querySelectorAll('.opt').forEach(o=>{if(o.textContent===correct){o.classList.remove('disabled');o.className='opt correct';}});
+    fb.style.background='#FCEBEB'; fb.style.color='#791F1F';
+    fb.innerHTML='❌ الإجابة الصحيحة: <b>'+correct+'</b>';
+    hearts=Math.max(0,hearts-1);
+    missed.push(word);
+    document.getElementById('hearts').textContent='❤️'.repeat(hearts)+'🖤'.repeat(5-hearts);
+    if(hearts===0){setTimeout(()=>showResults(),1000);return;}
+  }
+  document.getElementById('nextbtn').style.display='block';
+}
+ 
+function nextQ(){qi++;loadQ();}
+ 
+function speak(){
+  const word=document.getElementById('word-en').textContent;
+  if('speechSynthesis' in window){
+    const u=new SpeechSynthesisUtterance(word);
+    u.lang='en-US'; u.rate=0.8;
+    speechSynthesis.speak(u);
+  }
+}
+ 
+function showResults(){
+  const xp=score*10+(hearts*5);
+  document.getElementById('r-grade').textContent='الصف '+numAr(grade)+' — الفصل '+(sem===1?'الأول':'الثاني');
+  document.getElementById('r-correct').textContent=score+'/'+qList.length;
+  document.getElementById('r-xp').textContent='+'+xp+' ⭐';
+  const pct=Math.round((score/qList.length)*100);
+  let msg='';
+  if(pct===100) msg='مثالي تماماً! 🌟 أجبت على كل الأسئلة بشكل صحيح. أنت مستعد للمستوى التالي!';
+  else if(pct>=80) msg='أداء ممتاز! 💪 الكلمات التي أخطأت فيها ستظهر مجدداً تلقائياً في جلستك القادمة.';
+  else if(pct>=60) msg='أداء جيد! 📖 يُنصح بمراجعة الكلمات الصعبة قبل الانتقال للوحدة التالية.';
+  else msg='لا تيأس! 🔄 التكرار مفتاح النجاح. سنركّز على الكلمات الصعبة في الجلسة القادمة.';
+  document.getElementById('ai-feedback').textContent=msg;
+  const mw=document.getElementById('missed-words');
+  if(missed.length>0){
+    mw.innerHTML='<div class="missed-box"><p style="font-size:13px;font-weight:600;color:#791F1F;margin-bottom:6px;">📌 كلمات تحتاج مراجعة:</p><p style="font-size:13px;color:#A32D2D;line-height:1.8;">'+missed.join(' — ')+'</p></div>';
+  } else {
+    mw.innerHTML='';
+  }
+  go('s5');
+}
+</script>
+</body>
+</html>
