@@ -3,414 +3,1020 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>لغتي - تعلم الإنجليزية</title>
+<title>لغتي</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Righteous&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Tahoma,sans-serif;}
-body{background:#F0EDFF;min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:16px;}
-.app{width:100%;max-width:420px;min-height:100vh;background:#fff;border-radius:32px;overflow:hidden;margin:0 auto;box-shadow:0 8px 32px rgba(83,74,183,0.15);}
-.screen{display:none;flex-direction:column;min-height:100vh;}
-.screen.active{display:flex;}
-.hdr{padding:20px;color:#fff;text-align:center;}
-.body{flex:1;padding:16px;overflow-y:auto;}
-.btn{width:100%;padding:14px;border-radius:16px;border:none;font-size:16px;font-weight:600;cursor:pointer;color:#fff;margin-top:10px;transition:opacity 0.2s;}
-.btn:hover{opacity:0.9;}
-.card{background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;border:2.5px solid #D3D1C7;cursor:pointer;display:flex;align-items:center;gap:14px;transition:all 0.2s;}
-.card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.1);}
-.card-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
-.opt{background:#fff;border-radius:14px;padding:14px;margin-bottom:10px;border:2.5px solid #D3D1C7;cursor:pointer;text-align:center;font-size:16px;font-weight:500;color:#2C2C2A;transition:all 0.2s;}
-.opt:hover{border-color:#534AB7;background:#F0EDFF;}
-.opt.selected{border-color:#534AB7;background:#EEEDFE;color:#3C3489;}
-.opt.correct{border-color:#1D9E75;background:#E1F5EE;color:#085041;pointer-events:none;}
-.opt.wrong{border-color:#E24B4A;background:#FCEBEB;color:#791F1F;pointer-events:none;}
-.opt.disabled{pointer-events:none;opacity:0.6;}
-.progress-bar{background:rgba(255,255,255,0.3);border-radius:8px;height:10px;margin-top:10px;}
-.progress-fill{background:#fff;border-radius:8px;height:10px;transition:width 0.4s;}
-.word-card{background:linear-gradient(135deg,#EEEDFE,#DDD8FB);border-radius:24px;padding:28px;text-align:center;margin-bottom:18px;border:3px solid #AFA9EC;}
-.word-en{font-size:32px;font-weight:600;color:#26215C;margin-bottom:6px;}
-.word-hint{font-size:13px;color:#7F77DD;cursor:pointer;}
-.word-hint:hover{color:#534AB7;}
-.feedback{border-radius:16px;padding:14px;text-align:center;font-size:15px;font-weight:500;margin-top:12px;display:none;}
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
-.stat-card{border-radius:16px;padding:14px;text-align:center;}
-.stat-num{font-size:26px;font-weight:600;}
-.stat-lbl{font-size:12px;margin-top:3px;}
-.ai-box{background:#EEEDFE;border-radius:16px;padding:14px;border:2px solid #AFA9EC;margin-bottom:14px;}
-.ai-title{font-size:13px;font-weight:600;color:#3C3489;margin-bottom:6px;}
-.ai-text{font-size:13px;color:#534AB7;line-height:1.7;}
-.sem-card{background:#fff;border-radius:20px;padding:20px;margin-bottom:14px;border:3px solid #D3D1C7;cursor:pointer;text-align:center;transition:all 0.2s;}
-.sem-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.1);}
-.back-btn{background:rgba(255,255,255,0.2);border:none;color:#fff;padding:6px 14px;border-radius:20px;cursor:pointer;font-size:13px;margin-bottom:6px;}
-.missed-box{background:#FCEBEB;border-radius:14px;padding:12px;border:2px solid #F09595;margin-bottom:14px;}
+:root {
+  --primary: #6C63FF;
+  --primary-dark: #5A52D5;
+  --secondary: #FF6584;
+  --accent: #43D39E;
+  --warning: #FFB347;
+  --bg: #F8F7FF;
+  --card: #FFFFFF;
+  --text: #2D2B55;
+  --text-light: #8B89A6;
+  --border: #E8E6FF;
+  --shadow: 0 8px 32px rgba(108,99,255,0.12);
+  --radius: 20px;
+  --radius-sm: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: var(--bg);
+  min-height: 100vh;
+  color: var(--text);
+}
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--card);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(108,99,255,0.08);
+}
+ 
+/* ===== SCREENS ===== */
+.screen { display: none; flex-direction: column; min-height: 100vh; animation: fadeIn 0.3s ease; }
+.screen.active { display: flex; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+ 
+/* ===== SPLASH ===== */
+#s-splash {
+  background: linear-gradient(160deg, #6C63FF 0%, #9B93FF 50%, #C4BFFF 100%);
+  justify-content: center; align-items: center; text-align: center; padding: 40px 32px;
+}
+.splash-logo {
+  width: 110px; height: 110px; background: rgba(255,255,255,0.2);
+  border-radius: 32px; display: flex; align-items: center; justify-content: center;
+  font-size: 56px; margin: 0 auto 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+.splash-title { font-size: 42px; font-weight: 900; color: #fff; letter-spacing: -1px; margin-bottom: 8px; }
+.splash-sub { font-size: 16px; color: rgba(255,255,255,0.8); margin-bottom: 56px; }
+.btn-splash {
+  background: #fff; color: var(--primary); border: none; padding: 18px 48px;
+  border-radius: 100px; font-size: 18px; font-weight: 700; cursor: pointer;
+  font-family: 'Tajawal', sans-serif; width: 100%;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-splash:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.2); }
+ 
+/* ===== AUTH ===== */
+#s-auth { padding: 0; }
+.auth-top {
+  background: linear-gradient(135deg, #6C63FF, #9B93FF);
+  padding: 48px 32px 40px; text-align: center;
+}
+.auth-top h2 { font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+.auth-top p { font-size: 14px; color: rgba(255,255,255,0.8); }
+.auth-tabs {
+  display: flex; background: rgba(255,255,255,0.15); border-radius: 100px;
+  padding: 4px; margin-top: 20px;
+}
+.auth-tab {
+  flex: 1; padding: 8px; border-radius: 100px; border: none; background: transparent;
+  color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 600; cursor: pointer;
+  font-family: 'Tajawal', sans-serif; transition: all 0.2s;
+}
+.auth-tab.active { background: #fff; color: var(--primary); }
+.auth-body { padding: 28px 24px; flex: 1; }
+.input-group { margin-bottom: 16px; }
+.input-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text-light); margin-bottom: 6px; }
+.input-group input {
+  width: 100%; padding: 14px 16px; border: 2px solid var(--border);
+  border-radius: var(--radius-sm); font-size: 15px; font-family: 'Tajawal', sans-serif;
+  color: var(--text); background: var(--bg); outline: none; transition: border-color 0.2s;
+  direction: ltr; text-align: right;
+}
+.input-group input:focus { border-color: var(--primary); }
+.role-select { display: flex; gap: 10px; margin-bottom: 20px; }
+.role-btn {
+  flex: 1; padding: 12px 8px; border-radius: var(--radius-sm); border: 2px solid var(--border);
+  background: var(--bg); cursor: pointer; text-align: center; transition: all 0.2s;
+  font-family: 'Tajawal', sans-serif;
+}
+.role-btn .role-icon { font-size: 24px; display: block; margin-bottom: 4px; }
+.role-btn .role-name { font-size: 12px; font-weight: 600; color: var(--text-light); }
+.role-btn.selected { border-color: var(--primary); background: #EEEDFE; }
+.role-btn.selected .role-name { color: var(--primary); }
+.btn-primary {
+  width: 100%; padding: 16px; background: var(--primary); color: #fff;
+  border: none; border-radius: 100px; font-size: 16px; font-weight: 700;
+  cursor: pointer; font-family: 'Tajawal', sans-serif; transition: all 0.2s;
+}
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.auth-error { background: #FFEAEA; border-radius: var(--radius-sm); padding: 10px 14px; font-size: 13px; color: #C0392B; margin-bottom: 12px; display: none; }
+ 
+/* ===== STAGE SELECT ===== */
+.page-header {
+  padding: 20px 20px 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.back-btn {
+  width: 38px; height: 38px; border-radius: 50%; background: var(--bg);
+  border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 16px; transition: background 0.2s; flex-shrink: 0;
+}
+.back-btn:hover { background: var(--border); }
+.page-title { font-size: 20px; font-weight: 800; color: var(--text); }
+.greeting-bar {
+  background: linear-gradient(135deg, #6C63FF, #9B93FF);
+  margin: 0 16px 20px; border-radius: var(--radius); padding: 16px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.greeting-bar .user-info p:first-child { font-size: 12px; color: rgba(255,255,255,0.8); }
+.greeting-bar .user-info p:last-child { font-size: 16px; font-weight: 700; color: #fff; }
+.xp-badge { background: rgba(255,255,255,0.2); border-radius: 100px; padding: 6px 12px; font-size: 13px; font-weight: 700; color: #FFD700; }
+.stage-cards { padding: 0 16px; display: flex; flex-direction: column; gap: 12px; }
+.stage-card {
+  border-radius: var(--radius); padding: 20px; border: none; cursor: pointer;
+  display: flex; align-items: center; gap: 16px; text-align: right;
+  transition: transform 0.2s, box-shadow 0.2s; box-shadow: var(--shadow);
+  width: 100%;
+}
+.stage-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(108,99,255,0.2); }
+.stage-card .s-icon { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
+.stage-card .s-title { font-size: 18px; font-weight: 800; margin-bottom: 3px; }
+.stage-card .s-sub { font-size: 13px; opacity: 0.75; }
+.stage-primary { background: linear-gradient(135deg, #43D39E, #38B590); color: #fff; }
+.stage-primary .s-icon { background: rgba(255,255,255,0.2); }
+.stage-middle { background: linear-gradient(135deg, #6C63FF, #9B93FF); color: #fff; }
+.stage-middle .s-icon { background: rgba(255,255,255,0.2); }
+.stage-high { background: linear-gradient(135deg, #FF6584, #FF8E9E); color: #fff; }
+.stage-high .s-icon { background: rgba(255,255,255,0.2); }
+.stage-admin { background: linear-gradient(135deg, #2D2B55, #4A4870); color: #fff; }
+.stage-admin .s-icon { background: rgba(255,255,255,0.15); }
+ 
+/* ===== GRADE SELECT ===== */
+.grade-list { padding: 0 16px; display: flex; flex-direction: column; gap: 10px; }
+.grade-item {
+  background: var(--card); border: 2px solid var(--border); border-radius: var(--radius);
+  padding: 16px 20px; display: flex; align-items: center; gap: 14px;
+  cursor: pointer; transition: all 0.2s;
+}
+.grade-item:hover { border-color: var(--primary); box-shadow: var(--shadow); }
+.grade-num {
+  width: 46px; height: 46px; border-radius: 14px; display: flex; align-items: center;
+  justify-content: center; font-size: 18px; font-weight: 800; flex-shrink: 0;
+}
+.grade-info .g-name { font-size: 16px; font-weight: 700; color: var(--text); }
+.grade-info .g-sub { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+ 
+/* ===== SEM SELECT ===== */
+.sem-cards { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+.sem-card {
+  border-radius: var(--radius); padding: 28px 20px; text-align: center; cursor: pointer;
+  border: 3px solid transparent; transition: all 0.25s;
+  box-shadow: var(--shadow);
+}
+.sem-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(108,99,255,0.18); }
+.sem-card .sem-emoji { font-size: 52px; margin-bottom: 12px; display: block; }
+.sem-card .sem-title { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+.sem-card .sem-info { font-size: 13px; opacity: 0.75; }
+.sem-1 { background: linear-gradient(135deg, #FFB347, #FFA07A); color: #fff; }
+.sem-2 { background: linear-gradient(135deg, #6C63FF, #9B93FF); color: #fff; }
+ 
+/* ===== LEARN SCREEN ===== */
+.learn-header {
+  background: linear-gradient(135deg, #6C63FF, #9B93FF);
+  padding: 14px 20px;
+}
+.learn-header .lh-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.hearts { font-size: 20px; letter-spacing: 2px; }
+.q-counter { background: rgba(255,255,255,0.25); border-radius: 100px; padding: 4px 14px; font-size: 13px; font-weight: 700; color: #fff; }
+.prog-bar { background: rgba(255,255,255,0.25); border-radius: 100px; height: 8px; }
+.prog-fill { background: #fff; border-radius: 100px; height: 8px; transition: width 0.5s cubic-bezier(.4,0,.2,1); }
+.learn-body { flex: 1; padding: 20px 16px; overflow-y: auto; background: var(--bg); }
+.phase-badge {
+  display: inline-flex; align-items: center; gap: 6px; background: var(--primary);
+  color: #fff; border-radius: 100px; padding: 6px 14px; font-size: 12px; font-weight: 700;
+  margin-bottom: 16px;
+}
+.word-display {
+  background: linear-gradient(135deg, #6C63FF 0%, #9B93FF 100%);
+  border-radius: var(--radius); padding: 28px 20px; text-align: center;
+  margin-bottom: 20px; position: relative; overflow: hidden;
+}
+.word-display::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 120px; height: 120px; background: rgba(255,255,255,0.08); border-radius: 50%;
+}
+.word-img {
+  width: 120px; height: 120px; border-radius: 20px; object-fit: cover;
+  margin: 0 auto 16px; display: block; background: rgba(255,255,255,0.15);
+  border: 3px solid rgba(255,255,255,0.3);
+}
+.word-img-placeholder {
+  width: 120px; height: 120px; border-radius: 20px; background: rgba(255,255,255,0.15);
+  border: 3px solid rgba(255,255,255,0.3); margin: 0 auto 16px; display: flex;
+  align-items: center; justify-content: center; font-size: 56px;
+}
+.word-en { font-size: 34px; font-weight: 900; color: #fff; letter-spacing: -1px; margin-bottom: 6px; }
+.word-listen {
+  display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.2);
+  border-radius: 100px; padding: 6px 14px; font-size: 13px; color: rgba(255,255,255,0.9);
+  cursor: pointer; border: none; font-family: 'Tajawal', sans-serif; transition: background 0.2s;
+}
+.word-listen:hover { background: rgba(255,255,255,0.3); }
+.q-label { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 14px; text-align: center; }
+.opts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.opt-btn {
+  background: var(--card); border: 2.5px solid var(--border); border-radius: var(--radius-sm);
+  padding: 14px 10px; font-size: 15px; font-weight: 600; color: var(--text); cursor: pointer;
+  font-family: 'Tajawal', sans-serif; text-align: center; transition: all 0.2s;
+  line-height: 1.3;
+}
+.opt-btn:hover { border-color: var(--primary); background: #F0EDFF; }
+.opt-btn.correct { border-color: var(--accent); background: #E8FFF5; color: #0A6E56; }
+.opt-btn.wrong { border-color: var(--secondary); background: #FFEEF2; color: #C0392B; }
+.opt-btn.disabled { pointer-events: none; opacity: 0.6; }
+.sent-opts { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+.feedback-box {
+  border-radius: var(--radius-sm); padding: 14px 16px; font-size: 14px; font-weight: 600;
+  text-align: center; display: none; margin-bottom: 12px;
+}
+.feedback-box.correct { background: #E8FFF5; color: #0A6E56; border: 2px solid #43D39E; }
+.feedback-box.wrong { background: #FFEEF2; color: #C0392B; border: 2px solid var(--secondary); }
+.btn-next {
+  width: 100%; padding: 16px; background: var(--primary); color: #fff; border: none;
+  border-radius: 100px; font-size: 16px; font-weight: 700; cursor: pointer;
+  font-family: 'Tajawal', sans-serif; transition: all 0.2s; display: none;
+}
+.btn-next:hover { background: var(--primary-dark); }
+ 
+/* ===== RESULT ===== */
+#s-result {
+  background: linear-gradient(160deg, #6C63FF 0%, #9B93FF 60%, var(--bg) 100%);
+}
+.result-hero { padding: 48px 32px 32px; text-align: center; }
+.result-trophy { font-size: 72px; margin-bottom: 16px; display: block;
+  animation: bounce 0.6s cubic-bezier(.36,.07,.19,.97) 0.2s both; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 30%{transform:translateY(-20px)} 60%{transform:translateY(-8px)} }
+.result-title { font-size: 28px; font-weight: 900; color: #fff; margin-bottom: 6px; }
+.result-sub { font-size: 15px; color: rgba(255,255,255,0.8); }
+.result-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 16px 16px; }
+.r-card { background: rgba(255,255,255,0.95); border-radius: var(--radius); padding: 20px; text-align: center; backdrop-filter: blur(10px); }
+.r-num { font-size: 28px; font-weight: 900; margin-bottom: 4px; }
+.r-lbl { font-size: 12px; color: var(--text-light); font-weight: 600; }
+.ai-analysis { margin: 0 16px 16px; background: rgba(255,255,255,0.95); border-radius: var(--radius); padding: 16px 20px; backdrop-filter: blur(10px); }
+.ai-analysis .ai-title { font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.ai-analysis .ai-text { font-size: 14px; color: var(--text); line-height: 1.7; }
+.missed-section { margin: 0 16px 16px; background: #FFF0F3; border-radius: var(--radius); padding: 14px 18px; border: 2px solid #FFD0DA; }
+.missed-title { font-size: 13px; font-weight: 700; color: #C0392B; margin-bottom: 8px; }
+.missed-words { font-size: 13px; color: #922B21; line-height: 1.8; }
+.result-actions { padding: 0 16px 32px; display: flex; flex-direction: column; gap: 10px; }
+.btn-secondary {
+  width: 100%; padding: 14px; background: rgba(255,255,255,0.2); color: #fff; border: 2px solid rgba(255,255,255,0.4);
+  border-radius: 100px; font-size: 15px; font-weight: 700; cursor: pointer;
+  font-family: 'Tajawal', sans-serif; transition: all 0.2s;
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.3); }
+ 
+/* ===== ADMIN ===== */
+#s-admin { background: var(--bg); }
+.admin-header { background: linear-gradient(135deg, #2D2B55, #4A4870); padding: 20px; }
+.admin-header h2 { font-size: 20px; font-weight: 800; color: #fff; }
+.admin-header p { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+.admin-body { padding: 16px; flex: 1; overflow-y: auto; }
+.admin-section { background: var(--card); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; box-shadow: var(--shadow); }
+.admin-section h3 { font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 14px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
+.admin-row { display: flex; gap: 10px; margin-bottom: 10px; }
+.admin-select, .admin-input {
+  padding: 10px 14px; border: 2px solid var(--border); border-radius: var(--radius-sm);
+  font-size: 14px; font-family: 'Tajawal', sans-serif; color: var(--text); background: var(--bg);
+  outline: none; transition: border-color 0.2s;
+}
+.admin-select:focus, .admin-input:focus { border-color: var(--primary); }
+.admin-select { flex: 1; }
+.admin-input { flex: 2; }
+.btn-admin {
+  padding: 10px 18px; background: var(--primary); color: #fff; border: none;
+  border-radius: var(--radius-sm); font-size: 14px; font-weight: 700; cursor: pointer;
+  font-family: 'Tajawal', sans-serif; white-space: nowrap; transition: background 0.2s;
+}
+.btn-admin:hover { background: var(--primary-dark); }
+.btn-danger { background: var(--secondary); }
+.btn-danger:hover { background: #e55370; }
+.word-list { display: flex; flex-direction: column; gap: 8px; max-height: 400px; overflow-y: auto; }
+.word-item {
+  background: var(--bg); border-radius: var(--radius-sm); padding: 12px 16px;
+  display: flex; align-items: center; gap: 10px; border: 1px solid var(--border);
+}
+.word-item .wi-img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; background: var(--border); flex-shrink: 0; font-size: 24px; display: flex; align-items: center; justify-content: center; }
+.word-item .wi-info { flex: 1; }
+.word-item .wi-en { font-size: 14px; font-weight: 700; color: var(--text); }
+.word-item .wi-ar { font-size: 12px; color: var(--text-light); }
+.word-item .wi-del { background: #FFEEF2; border: none; border-radius: 8px; padding: 6px 10px; cursor: pointer; color: var(--secondary); font-size: 14px; transition: background 0.2s; }
+.word-item .wi-del:hover { background: #FFD0DA; }
+.empty-state { text-align: center; padding: 32px; color: var(--text-light); }
+.empty-state p:first-child { font-size: 32px; margin-bottom: 8px; }
+.tab-bar {
+  display: flex; background: var(--bg); border-bottom: 2px solid var(--border);
+  padding: 4px; margin-bottom: 16px; border-radius: var(--radius-sm);
+}
+.tab-item {
+  flex: 1; padding: 8px; border-radius: 8px; border: none; background: transparent;
+  font-size: 13px; font-weight: 600; color: var(--text-light); cursor: pointer;
+  font-family: 'Tajawal', sans-serif; transition: all 0.2s;
+}
+.tab-item.active { background: var(--primary); color: #fff; }
+.admin-filter { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+.filter-sel {
+  padding: 8px 12px; border: 2px solid var(--border); border-radius: var(--radius-sm);
+  font-size: 13px; font-family: 'Tajawal', sans-serif; color: var(--text); background: var(--bg);
+  outline: none; flex: 1; min-width: 80px;
+}
+.filter-sel:focus { border-color: var(--primary); }
+.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+.stat-box { background: var(--bg); border-radius: var(--radius-sm); padding: 14px; text-align: center; }
+.stat-box .sn { font-size: 24px; font-weight: 900; color: var(--primary); }
+.stat-box .sl { font-size: 11px; color: var(--text-light); font-weight: 600; }
+.logout-btn {
+  width: 100%; padding: 14px; background: transparent; color: var(--secondary);
+  border: 2px solid var(--secondary); border-radius: 100px; font-size: 15px; font-weight: 700;
+  cursor: pointer; font-family: 'Tajawal', sans-serif; transition: all 0.2s; margin-top: 8px;
+}
+.logout-btn:hover { background: var(--secondary); color: #fff; }
+.success-toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
+  background: #2D2B55; color: #fff; padding: 12px 24px; border-radius: 100px;
+  font-size: 14px; font-weight: 600; transition: transform 0.3s; z-index: 999;
+}
+.success-toast.show { transform: translateX(-50%) translateY(0); }
 </style>
 </head>
 <body>
 <div class="app">
  
-<!-- شاشة البداية -->
-<div class="screen active" id="s0" style="background:linear-gradient(160deg,#667EEA,#764BA2);justify-content:center;align-items:center;">
-  <div style="text-align:center;padding:32px;">
-    <div style="width:100px;height:100px;background:#fff;border-radius:28px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:52px;">🌟</div>
-    <p style="font-size:32px;font-weight:600;color:#fff;margin-bottom:8px;">لغتي</p>
-    <p style="font-size:16px;color:rgba(255,255,255,0.85);margin-bottom:48px;">تعلّم الإنجليزي بطريقة ممتعة</p>
-    <button class="btn" style="background:#fff;color:#534AB7;font-size:18px;padding:18px;" onclick="go('s1')">ابدأ الآن ✨</button>
+<!-- SPLASH -->
+<div class="screen active" id="s-splash">
+  <div class="splash-logo">🌟</div>
+  <p class="splash-title">لُغَتي</p>
+  <p class="splash-sub">تعلّم الإنجليزية بطريقة ممتعة وذكية</p>
+  <button class="btn-splash" onclick="go('s-auth')">ابدأ الآن ✨</button>
+</div>
+ 
+<!-- AUTH -->
+<div class="screen" id="s-auth">
+  <div class="auth-top">
+    <h2>أهلاً بك 👋</h2>
+    <p>سجّل دخولك للمتابعة</p>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">دخول</button>
+      <button class="auth-tab" id="tab-register" onclick="switchTab('register')">حساب جديد</button>
+    </div>
+  </div>
+  <div class="auth-body">
+    <div class="auth-error" id="auth-error"></div>
+    <div class="input-group">
+      <label>البريد الإلكتروني</label>
+      <input type="email" id="auth-email" placeholder="example@email.com" dir="ltr">
+    </div>
+    <div class="input-group">
+      <label>كلمة المرور</label>
+      <input type="password" id="auth-pass" placeholder="••••••••" dir="ltr">
+    </div>
+    <div id="register-fields" style="display:none;">
+      <div class="input-group">
+        <label>الاسم</label>
+        <input type="text" id="auth-name" placeholder="اسمك هنا">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:13px;font-weight:600;color:var(--text-light);margin-bottom:8px;">الدور</label>
+        <div class="role-select">
+          <div class="role-btn selected" id="role-student" onclick="selectRole('student')">
+            <span class="role-icon">👦</span>
+            <span class="role-name">طالب</span>
+          </div>
+          <div class="role-btn" id="role-parent" onclick="selectRole('parent')">
+            <span class="role-icon">👨‍👩‍👦</span>
+            <span class="role-name">ولي أمر</span>
+          </div>
+          <div class="role-btn" id="role-admin" onclick="selectRole('admin')">
+            <span class="role-icon">👑</span>
+            <span class="role-name">أدمن</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="doAuth()">دخول</button>
   </div>
 </div>
  
-<!-- اختيار المرحلة -->
-<div class="screen" id="s1">
-  <div class="hdr" style="background:linear-gradient(135deg,#534AB7,#764BA2);">
-    <p style="font-size:14px;opacity:0.85;margin-bottom:4px;">أهلاً بك 👋</p>
-    <p style="font-size:22px;font-weight:600;">اختر مرحلتك الدراسية</p>
+<!-- STAGE SELECT -->
+<div class="screen" id="s-stage">
+  <div style="padding:20px 16px 8px;">
+    <div class="greeting-bar">
+      <div class="user-info">
+        <p>مرحباً 👋</p>
+        <p id="user-display-name">الطالب</p>
+      </div>
+      <div class="xp-badge">⭐ <span id="user-xp">0</span> XP</div>
+    </div>
   </div>
-  <div class="body" style="background:#F0EDFF;">
-    <div style="height:16px;"></div>
-    <div class="card" style="border-color:#5DCAA5;" onclick="chooseStage('primary','#1D9E75','#E1F5EE','#085041')">
-      <div class="card-icon" style="background:#E1F5EE;">🏫</div>
-      <div><p style="font-size:17px;font-weight:600;color:#085041;">ابتدائي</p><p style="font-size:13px;color:#1D9E75;">الصف الخامس فقط</p></div>
+  <div style="padding:0 16px 8px;"><p style="font-size:18px;font-weight:800;color:var(--text);">اختر مرحلتك الدراسية</p></div>
+  <div class="stage-cards">
+    <button class="stage-card stage-primary" onclick="chooseStage('primary')">
+      <div class="s-icon">🏫</div>
+      <div style="text-align:right;">
+        <div class="s-title">ابتدائي</div>
+        <div class="s-sub">الصف الخامس فقط</div>
+      </div>
+    </button>
+    <button class="stage-card stage-middle" onclick="chooseStage('middle')">
+      <div class="s-icon">📚</div>
+      <div style="text-align:right;">
+        <div class="s-title">متوسط</div>
+        <div class="s-sub">الصف 6 — 9</div>
+      </div>
+    </button>
+    <button class="stage-card stage-high" onclick="chooseStage('high')">
+      <div class="s-icon">🎓</div>
+      <div style="text-align:right;">
+        <div class="s-title">ثانوي</div>
+        <div class="s-sub">الصف 10 — 12</div>
+      </div>
+    </button>
+    <button class="stage-card stage-admin" id="admin-card" onclick="go('s-admin')" style="display:none;">
+      <div class="s-icon">👑</div>
+      <div style="text-align:right;">
+        <div class="s-title">لوحة الأدمن</div>
+        <div class="s-sub">إدارة الكلمات والمحتوى</div>
+      </div>
+    </button>
+    <button class="logout-btn" onclick="doLogout()">تسجيل الخروج</button>
+  </div>
+</div>
+ 
+<!-- GRADE SELECT -->
+<div class="screen" id="s-grade">
+  <div class="page-header">
+    <button class="back-btn" onclick="go('s-stage')">←</button>
+    <div class="page-title" id="grade-title">اختر الصف</div>
+  </div>
+  <div class="grade-list" id="grade-list"></div>
+</div>
+ 
+<!-- SEM SELECT -->
+<div class="screen" id="s-sem">
+  <div class="page-header">
+    <button class="back-btn" onclick="go('s-grade')">←</button>
+    <div class="page-title" id="sem-title">اختر الفصل</div>
+  </div>
+  <div class="sem-cards">
+    <div class="sem-card sem-1" onclick="chooseSem(1)">
+      <span class="sem-emoji">☀️</span>
+      <div class="sem-title">الفصل الأول</div>
+      <div class="sem-info" id="sem1-info">كلمات الفصل الأول</div>
     </div>
-    <div class="card" style="border-color:#AFA9EC;" onclick="chooseStage('middle','#534AB7','#EEEDFE','#3C3489')">
-      <div class="card-icon" style="background:#EEEDFE;">📚</div>
-      <div><p style="font-size:17px;font-weight:600;color:#3C3489;">متوسط</p><p style="font-size:13px;color:#534AB7;">الصف 6 — 9</p></div>
-    </div>
-    <div class="card" style="border-color:#EF9F27;" onclick="chooseStage('high','#BA7517','#FAEEDA','#412402')">
-      <div class="card-icon" style="background:#FAEEDA;">🎓</div>
-      <div><p style="font-size:17px;font-weight:600;color:#412402;">ثانوي</p><p style="font-size:13px;color:#854F0B;">الصف 10 — 12</p></div>
+    <div class="sem-card sem-2" onclick="chooseSem(2)">
+      <span class="sem-emoji">🌸</span>
+      <div class="sem-title">الفصل الثاني</div>
+      <div class="sem-info" id="sem2-info">كلمات الفصل الثاني</div>
     </div>
   </div>
 </div>
  
-<!-- اختيار الصف -->
-<div class="screen" id="s2">
-  <div class="hdr" id="s2hdr" style="background:#534AB7;">
-    <button class="back-btn" onclick="go('s1')">← رجوع</button>
-    <p style="font-size:22px;font-weight:600;">اختر صفك الدراسي</p>
-  </div>
-  <div class="body" id="s2body" style="background:#F0EDFF;"></div>
-</div>
- 
-<!-- اختيار الفصل -->
-<div class="screen" id="s3">
-  <div class="hdr" id="s3hdr" style="background:#534AB7;">
-    <button class="back-btn" onclick="go('s2')">← رجوع</button>
-    <p style="font-size:22px;font-weight:600;" id="s3title">اختر الفصل الدراسي</p>
-  </div>
-  <div class="body" style="background:#FFFDF0;padding:20px;">
-    <div class="sem-card" style="border-color:#EF9F27;" onclick="chooseSem(1)">
-      <div style="font-size:44px;margin-bottom:10px;">☀️</div>
-      <p style="font-size:18px;font-weight:600;color:#412402;">الفصل الأول</p>
-      <p style="font-size:13px;color:#854F0B;margin-top:6px;" id="sem1info">5 كلمات تجريبية</p>
+<!-- LEARN -->
+<div class="screen" id="s-learn">
+  <div class="learn-header">
+    <div class="lh-top">
+      <div class="hearts" id="learn-hearts">❤️❤️❤️❤️❤️</div>
+      <div class="q-counter" id="learn-counter">1/10</div>
     </div>
-    <div class="sem-card" style="border-color:#85B7EB;" onclick="chooseSem(2)">
-      <div style="font-size:44px;margin-bottom:10px;">🌸</div>
-      <p style="font-size:18px;font-weight:600;color:#0C447C;">الفصل الثاني</p>
-      <p style="font-size:13px;color:#185FA5;margin-top:6px;" id="sem2info">5 كلمات تجريبية</p>
+    <div class="prog-bar"><div class="prog-fill" id="learn-prog" style="width:0%"></div></div>
+  </div>
+  <div class="learn-body">
+    <div class="phase-badge" id="phase-badge">📖 مرحلة التعلم</div>
+    <div class="word-display" id="word-display">
+      <div class="word-img-placeholder" id="word-img-wrap">🔤</div>
+      <div class="word-en" id="word-en-text">Word</div>
+      <button class="word-listen" onclick="speak()">🔊 استمع للكلمة</button>
     </div>
+    <div class="q-label" id="q-label">اختر المعنى الصحيح</div>
+    <div class="opts-grid" id="opts-container"></div>
+    <div class="feedback-box" id="feedback-box"></div>
+    <button class="btn-next" id="btn-next" onclick="nextQuestion()">التالي ›</button>
   </div>
 </div>
  
-<!-- اللعبة -->
-<div class="screen" id="s4">
-  <div class="hdr" id="s4hdr" style="background:#1D9E75;padding:14px 18px;">
+<!-- RESULT -->
+<div class="screen" id="s-result">
+  <div class="result-hero">
+    <span class="result-trophy" id="result-trophy">🏆</span>
+    <div class="result-title" id="result-title">أحسنت!</div>
+    <div class="result-sub" id="result-sub">الصف العاشر — الفصل الأول</div>
+  </div>
+  <div class="result-cards">
+    <div class="r-card">
+      <div class="r-num" style="color:var(--accent);" id="r-score">-</div>
+      <div class="r-lbl">إجابات صحيحة</div>
+    </div>
+    <div class="r-card">
+      <div class="r-num" style="color:var(--primary);" id="r-xp">+0 ⭐</div>
+      <div class="r-lbl">نقاط XP</div>
+    </div>
+  </div>
+  <div class="ai-analysis">
+    <div class="ai-title">🤖 تحليل ذكي</div>
+    <div class="ai-text" id="ai-text">جاري التحليل...</div>
+  </div>
+  <div class="missed-section" id="missed-section" style="display:none;">
+    <div class="missed-title">📌 كلمات تحتاج مراجعة</div>
+    <div class="missed-words" id="missed-words"></div>
+  </div>
+  <div class="result-actions">
+    <button class="btn-primary" onclick="goHome()">العودة للرئيسية 🏠</button>
+    <button class="btn-secondary" onclick="replayLesson()">إعادة المحاولة 🔄</button>
+  </div>
+</div>
+ 
+<!-- ADMIN -->
+<div class="screen" id="s-admin">
+  <div class="admin-header">
     <div style="display:flex;justify-content:space-between;align-items:center;">
-      <div id="hearts" style="font-size:18px;letter-spacing:3px;">❤️❤️❤️❤️❤️</div>
-      <div id="qcount" style="background:rgba(255,255,255,0.25);border-radius:20px;padding:4px 14px;font-size:13px;color:#fff;">1/5</div>
+      <div>
+        <h2>👑 لوحة الأدمن</h2>
+        <p>إدارة الكلمات والمحتوى التعليمي</p>
+      </div>
+      <button class="back-btn" style="background:rgba(255,255,255,0.15);color:#fff;" onclick="go('s-stage')">←</button>
     </div>
-    <div class="progress-bar"><div class="progress-fill" id="pfill" style="width:0%"></div></div>
   </div>
-  <div class="body" style="background:#F0FFF8;">
-    <div style="height:12px;"></div>
-    <p style="font-size:14px;color:#085041;text-align:center;margin-bottom:12px;font-weight:600;" id="qtitle">🤔 ما معنى هذه الكلمة؟</p>
-    <div class="word-card">
-      <div class="word-en" id="word-en">Ambitious</div>
-      <div class="word-hint" onclick="speak()" id="word-hint">🔊 اضغط للاستماع</div>
+  <div class="admin-body">
+    <div class="stats-row">
+      <div class="stat-box"><div class="sn" id="admin-total">0</div><div class="sl">إجمالي الكلمات</div></div>
+      <div class="stat-box"><div class="sn" id="admin-grades">8</div><div class="sl">الصفوف</div></div>
+      <div class="stat-box"><div class="sn" id="admin-sems">16</div><div class="sl">الفصول</div></div>
     </div>
-    <div id="options"></div>
-    <div class="feedback" id="feedback"></div>
-    <button class="btn" id="nextbtn" style="background:#1D9E75;display:none;margin-top:14px;" onclick="nextQ()">التالي ›</button>
+    <div class="tab-bar">
+      <button class="tab-item active" id="atab-add" onclick="switchAdminTab('add')">➕ إضافة كلمة</button>
+      <button class="tab-item" id="atab-manage" onclick="switchAdminTab('manage')">📋 إدارة الكلمات</button>
+    </div>
+ 
+    <!-- ADD TAB -->
+    <div id="admin-add-tab">
+      <div class="admin-section">
+        <h3>إضافة كلمة جديدة</h3>
+        <div class="admin-row">
+          <select class="admin-select" id="add-stage" onchange="updateAddGrades()">
+            <option value="primary">ابتدائي</option>
+            <option value="middle">متوسط</option>
+            <option value="high">ثانوي</option>
+          </select>
+          <select class="admin-select" id="add-grade"></select>
+          <select class="admin-select" id="add-sem">
+            <option value="1">فصل 1</option>
+            <option value="2">فصل 2</option>
+          </select>
+        </div>
+        <div class="admin-row">
+          <input class="admin-input" id="add-en" placeholder="الكلمة بالإنجليزية" style="flex:1;">
+          <input class="admin-input" id="add-ar" placeholder="المعنى بالعربية" style="flex:1;">
+        </div>
+        <div class="admin-row">
+          <input class="admin-input" id="add-img" placeholder="رابط صورة الكلمة (اختياري)" style="flex:1;direction:ltr;">
+        </div>
+        <div class="admin-row">
+          <input class="admin-input" id="add-sent" placeholder="جملة مثال (اختياري)" style="flex:1;">
+        </div>
+        <button class="btn-admin" onclick="addWord()" style="width:100%;padding:14px;border-radius:100px;font-size:16px;">حفظ الكلمة ✓</button>
+      </div>
+    </div>
+ 
+    <!-- MANAGE TAB -->
+    <div id="admin-manage-tab" style="display:none;">
+      <div class="admin-section">
+        <h3>الكلمات المضافة</h3>
+        <div class="admin-filter">
+          <select class="filter-sel" id="filter-stage" onchange="renderWordList()">
+            <option value="all">كل المراحل</option>
+            <option value="primary">ابتدائي</option>
+            <option value="middle">متوسط</option>
+            <option value="high">ثانوي</option>
+          </select>
+          <select class="filter-sel" id="filter-grade" onchange="renderWordList()">
+            <option value="all">كل الصفوف</option>
+          </select>
+          <select class="filter-sel" id="filter-sem" onchange="renderWordList()">
+            <option value="all">كل الفصول</option>
+            <option value="1">فصل 1</option>
+            <option value="2">فصل 2</option>
+          </select>
+        </div>
+        <div class="word-list" id="admin-word-list"></div>
+      </div>
+    </div>
   </div>
 </div>
  
-<!-- النتائج -->
-<div class="screen" id="s5">
-  <div class="hdr" style="background:linear-gradient(135deg,#534AB7,#764BA2);padding:28px 20px;">
-    <div style="font-size:56px;text-align:center;margin-bottom:10px;">🏆</div>
-    <p style="font-size:24px;font-weight:600;text-align:center;">أحسنت!</p>
-    <p style="font-size:14px;opacity:0.85;text-align:center;margin-top:4px;" id="r-grade">الصف العاشر — الفصل الأول</p>
-  </div>
-  <div class="body" style="background:#F0EDFF;">
-    <div style="height:14px;"></div>
-    <div class="stat-grid">
-      <div class="stat-card" style="background:#E1F5EE;border:2px solid #5DCAA5;">
-        <div class="stat-num" id="r-correct" style="color:#085041;">-</div>
-        <div class="stat-lbl" style="color:#0F6E56;">إجابات صحيحة ✓</div>
-      </div>
-      <div class="stat-card" style="background:#EEEDFE;border:2px solid #AFA9EC;">
-        <div class="stat-num" id="r-xp" style="color:#3C3489;">- ⭐</div>
-        <div class="stat-lbl" style="color:#534AB7;">نقاط XP</div>
-      </div>
-    </div>
-    <div class="ai-box">
-      <div class="ai-title">🤖 تحليل الذكاء الاصطناعي</div>
-      <div class="ai-text" id="ai-feedback">جاري التحليل...</div>
-    </div>
-    <div id="missed-words"></div>
-    <button class="btn" style="background:#534AB7;" onclick="go('s1')">جولة جديدة 🔄</button>
-    <div style="height:20px;"></div>
-  </div>
-</div>
- 
-</div>
+</div><!-- end app -->
+<div class="success-toast" id="toast"></div>
  
 <script>
-const words = {
-  primary:{
-    1:[
-      {en:'Apple',ar:'تفاحة',opts:['تفاحة','برتقالة','موزة','عنبة']},
-      {en:'Book',ar:'كتاب',opts:['كتاب','قلم','مسطرة','مقص']},
-      {en:'Dog',ar:'كلب',opts:['قطة','كلب','سمكة','طير']},
-      {en:'Sun',ar:'شمس',opts:['قمر','نجمة','شمس','سحابة']},
-      {en:'Water',ar:'ماء',opts:['عصير','ماء','حليب','شاي']}
-    ],
-    2:[
-      {en:'House',ar:'بيت',opts:['بيت','مدرسة','مسجد','دكان']},
-      {en:'Tree',ar:'شجرة',opts:['زهرة','شجرة','عشب','نبتة']},
-      {en:'Fish',ar:'سمكة',opts:['طير','سمكة','أرنب','تمساح']},
-      {en:'Bread',ar:'خبز',opts:['أرز','خبز','تمر','جبن']},
-      {en:'Ball',ar:'كرة',opts:['كرة','حبل','دراجة','طائرة']}
-    ]
-  },
-  middle:{
-    6:{1:[
-      {en:'Brave',ar:'شجاع',opts:['شجاع','خائف','غضبان','حزين']},
-      {en:'River',ar:'نهر',opts:['بحر','نهر','بحيرة','خليج']},
-      {en:'Hungry',ar:'جائع',opts:['تعبان','جائع','نعسان','مريض']},
-      {en:'Cloud',ar:'سحابة',opts:['مطر','سحابة','ريح','برق']},
-      {en:'Strong',ar:'قوي',opts:['قوي','ضعيف','سريع','بطيء']}
-    ],2:[
-      {en:'Market',ar:'سوق',opts:['سوق','مصنع','مزرعة','مستشفى']},
-      {en:'Desert',ar:'صحراء',opts:['غابة','صحراء','جبل','وادٍ']},
-      {en:'Smile',ar:'ابتسامة',opts:['ابتسامة','بكاء','ضحكة','صراخ']},
-      {en:'Silver',ar:'فضة',opts:['ذهب','فضة','نحاس','حديد']},
-      {en:'Honest',ar:'صادق',opts:['صادق','كاذب','شجاع','كريم']}
-    ]},
-    7:{1:[
-      {en:'Ancient',ar:'قديم',opts:['قديم','جديد','ضخم','صغير']},
-      {en:'Journey',ar:'رحلة',opts:['رحلة','مغامرة','مسافة','وجهة']},
-      {en:'Generous',ar:'كريم',opts:['كريم','بخيل','شجاع','صادق']},
-      {en:'Climate',ar:'مناخ',opts:['مناخ','طقس','درجة حرارة','رطوبة']},
-      {en:'Victory',ar:'انتصار',opts:['انتصار','هزيمة','تعادل','منافسة']}
-    ],2:[
-      {en:'Citizen',ar:'مواطن',opts:['مواطن','غريب','جار','صديق']},
-      {en:'Culture',ar:'ثقافة',opts:['ثقافة','تقاليد','عادات','أعراف']},
-      {en:'Patient',ar:'صبور',opts:['صبور','عصبي','هادئ','مرتاح']},
-      {en:'Treasure',ar:'كنز',opts:['كنز','ثروة','مال','ذهب']},
-      {en:'Explore',ar:'يستكشف',opts:['يستكشف','يبحث','يجد','يكتشف']}
-    ]},
-    8:{1:[
-      {en:'Atmosphere',ar:'غلاف جوي',opts:['غلاف جوي','طبقة أرضية','طبقة مائية','فضاء']},
-      {en:'Conflict',ar:'صراع',opts:['صراع','سلام','حرب','خلاف']},
-      {en:'Efficient',ar:'كفؤ',opts:['كفؤ','بطيء','سريع','ضعيف']},
-      {en:'Harvest',ar:'حصاد',opts:['حصاد','زراعة','ري','حرث']},
-      {en:'Influence',ar:'تأثير',opts:['تأثير','تغيير','قوة','سلطة']}
-    ],2:[
-      {en:'Innovative',ar:'مبتكر',opts:['مبتكر','تقليدي','حديث','قديم']},
-      {en:'Prosperity',ar:'ازدهار',opts:['ازدهار','فقر','نمو','تطور']},
-      {en:'Navigate',ar:'يتنقل',opts:['يتنقل','يسافر','يتوه','يصل']},
-      {en:'Tradition',ar:'تقليد',opts:['تقليد','عادة','ثقافة','موروث']},
-      {en:'Significant',ar:'هام',opts:['هام','بسيط','ضروري','مفيد']}
-    ]},
-    9:{1:[
-      {en:'Phenomenon',ar:'ظاهرة',opts:['ظاهرة','حادثة','معجزة','كارثة']},
-      {en:'Persevere',ar:'يثابر',opts:['يثابر','يستسلم','يصبر','يحاول']},
-      {en:'Sustainable',ar:'مستدام',opts:['مستدام','مؤقت','دائم','متجدد']},
-      {en:'Diplomat',ar:'دبلوماسي',opts:['دبلوماسي','سياسي','مسؤول','ناشط']},
-      {en:'Eloquent',ar:'فصيح',opts:['فصيح','صامت','بليغ','هادئ']}
-    ],2:[
-      {en:'Hypothesis',ar:'فرضية',opts:['فرضية','نظرية','قانون','حقيقة']},
-      {en:'Integrity',ar:'نزاهة',opts:['نزاهة','أمانة','صدق','عدالة']},
-      {en:'Mediate',ar:'يتوسط',opts:['يتوسط','يحكم','يحل','يقرر']},
-      {en:'Resilient',ar:'متكيف',opts:['متكيف','صبور','قوي','شجاع']},
-      {en:'Scarcity',ar:'شُح',opts:['شُح','وفرة','ندرة','قلة']}
-    ]}
-  },
-  high:{
-    10:{1:[
-      {en:'Ambitious',ar:'طموح',opts:['طموح','كسول','جريء','صبور']},
-      {en:'Dedicate',ar:'يُكرّس',opts:['يُكرّس','يتجاهل','يحتفظ','يُخصص']},
-      {en:'Inevitable',ar:'حتمي',opts:['حتمي','ممكن','مؤجل','متوقع']},
-      {en:'Collaborate',ar:'يتعاون',opts:['يتعاون','يتنافس','يتعلم','يتحدث']},
-      {en:'Skeptical',ar:'متشكك',opts:['متشكك','متأكد','فضولي','مندهش']}
-    ],2:[
-      {en:'Consensus',ar:'إجماع',opts:['إجماع','تصويت','قرار','اتفاق']},
-      {en:'Pragmatic',ar:'براغماتي',opts:['براغماتي','مثالي','واقعي','عملي']},
-      {en:'Scrutinize',ar:'يُدقق',opts:['يُدقق','يُراجع','يُقيّم','يختبر']},
-      {en:'Diverse',ar:'متنوع',opts:['متنوع','مختلف','متشابه','متعدد']},
-      {en:'Advocate',ar:'يدعو لـ',opts:['يدعو لـ','يعارض','يدعم','يتحدث']}
-    ]},
-    11:{1:[
-      {en:'Paradigm',ar:'نموذج فكري',opts:['نموذج فكري','مثال','نظرية','مبدأ']},
-      {en:'Mitigate',ar:'يُخفف',opts:['يُخفف','يزيد','يُقلل','يُعالج']},
-      {en:'Affluent',ar:'ثري',opts:['ثري','فقير','مرفّه','ميسور']},
-      {en:'Ambiguous',ar:'غامض',opts:['غامض','واضح','مبهم','ملتبس']},
-      {en:'Coherent',ar:'متماسك',opts:['متماسك','منظم','متسق','واضح']}
-    ],2:[
-      {en:'Sovereignty',ar:'سيادة',opts:['سيادة','حكم','سلطة','نفوذ']},
-      {en:'Perpetual',ar:'دائم',opts:['دائم','مؤقت','متكرر','مستمر']},
-      {en:'Eloquence',ar:'بلاغة',opts:['بلاغة','فصاحة','خطابة','طلاقة']},
-      {en:'Indifferent',ar:'لامبالٍ',opts:['لامبالٍ','مهتم','محايد','بارد']},
-      {en:'Hierarchy',ar:'تسلسل هرمي',opts:['تسلسل هرمي','نظام','ترتيب','هيكل']}
-    ]},
-    12:{1:[
-      {en:'Autonomous',ar:'مستقل',opts:['مستقل','تابع','حر','ذاتي']},
-      {en:'Proliferate',ar:'ينتشر بسرعة',opts:['ينتشر بسرعة','يتضاعف','ينمو','يتوسع']},
-      {en:'Rhetoric',ar:'خطابة',opts:['خطابة','بلاغة','حجة','إقناع']},
-      {en:'Tangible',ar:'ملموس',opts:['ملموس','واضح','حقيقي','مادي']},
-      {en:'Transcend',ar:'يتخطى',opts:['يتخطى','يتجاوز','يعبر','يتفوق']}
-    ],2:[
-      {en:'Versatile',ar:'متعدد المواهب',opts:['متعدد المواهب','مرن','قابل للتكيف','متنوع']},
-      {en:'Meticulous',ar:'دقيق جداً',opts:['دقيق جداً','حذر','منظم','صارم']},
-      {en:'Hegemony',ar:'هيمنة',opts:['هيمنة','سيطرة','سلطة','نفوذ']},
-      {en:'Ephemeral',ar:'زائل',opts:['زائل','مؤقت','عابر','قصير']},
-      {en:'Meticulous',ar:'دقيق جداً',opts:['دقيق جداً','حذر','منظم','صارم']}
-    ]}
-  }
-};
+// ===== DATA =====
+let DB = JSON.parse(localStorage.getItem('lughatiDB') || JSON.stringify({
+  users: [
+    { email: 'admin@lughati.com', pass: 'admin123', name: 'الأدمن', role: 'admin', xp: 0 }
+  ],
+  words: []
+}));
  
-let stage='',color='',bgc='',textc='',grade=0,sem=0,qList=[],qi=0,hearts=5,score=0,missed=[];
+let currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
+let state = { stage:'', grade:0, sem:0, words:[], qi:0, hearts:5, score:0, missed:[], phase:'learn' };
+const stageGrades = { primary:[5], middle:[6,7,8,9], high:[10,11,12] };
+const gradeNames = {5:'الخامس',6:'السادس',7:'السابع',8:'الثامن',9:'التاسع',10:'العاشر',11:'الحادي عشر',12:'الثاني عشر'};
+let selectedRole = 'student';
  
-function go(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+function saveDB() { localStorage.setItem('lughatiDB', JSON.stringify(DB)); }
+ 
+// ===== NAV =====
+function go(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 }
  
-function numAr(n){
-  const m={5:'الخامس',6:'السادس',7:'السابع',8:'الثامن',9:'التاسع',10:'العاشر',11:'الحادي عشر',12:'الثاني عشر'};
-  return m[n]||n;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
 }
  
-function chooseStage(s,c,b,t){
-  stage=s; color=c; bgc=b; textc=t;
-  const grades={primary:[5],middle:[6,7,8,9],high:[10,11,12]};
-  const labels={primary:'ابتدائي',middle:'متوسط',high:'ثانوي'};
-  document.getElementById('s2hdr').style.background=`linear-gradient(135deg,${color},${color}dd)`;
-  const body=document.getElementById('s2body');
-  body.style.background=bgc+'88';
-  body.innerHTML='<div style="height:16px;"></div>';
-  grades[stage].forEach(g=>{
-    const d=document.createElement('div');
-    d.className='card';
-    d.style.borderColor=color;
-    d.innerHTML=`<div class="card-icon" style="background:${bgc};font-size:22px;font-weight:600;color:${color};">${g}</div><div><p style="font-size:17px;font-weight:600;color:${textc};">الصف ${numAr(g)}</p><p style="font-size:13px;color:${color};">فصلان دراسيان</p></div>`;
-    d.onclick=()=>chooseGrade(g);
-    body.appendChild(d);
+// ===== AUTH =====
+function switchTab(tab) {
+  const isReg = tab === 'register';
+  document.getElementById('tab-login').classList.toggle('active', !isReg);
+  document.getElementById('tab-register').classList.toggle('active', isReg);
+  document.getElementById('register-fields').style.display = isReg ? 'block' : 'none';
+  document.querySelector('.btn-primary').textContent = isReg ? 'إنشاء حساب' : 'دخول';
+}
+ 
+function selectRole(r) {
+  selectedRole = r;
+  ['student','parent','admin'].forEach(x => document.getElementById('role-'+x).classList.toggle('selected', x===r));
+}
+ 
+function doAuth() {
+  const email = document.getElementById('auth-email').value.trim().toLowerCase();
+  const pass = document.getElementById('auth-pass').value;
+  const isReg = document.getElementById('register-fields').style.display !== 'none';
+  const err = document.getElementById('auth-error');
+  err.style.display = 'none';
+ 
+  if (!email || !pass) { err.textContent = 'أدخل البريد وكلمة المرور'; err.style.display = 'block'; return; }
+ 
+  if (isReg) {
+    if (DB.users.find(u => u.email === email)) { err.textContent = 'البريد مسجل مسبقاً'; err.style.display = 'block'; return; }
+    const name = document.getElementById('auth-name').value.trim() || 'مستخدم';
+    const user = { email, pass, name, role: selectedRole, xp: 0 };
+    DB.users.push(user); saveDB();
+    currentUser = user;
+  } else {
+    const user = DB.users.find(u => u.email === email && u.pass === pass);
+    if (!user) { err.textContent = 'بريد أو كلمة مرور خاطئة'; err.style.display = 'block'; return; }
+    currentUser = user;
+  }
+ 
+  sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+  afterLogin();
+}
+ 
+function afterLogin() {
+  document.getElementById('user-display-name').textContent = currentUser.name;
+  document.getElementById('user-xp').textContent = currentUser.xp || 0;
+  document.getElementById('admin-card').style.display = currentUser.role === 'admin' ? 'flex' : 'none';
+  updateAdminStats();
+  go('s-stage');
+}
+ 
+function doLogout() {
+  currentUser = null;
+  sessionStorage.removeItem('currentUser');
+  go('s-auth');
+}
+ 
+// ===== STAGE / GRADE / SEM =====
+function chooseStage(s) {
+  state.stage = s;
+  const titles = { primary:'ابتدائي 🏫', middle:'متوسط 📚', high:'ثانوي 🎓' };
+  document.getElementById('grade-title').textContent = titles[s];
+  const list = document.getElementById('grade-list');
+  list.innerHTML = '';
+  const colors = { primary:'#43D39E', middle:'#6C63FF', high:'#FF6584' };
+  stageGrades[s].forEach(g => {
+    const wc = DB.words.filter(w => w.stage===s && w.grade===g).length;
+    const d = document.createElement('div');
+    d.className = 'grade-item';
+    d.innerHTML = `
+      <div class="grade-num" style="background:${colors[s]}20;color:${colors[s]};">${g}</div>
+      <div class="grade-info">
+        <div class="g-name">الصف ${gradeNames[g]}</div>
+        <div class="g-sub">${wc} كلمة متاحة</div>
+      </div>
+      <span style="color:var(--text-light);font-size:20px;">›</span>`;
+    d.onclick = () => chooseGrade(g);
+    list.appendChild(d);
   });
-  go('s2');
+  go('s-grade');
 }
  
-function chooseGrade(g){
-  grade=g;
-  document.getElementById('s3hdr').style.background=`linear-gradient(135deg,${color},${color}dd)`;
-  document.getElementById('s3title').textContent='الصف '+numAr(g)+' — اختر الفصل';
-  go('s3');
+function chooseGrade(g) {
+  state.grade = g;
+  document.getElementById('sem-title').textContent = `الصف ${gradeNames[g]}`;
+  const w1 = DB.words.filter(w=>w.stage===state.stage&&w.grade===g&&w.sem===1).length;
+  const w2 = DB.words.filter(w=>w.stage===state.stage&&w.grade===g&&w.sem===2).length;
+  document.getElementById('sem1-info').textContent = `${w1} كلمة في هذا الفصل`;
+  document.getElementById('sem2-info').textContent = `${w2} كلمة في هذا الفصل`;
+  go('s-sem');
 }
  
-function chooseSem(s){
-  sem=s;
-  let list;
-  try{
-    if(stage==='primary') list=words.primary[s];
-    else if(stage==='middle') list=words.middle[grade][s];
-    else list=words.high[grade][s];
-  }catch(e){list=null;}
-  if(!list||list.length===0){alert('الكلمات قيد الإعداد! جرب مرحلة أخرى.');return;}
-  qList=shuffle([...list]); qi=0; hearts=5; score=0; missed=[];
-  document.getElementById('s4hdr').style.background=`linear-gradient(135deg,${color},${color}dd)`;
-  loadQ();
-  go('s4');
+function chooseSem(s) {
+  state.sem = s;
+  const list = DB.words.filter(w => w.stage===state.stage && w.grade===state.grade && w.sem===s);
+  if (list.length < 2) { showToast('⚠️ يحتاج على الأقل كلمتين للبدء'); return; }
+  state.words = shuffle([...list]);
+  state.qi = 0; state.hearts = 5; state.score = 0; state.missed = [];
+  state.phase = 'learn';
+  loadQuestion();
+  go('s-learn');
 }
  
-function shuffle(a){
-  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+// ===== GAME =====
+function shuffle(a) {
+  for (let i = a.length-1; i > 0; i--) {
+    const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];
+  }
   return a;
 }
  
-function loadQ(){
-  if(qi>=qList.length){showResults();return;}
-  const q=qList[qi];
-  document.getElementById('qcount').textContent=(qi+1)+'/'+qList.length;
-  document.getElementById('pfill').style.width=((qi/qList.length)*100)+'%';
-  document.getElementById('word-en').textContent=q.en;
-  document.getElementById('hearts').textContent='❤️'.repeat(hearts)+'🖤'.repeat(5-hearts);
-  document.getElementById('feedback').style.display='none';
-  document.getElementById('nextbtn').style.display='none';
-  const opts=shuffle([...q.opts]);
-  const div=document.getElementById('options');
-  div.innerHTML='';
-  opts.forEach(o=>{
-    const b=document.createElement('div');
-    b.className='opt';
-    b.textContent=o;
-    b.onclick=()=>answer(o,q.ar,q.en,b);
-    div.appendChild(b);
+function loadQuestion() {
+  const total = state.words.length * 2; // learn phase + sentence phase
+  const current = state.phase === 'learn' ? state.qi + 1 : state.words.length + state.qi + 1;
+  document.getElementById('learn-counter').textContent = `${current}/${total}`;
+  document.getElementById('learn-prog').style.width = ((current-1)/total*100)+'%';
+  document.getElementById('learn-hearts').textContent = '❤️'.repeat(state.hearts) + '🖤'.repeat(5-state.hearts);
+  document.getElementById('feedback-box').style.display = 'none';
+  document.getElementById('btn-next').style.display = 'none';
+ 
+  if (state.phase === 'learn') {
+    loadLearnQ();
+  } else {
+    loadSentenceQ();
+  }
+}
+ 
+function loadLearnQ() {
+  const q = state.words[state.qi];
+  document.getElementById('phase-badge').innerHTML = '📖 تعلّم المفردات';
+  document.getElementById('q-label').textContent = 'اختر المعنى الصحيح للكلمة';
+ 
+  // Image
+  const imgWrap = document.getElementById('word-img-wrap');
+  if (q.img) {
+    imgWrap.innerHTML = `<img class="word-img" src="${q.img}" alt="${q.en}" onerror="this.parentElement.textContent='🔤'">`;
+    imgWrap.className = '';
+  } else {
+    imgWrap.className = 'word-img-placeholder';
+    imgWrap.textContent = getEmoji(q.en);
+  }
+  document.getElementById('word-en-text').textContent = q.en;
+ 
+  // Options
+  const allWords = DB.words.filter(w => w !== q && w.ar !== q.ar);
+  const wrongs = shuffle(allWords).slice(0, 3).map(w => w.ar);
+  while (wrongs.length < 3) wrongs.push(['كلمة أ','كلمة ب','كلمة ج'][wrongs.length]);
+  const opts = shuffle([q.ar, ...wrongs]);
+  renderOpts(opts, q.ar, q.en);
+  document.getElementById('opts-container').className = 'opts-grid';
+}
+ 
+function loadSentenceQ() {
+  if (state.qi >= state.words.length) { showResults(); return; }
+  const q = state.words[state.qi];
+  document.getElementById('phase-badge').innerHTML = '🧩 اختبار الجمل';
+  document.getElementById('q-label').textContent = 'اختر الكلمة الصحيحة في الجملة';
+ 
+  const sent = q.sentence || `The student is very ___ in English class.`;
+  const imgWrap = document.getElementById('word-img-wrap');
+  imgWrap.className = 'word-img-placeholder';
+  imgWrap.textContent = '📝';
+  document.getElementById('word-en-text').textContent = sent.replace('___', '______');
+ 
+  const allWords = DB.words.filter(w => w !== q);
+  const wrongs = shuffle(allWords).slice(0, 3).map(w => w.en);
+  while (wrongs.length < 3) wrongs.push(['Option A','Option B','Option C'][wrongs.length]);
+  const opts = shuffle([q.en, ...wrongs]);
+  renderOpts(opts, q.en, q.en);
+  document.getElementById('opts-container').className = 'sent-opts';
+}
+ 
+function getEmoji(word) {
+  const map = {apple:'🍎',book:'📖',dog:'🐕',sun:'☀️',water:'💧',house:'🏠',tree:'🌳',fish:'🐟',bread:'🍞',ball:'⚽',cat:'🐱',car:'🚗',flower:'🌸',bird:'🐦',school:'🏫',happy:'😊',sad:'😢',run:'🏃',eat:'🍽️',sleep:'😴'};
+  return map[word.toLowerCase()] || '🔤';
+}
+ 
+function renderOpts(opts, correct, word) {
+  const container = document.getElementById('opts-container');
+  container.innerHTML = '';
+  opts.forEach(o => {
+    const b = document.createElement('button');
+    b.className = 'opt-btn';
+    b.textContent = o;
+    b.onclick = () => answer(o, correct, word, b);
+    container.appendChild(b);
   });
 }
  
-function answer(chosen,correct,word,el){
-  document.querySelectorAll('.opt').forEach(o=>{o.classList.add('disabled');o.onclick=null;});
-  const fb=document.getElementById('feedback');
-  fb.style.display='block';
-  if(chosen===correct){
-    el.classList.remove('disabled');
-    el.className='opt correct';
-    fb.style.background='#E1F5EE'; fb.style.color='#085041';
-    fb.innerHTML='✅ ممتاز! <b>'+word+'</b> تعني: '+correct;
-    score++;
+function answer(chosen, correct, word, el) {
+  document.querySelectorAll('.opt-btn').forEach(b => { b.classList.add('disabled'); b.onclick = null; });
+  const fb = document.getElementById('feedback-box');
+  fb.style.display = 'block';
+  if (chosen === correct) {
+    el.classList.remove('disabled'); el.classList.add('correct');
+    fb.className = 'feedback-box correct';
+    fb.innerHTML = '✅ ممتاز! ' + (state.phase === 'learn' ? `<b>${word}</b> = ${correct}` : `الكلمة الصحيحة هي <b>${correct}</b>`);
+    state.score++;
   } else {
-    el.classList.remove('disabled');
-    el.className='opt wrong';
-    document.querySelectorAll('.opt').forEach(o=>{if(o.textContent===correct){o.classList.remove('disabled');o.className='opt correct';}});
-    fb.style.background='#FCEBEB'; fb.style.color='#791F1F';
-    fb.innerHTML='❌ الإجابة الصحيحة: <b>'+correct+'</b>';
-    hearts=Math.max(0,hearts-1);
-    missed.push(word);
-    document.getElementById('hearts').textContent='❤️'.repeat(hearts)+'🖤'.repeat(5-hearts);
-    if(hearts===0){setTimeout(()=>showResults(),1000);return;}
+    el.classList.remove('disabled'); el.classList.add('wrong');
+    document.querySelectorAll('.opt-btn').forEach(b => { if(b.textContent===correct){b.classList.remove('disabled');b.classList.add('correct');} });
+    fb.className = 'feedback-box wrong';
+    fb.innerHTML = '❌ الصحيح: <b>' + correct + '</b>';
+    state.hearts = Math.max(0, state.hearts - 1);
+    if (state.phase === 'learn') state.missed.push(state.words[state.qi].en);
+    document.getElementById('learn-hearts').textContent = '❤️'.repeat(state.hearts) + '🖤'.repeat(5-state.hearts);
+    if (state.hearts === 0) { setTimeout(showResults, 1200); return; }
   }
-  document.getElementById('nextbtn').style.display='block';
+  document.getElementById('btn-next').style.display = 'block';
 }
  
-function nextQ(){qi++;loadQ();}
+function nextQuestion() {
+  state.qi++;
+  if (state.phase === 'learn') {
+    if (state.qi >= state.words.length) {
+      state.phase = 'sentence'; state.qi = 0;
+    }
+  }
+  if (state.phase === 'sentence' && state.qi >= state.words.length) {
+    showResults(); return;
+  }
+  loadQuestion();
+}
  
-function speak(){
-  const word=document.getElementById('word-en').textContent;
-  if('speechSynthesis' in window){
-    const u=new SpeechSynthesisUtterance(word);
-    u.lang='en-US'; u.rate=0.8;
+function speak() {
+  const word = document.getElementById('word-en-text').textContent;
+  if ('speechSynthesis' in window) {
+    const u = new SpeechSynthesisUtterance(word);
+    u.lang = 'en-US'; u.rate = 0.8;
     speechSynthesis.speak(u);
   }
 }
  
-function showResults(){
-  const xp=score*10+(hearts*5);
-  document.getElementById('r-grade').textContent='الصف '+numAr(grade)+' — الفصل '+(sem===1?'الأول':'الثاني');
-  document.getElementById('r-correct').textContent=score+'/'+qList.length;
-  document.getElementById('r-xp').textContent='+'+xp+' ⭐';
-  const pct=Math.round((score/qList.length)*100);
-  let msg='';
-  if(pct===100) msg='مثالي تماماً! 🌟 أجبت على كل الأسئلة بشكل صحيح. أنت مستعد للمستوى التالي!';
-  else if(pct>=80) msg='أداء ممتاز! 💪 الكلمات التي أخطأت فيها ستظهر مجدداً تلقائياً في جلستك القادمة.';
-  else if(pct>=60) msg='أداء جيد! 📖 يُنصح بمراجعة الكلمات الصعبة قبل الانتقال للوحدة التالية.';
-  else msg='لا تيأس! 🔄 التكرار مفتاح النجاح. سنركّز على الكلمات الصعبة في الجلسة القادمة.';
-  document.getElementById('ai-feedback').textContent=msg;
-  const mw=document.getElementById('missed-words');
-  if(missed.length>0){
-    mw.innerHTML='<div class="missed-box"><p style="font-size:13px;font-weight:600;color:#791F1F;margin-bottom:6px;">📌 كلمات تحتاج مراجعة:</p><p style="font-size:13px;color:#A32D2D;line-height:1.8;">'+missed.join(' — ')+'</p></div>';
+function showResults() {
+  const total = state.words.length * 2;
+  const xp = state.score * 10 + state.hearts * 5;
+  const pct = Math.round(state.score / total * 100);
+ 
+  currentUser.xp = (currentUser.xp || 0) + xp;
+  const u = DB.users.find(u => u.email === currentUser.email);
+  if (u) { u.xp = currentUser.xp; saveDB(); }
+  document.getElementById('user-xp').textContent = currentUser.xp;
+ 
+  document.getElementById('result-sub').textContent = `الصف ${gradeNames[state.grade]} — الفصل ${state.sem===1?'الأول':'الثاني'}`;
+  document.getElementById('r-score').textContent = `${state.score}/${total}`;
+  document.getElementById('r-xp').textContent = `+${xp} ⭐`;
+ 
+  let trophy = '🏆', title = 'أحسنت!';
+  if (pct === 100) { trophy = '🌟'; title = 'مثالي تماماً!'; }
+  else if (pct < 40) { trophy = '💪'; title = 'استمر في المحاولة!'; }
+  document.getElementById('result-trophy').textContent = trophy;
+  document.getElementById('result-title').textContent = title;
+ 
+  let msg = '';
+  if (pct === 100) msg = 'رائع! أجبت على كل الأسئلة بشكل صحيح. أنت مستعد للمستوى التالي! 🚀';
+  else if (pct >= 80) msg = 'أداء ممتاز! الكلمات التي أخطأت فيها ستُكرر في جلستك القادمة.';
+  else if (pct >= 60) msg = 'أداء جيد! يُنصح بمراجعة الكلمات الصعبة قبل الانتقال للوحدة التالية.';
+  else msg = 'لا تيأس! التكرار مفتاح النجاح. راجع الكلمات وحاول مرة أخرى.';
+  document.getElementById('ai-text').textContent = msg;
+ 
+  if (state.missed.length > 0) {
+    document.getElementById('missed-section').style.display = 'block';
+    document.getElementById('missed-words').textContent = state.missed.join(' — ');
   } else {
-    mw.innerHTML='';
+    document.getElementById('missed-section').style.display = 'none';
   }
-  go('s5');
+  go('s-result');
+}
+ 
+function goHome() { go('s-stage'); }
+function replayLesson() { chooseSem(state.sem); }
+ 
+// ===== ADMIN =====
+function switchAdminTab(tab) {
+  document.getElementById('atab-add').classList.toggle('active', tab==='add');
+  document.getElementById('atab-manage').classList.toggle('active', tab==='manage');
+  document.getElementById('admin-add-tab').style.display = tab==='add' ? 'block' : 'none';
+  document.getElementById('admin-manage-tab').style.display = tab==='manage' ? 'block' : 'none';
+  if (tab === 'manage') renderWordList();
+}
+ 
+function updateAddGrades() {
+  const s = document.getElementById('add-stage').value;
+  const sel = document.getElementById('add-grade');
+  sel.innerHTML = stageGrades[s].map(g => `<option value="${g}">صف ${g}</option>`).join('');
+}
+ 
+function addWord() {
+  const stage = document.getElementById('add-stage').value;
+  const grade = parseInt(document.getElementById('add-grade').value);
+  const sem = parseInt(document.getElementById('add-sem').value);
+  const en = document.getElementById('add-en').value.trim();
+  const ar = document.getElementById('add-ar').value.trim();
+  const img = document.getElementById('add-img').value.trim();
+  const sentence = document.getElementById('add-sent').value.trim();
+ 
+  if (!en || !ar) { showToast('❗ أدخل الكلمة ومعناها'); return; }
+  if (DB.words.find(w => w.en.toLowerCase()===en.toLowerCase() && w.stage===stage && w.grade===grade && w.sem===sem)) {
+    showToast('⚠️ الكلمة موجودة مسبقاً'); return;
+  }
+ 
+  DB.words.push({ id: Date.now(), stage, grade, sem, en, ar, img, sentence });
+  saveDB(); updateAdminStats();
+  document.getElementById('add-en').value = '';
+  document.getElementById('add-ar').value = '';
+  document.getElementById('add-img').value = '';
+  document.getElementById('add-sent').value = '';
+  showToast(`✅ تمت إضافة "${en}" بنجاح`);
+}
+ 
+function deleteWord(id) {
+  DB.words = DB.words.filter(w => w.id !== id);
+  saveDB(); updateAdminStats(); renderWordList();
+  showToast('🗑️ تم حذف الكلمة');
+}
+ 
+function renderWordList() {
+  const fStage = document.getElementById('filter-stage').value;
+  const fGrade = document.getElementById('filter-grade').value;
+  const fSem = document.getElementById('filter-sem').value;
+ 
+  let filtered = DB.words;
+  if (fStage !== 'all') filtered = filtered.filter(w => w.stage === fStage);
+  if (fGrade !== 'all') filtered = filtered.filter(w => w.grade === parseInt(fGrade));
+  if (fSem !== 'all') filtered = filtered.filter(w => w.sem === parseInt(fSem));
+ 
+  const list = document.getElementById('admin-word-list');
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class="empty-state"><p>📭</p><p>لا توجد كلمات بهذا الفلتر</p></div>';
+    return;
+  }
+  list.innerHTML = filtered.map(w => `
+    <div class="word-item">
+      <div class="wi-img">${w.img ? `<img src="${w.img}" style="width:40px;height:40px;border-radius:8px;object-fit:cover;" onerror="this.parentElement.textContent='🔤'">` : getEmoji(w.en)}</div>
+      <div class="wi-info">
+        <div class="wi-en">${w.en} → ${w.ar}</div>
+        <div class="wi-ar">صف ${w.grade} | فصل ${w.sem} | ${w.stage==='primary'?'ابتدائي':w.stage==='middle'?'متوسط':'ثانوي'}</div>
+      </div>
+      <button class="wi-del" onclick="deleteWord(${w.id})">🗑️</button>
+    </div>`).join('');
+}
+ 
+function updateAdminStats() {
+  document.getElementById('admin-total').textContent = DB.words.length;
+}
+ 
+// ===== INIT =====
+updateAddGrades();
+if (currentUser) afterLogin();
+ 
+// Add demo words if empty
+if (DB.words.length === 0) {
+  const demo = [
+    {stage:'primary',grade:5,sem:1,en:'Apple',ar:'تفاحة',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/200px-Red_Apple.jpg',sentence:'I eat an ___ every day.'},
+    {stage:'primary',grade:5,sem:1,en:'Book',ar:'كتاب',img:'',sentence:'She reads a ___ at night.'},
+    {stage:'primary',grade:5,sem:1,en:'Dog',ar:'كلب',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/YellowLabradorLooking_new.jpg/200px-YellowLabradorLooking_new.jpg',sentence:'The ___ barks loudly.'},
+    {stage:'primary',grade:5,sem:2,en:'Sun',ar:'شمس',img:'',sentence:'The ___ rises in the east.'},
+    {stage:'primary',grade:5,sem:2,en:'Water',ar:'ماء',img:'',sentence:'We drink ___ every day.'},
+    {stage:'middle',grade:6,sem:1,en:'Brave',ar:'شجاع',img:'',sentence:'The soldier was very ___.'},
+    {stage:'middle',grade:6,sem:1,en:'Journey',ar:'رحلة',img:'',sentence:'We went on a long ___.'},
+    {stage:'middle',grade:6,sem:2,en:'Market',ar:'سوق',img:'',sentence:'We buy food from the ___.'},
+    {stage:'middle',grade:6,sem:2,en:'Desert',ar:'صحراء',img:'',sentence:'The ___ is very hot and dry.'},
+    {stage:'high',grade:10,sem:1,en:'Ambitious',ar:'طموح',img:'',sentence:'She is very ___ and works hard.'},
+    {stage:'high',grade:10,sem:1,en:'Collaborate',ar:'يتعاون',img:'',sentence:'We need to ___ to finish the project.'},
+    {stage:'high',grade:10,sem:2,en:'Consensus',ar:'إجماع',img:'',sentence:'The team reached a ___ on the decision.'},
+    {stage:'high',grade:10,sem:2,en:'Diverse',ar:'متنوع',img:'',sentence:'Our school has a ___ student body.'},
+  ];
+  demo.forEach((w,i) => { w.id = Date.now() + i; DB.words.push(w); });
+  saveDB(); updateAdminStats();
 }
 </script>
 </body>
 </html>
+ 
+
+
+
+
