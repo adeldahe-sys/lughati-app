@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>لغتي - الصف العاشر</title>
+<title>لغتي</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{--p:#6C63FF;--pd:#5A52D5;--acc:#43D39E;--warn:#FFB347;--err:#FF6584;--bg:#F8F7FF;--card:#fff;--txt:#2D2B55;--txtl:#8B89A6;--bdr:#E8E6FF;--sh:0 8px 32px rgba(108,99,255,0.12);--r:20px;--rs:12px;}
@@ -13,117 +13,145 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);min-height:100vh;colo
 .screen{display:none;flex-direction:column;min-height:100vh;animation:fi .3s ease;}
 .screen.active{display:flex;}
 @keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-/* UTILS */
 .btn{width:100%;padding:15px;border-radius:100px;border:none;font-size:16px;font-weight:700;cursor:pointer;font-family:'Tajawal',sans-serif;transition:all .2s;}
 .btn-p{background:var(--p);color:#fff;} .btn-p:hover{background:var(--pd);}
 .btn-g{background:rgba(255,255,255,.2);color:#fff;border:2px solid rgba(255,255,255,.4);}
 .btn-w{background:#fff;color:var(--p);}
 .inp{width:100%;padding:13px 16px;border:2px solid var(--bdr);border-radius:var(--rs);font-size:15px;font-family:'Tajawal',sans-serif;color:var(--txt);background:var(--bg);outline:none;transition:border-color .2s;}
 .inp:focus{border-color:var(--p);}
-.back-btn{width:38px;height:38px;border-radius:50%;background:var(--bg);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;transition:background .2s;}
-.back-btn:hover{background:var(--bdr);}
+.back-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.2);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;flex-shrink:0;}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);background:#2D2B55;color:#fff;padding:11px 22px;border-radius:100px;font-size:14px;font-weight:600;transition:transform .3s;z-index:9999;}
 .toast.show{transform:translateX(-50%) translateY(0);}
  
 /* SPLASH */
 #s-splash{background:linear-gradient(160deg,#6C63FF,#9B93FF);justify-content:center;align-items:center;text-align:center;padding:40px 28px;}
-.splash-logo{width:110px;height:110px;background:rgba(255,255,255,.18);border-radius:32px;display:flex;align-items:center;justify-content:center;font-size:56px;margin:0 auto 22px;}
+.splash-logo{width:110px;height:110px;background:rgba(255,255,255,.18);border-radius:32px;display:flex;align-items:center;justify-content:center;font-size:56px;margin:0 auto 20px;}
 .splash-title{font-size:44px;font-weight:900;color:#fff;margin-bottom:6px;}
-.splash-sub{font-size:15px;color:rgba(255,255,255,.8);margin-bottom:14px;}
-.contact-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);border-radius:100px;padding:8px 16px;font-size:13px;color:#fff;margin-bottom:40px;text-decoration:none;}
+.splash-sub{font-size:15px;color:rgba(255,255,255,.8);margin-bottom:12px;}
+.contact-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);border-radius:100px;padding:8px 16px;font-size:13px;color:#fff;margin-bottom:36px;text-decoration:none;}
  
 /* AUTH */
-#s-auth{} 
-.auth-top{background:linear-gradient(135deg,#6C63FF,#9B93FF);padding:44px 28px 32px;text-align:center;}
-.auth-top h2{font-size:24px;font-weight:800;color:#fff;margin-bottom:5px;}
+.auth-top{background:linear-gradient(135deg,#6C63FF,#9B93FF);padding:44px 28px 28px;text-align:center;}
+.auth-top h2{font-size:24px;font-weight:800;color:#fff;margin-bottom:4px;}
 .auth-top p{font-size:13px;color:rgba(255,255,255,.8);}
-.auth-tabs{display:flex;background:rgba(255,255,255,.15);border-radius:100px;padding:4px;margin-top:18px;}
+.auth-tabs{display:flex;background:rgba(255,255,255,.15);border-radius:100px;padding:4px;margin-top:16px;}
 .auth-tab{flex:1;padding:8px;border-radius:100px;border:none;background:transparent;color:rgba(255,255,255,.7);font-size:14px;font-weight:600;cursor:pointer;font-family:'Tajawal',sans-serif;transition:all .2s;}
 .auth-tab.active{background:#fff;color:var(--p);}
-.auth-body{padding:24px 20px;flex:1;}
+.auth-body{padding:22px 20px;flex:1;}
 .auth-err{background:#FFEAEA;border-radius:var(--rs);padding:10px 14px;font-size:13px;color:#C0392B;margin-bottom:12px;display:none;}
-.iw{margin-bottom:14px;}
+.iw{margin-bottom:13px;}
 .iw label{display:block;font-size:13px;font-weight:600;color:var(--txtl);margin-bottom:5px;}
-.role-row{display:flex;gap:8px;margin-bottom:16px;}
+.role-row{display:flex;gap:8px;margin-bottom:14px;}
 .rb{flex:1;padding:12px 6px;border-radius:var(--rs);border:2px solid var(--bdr);background:var(--bg);cursor:pointer;text-align:center;transition:all .2s;}
-.rb .ri{font-size:22px;display:block;margin-bottom:3px;}
+.rb .ri{font-size:22px;display:block;margin-bottom:2px;}
 .rb .rn{font-size:12px;font-weight:600;color:var(--txtl);}
 .rb.sel{border-color:var(--p);background:#EEEDFE;}
 .rb.sel .rn{color:var(--p);}
-.code-reveal{background:#E8FFF5;border-radius:var(--rs);padding:14px;border:2px solid var(--acc);margin-bottom:14px;text-align:center;display:none;}
-.code-reveal p{font-size:12px;color:#0A6E56;margin-bottom:6px;}
+.code-reveal{background:#E8FFF5;border-radius:var(--rs);padding:14px;border:2px solid var(--acc);margin-bottom:12px;text-align:center;display:none;}
+.code-reveal p{font-size:12px;color:#0A6E56;margin-bottom:5px;}
 .code-reveal .code{font-size:32px;font-weight:900;color:var(--acc);letter-spacing:6px;}
-.code-reveal .note{font-size:11px;color:#1D9E75;margin-top:4px;}
+.code-reveal .note{font-size:11px;color:#1D9E75;margin-top:3px;}
  
 /* HOME */
 #s-home{background:var(--bg);}
-.home-top{background:linear-gradient(135deg,#6C63FF,#9B93FF);margin:16px;border-radius:var(--r);padding:18px 20px;display:flex;justify-content:space-between;align-items:center;}
-.hn{font-size:17px;font-weight:700;color:#fff;}
-.hs{font-size:12px;color:rgba(255,255,255,.8);}
-.xp{background:rgba(255,255,255,.2);border-radius:100px;padding:6px 12px;font-size:13px;font-weight:700;color:#FFD700;}
+.home-hdr{background:linear-gradient(135deg,#6C63FF,#9B93FF);margin:16px;border-radius:var(--r);padding:18px 20px;display:flex;justify-content:space-between;align-items:center;}
+.hn{font-size:16px;font-weight:700;color:#fff;}
+.hs{font-size:12px;color:rgba(255,255,255,.8);margin-top:2px;}
+.xp-pill{background:rgba(255,255,255,.2);border-radius:100px;padding:6px 12px;font-size:13px;font-weight:700;color:#FFD700;}
 .home-menu{padding:0 16px;display:flex;flex-direction:column;gap:10px;}
-.menu-btn{border-radius:var(--r);padding:17px 20px;border:none;cursor:pointer;display:flex;align-items:center;gap:14px;transition:all .2s;box-shadow:var(--sh);width:100%;}
-.menu-btn:hover{transform:translateY(-2px);}
-.menu-ico{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;background:rgba(255,255,255,.2);flex-shrink:0;}
-.menu-txt{text-align:right;}
-.menu-title{font-size:16px;font-weight:800;color:#fff;margin-bottom:2px;}
-.menu-sub{font-size:12px;color:rgba(255,255,255,.8);}
-.m-green{background:linear-gradient(135deg,#43D39E,#2DB87C);}
-.m-purple{background:linear-gradient(135deg,#6C63FF,#9B93FF);}
-.m-red{background:linear-gradient(135deg,#FF6584,#FF8E9E);}
-.m-dark{background:linear-gradient(135deg,#2D2B55,#4A4870);}
-.m-orange{background:linear-gradient(135deg,#FFB347,#FFA07A);}
+.mbtn{border-radius:var(--r);padding:17px 18px;border:none;cursor:pointer;display:flex;align-items:center;gap:14px;transition:all .2s;box-shadow:var(--sh);width:100%;}
+.mbtn:hover{transform:translateY(-2px);}
+.mico{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;background:rgba(255,255,255,.2);flex-shrink:0;}
+.mtxt{text-align:right;}
+.mtitle{font-size:16px;font-weight:800;color:#fff;margin-bottom:2px;}
+.msub{font-size:12px;color:rgba(255,255,255,.8);}
+.m-g{background:linear-gradient(135deg,#43D39E,#2DB87C);}
+.m-p{background:linear-gradient(135deg,#6C63FF,#9B93FF);}
+.m-r{background:linear-gradient(135deg,#FF6584,#FF8E9E);}
+.m-d{background:linear-gradient(135deg,#2D2B55,#4A4870);}
+.m-o{background:linear-gradient(135deg,#FFB347,#FFA07A);}
 .logout-btn{margin:12px 16px;padding:13px;background:transparent;color:var(--err);border:2px solid var(--err);border-radius:100px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Tajawal',sans-serif;width:calc(100% - 32px);transition:all .2s;}
 .logout-btn:hover{background:var(--err);color:#fff;}
+ 
+/* STAGE */
+#s-stage{background:var(--bg);}
+.page-hdr{display:flex;align-items:center;gap:12px;padding:14px 16px 10px;background:linear-gradient(135deg,#6C63FF,#9B93FF);}
+.page-hdr h2{font-size:18px;font-weight:800;color:#fff;}
+.stage-list{padding:14px 16px;display:flex;flex-direction:column;gap:10px;}
+.stage-card{border-radius:var(--r);padding:18px 20px;border:none;cursor:pointer;display:flex;align-items:center;gap:14px;transition:all .2s;box-shadow:var(--sh);width:100%;}
+.stage-card:hover{transform:translateY(-2px);}
+.s-ico{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;background:rgba(255,255,255,.2);flex-shrink:0;}
+.s-txt{text-align:right;}
+.s-title{font-size:17px;font-weight:800;color:#fff;margin-bottom:2px;}
+.s-sub{font-size:12px;color:rgba(255,255,255,.8);}
+ 
+/* GRADE */
+#s-grade{background:var(--bg);}
+.grade-list{padding:12px 16px;display:flex;flex-direction:column;gap:10px;}
+.grade-card{background:var(--card);border:2px solid var(--bdr);border-radius:var(--r);padding:15px 18px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .2s;}
+.grade-card:hover{border-color:var(--p);box-shadow:var(--sh);}
+.g-num{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;flex-shrink:0;}
+.g-info .g-name{font-size:15px;font-weight:700;color:var(--txt);}
+.g-info .g-sub{font-size:12px;color:var(--txtl);margin-top:2px;}
+ 
+/* SEM */
+#s-sem{background:var(--bg);}
+.sem-cards{padding:16px;display:flex;flex-direction:column;gap:12px;}
+.sem-card{border-radius:var(--r);padding:24px 20px;text-align:center;cursor:pointer;transition:all .25s;box-shadow:var(--sh);}
+.sem-card:hover{transform:translateY(-3px);}
+.sem-emo{font-size:48px;margin-bottom:10px;display:block;}
+.sem-title{font-size:19px;font-weight:800;margin-bottom:5px;}
+.sem-info{font-size:13px;opacity:.8;}
+.sem-1{background:linear-gradient(135deg,#FFB347,#FFA07A);color:#fff;}
+.sem-2{background:linear-gradient(135deg,#6C63FF,#9B93FF);color:#fff;}
+.sem-locked{background:#E8E6FF;color:var(--txtl);cursor:not-allowed;}
+.sem-locked:hover{transform:none;}
  
 /* MAP */
 #s-map{background:var(--bg);}
 .map-hdr{background:linear-gradient(135deg,#6C63FF,#9B93FF);padding:14px 16px 18px;}
 .map-hdr-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.map-hdr h2{font-size:18px;font-weight:800;color:#fff;}
-.map-hdr p{font-size:12px;color:rgba(255,255,255,.8);}
-.map-progress{background:rgba(255,255,255,.25);border-radius:100px;height:8px;}
+.map-title{font-size:17px;font-weight:800;color:#fff;}
+.map-sub{font-size:12px;color:rgba(255,255,255,.8);}
+.map-prog-bar{background:rgba(255,255,255,.25);border-radius:100px;height:8px;}
 .map-prog-fill{background:#FFD700;border-radius:100px;height:8px;transition:width .5s;}
 .map-prog-lbl{display:flex;justify-content:space-between;margin-top:5px;}
 .map-prog-lbl span{font-size:11px;color:rgba(255,255,255,.8);}
 .map-body{flex:1;padding:20px 16px;overflow-y:auto;}
-.unit-section{margin-bottom:24px;}
-.unit-title{font-size:14px;font-weight:800;color:var(--txtl);letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
-.unit-title::after{content:'';flex:1;height:1px;background:var(--bdr);}
-.levels-path{display:flex;flex-direction:column;align-items:center;gap:0;}
-.level-row{display:flex;align-items:center;gap:0;width:100%;justify-content:center;position:relative;}
-.level-node{width:72px;height:72px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;position:relative;flex-shrink:0;border:3px solid transparent;}
-.level-node.done{background:linear-gradient(135deg,var(--acc),#2DB87C);box-shadow:0 6px 20px rgba(67,211,158,.35);}
-.level-node.active{background:linear-gradient(135deg,var(--p),#9B93FF);box-shadow:0 6px 20px rgba(108,99,255,.4);animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{box-shadow:0 6px 20px rgba(108,99,255,.4)}50%{box-shadow:0 6px 30px rgba(108,99,255,.7)}}
-.level-node.locked{background:#E8E6FF;border-color:#D0CCFF;cursor:not-allowed;}
-.level-node .lico{font-size:22px;}
-.level-node .lnum{font-size:10px;font-weight:800;color:#fff;margin-top:1px;}
-.level-node.locked .lico{opacity:.4;}
-.level-node.locked .lnum{color:var(--txtl);}
-.level-stars{position:absolute;bottom:-8px;display:flex;gap:1px;}
-.level-stars span{font-size:12px;}
-.connector{width:3px;height:28px;background:var(--bdr);border-radius:4px;margin:4px 0;}
+.levels-path{display:flex;flex-direction:column;align-items:center;}
+.lv-row{display:flex;align-items:center;width:100%;margin:4px 0;}
+.lv-row.center{justify-content:center;}
+.lv-row.right{justify-content:flex-end;padding-left:60px;}
+.lv-row.left{justify-content:flex-start;padding-right:60px;}
+.lv-node{width:74px;height:74px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;position:relative;flex-shrink:0;}
+.lv-node.done{background:linear-gradient(135deg,var(--acc),#2DB87C);box-shadow:0 6px 20px rgba(67,211,158,.35);}
+.lv-node.active{background:linear-gradient(135deg,var(--p),#9B93FF);box-shadow:0 6px 24px rgba(108,99,255,.45);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 6px 24px rgba(108,99,255,.45)}50%{box-shadow:0 6px 36px rgba(108,99,255,.7)}}
+.lv-node.locked{background:#E8E6FF;cursor:not-allowed;}
+.lv-ico{font-size:22px;}
+.lv-num{font-size:10px;font-weight:800;color:#fff;margin-top:1px;}
+.lv-node.locked .lv-ico{opacity:.4;}
+.lv-node.locked .lv-num{color:var(--txtl);}
+.lv-stars{position:absolute;bottom:-10px;display:flex;gap:1px;}
+.lv-stars span{font-size:12px;}
+.lv-info{flex:1;padding:0 12px;}
+.lv-info .li-name{font-size:13px;font-weight:700;color:var(--txt);}
+.lv-info .li-sub{font-size:11px;color:var(--txtl);margin-top:2px;}
+.connector{width:3px;height:26px;background:var(--bdr);border-radius:4px;}
 .connector.done{background:linear-gradient(to bottom,var(--acc),var(--p));}
-.level-info{flex:1;padding:0 12px;}
-.level-info .li-title{font-size:13px;font-weight:700;color:var(--txt);}
-.level-info .li-sub{font-size:11px;color:var(--txtl);margin-top:2px;}
-.level-row.left .level-node{margin-right:auto;margin-left:40px;}
-.level-row.right .level-node{margin-left:auto;margin-right:40px;}
-.level-row.center .level-node{margin:0 auto;}
  
 /* LESSON */
 #s-lesson{background:var(--bg);}
 .lesson-hdr{background:linear-gradient(135deg,var(--p),#9B93FF);padding:13px 16px;}
 .lh-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-.hearts-bar{font-size:18px;letter-spacing:2px;}
+.hearts{font-size:18px;letter-spacing:2px;}
 .qcnt{background:rgba(255,255,255,.25);border-radius:100px;padding:4px 13px;font-size:13px;font-weight:700;color:#fff;}
 .prog-bar{background:rgba(255,255,255,.25);border-radius:100px;height:8px;}
 .prog-fill{background:#FFD700;border-radius:100px;height:8px;transition:width .5s cubic-bezier(.4,0,.2,1);}
 .lesson-body{flex:1;padding:16px;overflow-y:auto;}
 .phase-tag{display:inline-flex;align-items:center;gap:5px;background:var(--p);color:#fff;border-radius:100px;padding:5px 13px;font-size:12px;font-weight:700;margin-bottom:12px;}
-.word-display{background:linear-gradient(135deg,#6C63FF,#9B93FF);border-radius:var(--r);padding:22px 16px;text-align:center;margin-bottom:16px;position:relative;overflow:hidden;}
-.word-display::before{content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,.07);border-radius:50%;}
+.word-card{background:linear-gradient(135deg,#6C63FF,#9B93FF);border-radius:var(--r);padding:22px 16px;text-align:center;margin-bottom:16px;position:relative;overflow:hidden;}
+.word-card::before{content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,.07);border-radius:50%;}
 .wimg{width:100px;height:100px;border-radius:16px;object-fit:cover;margin:0 auto 12px;display:block;border:3px solid rgba(255,255,255,.3);}
 .wph{width:100px;height:100px;border-radius:16px;background:rgba(255,255,255,.15);border:3px solid rgba(255,255,255,.3);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:46px;}
 .wen{font-size:28px;font-weight:900;color:#fff;margin-bottom:6px;letter-spacing:-.5px;line-height:1.2;}
@@ -146,22 +174,22 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);min-height:100vh;colo
 .res-hero{padding:44px 28px 20px;text-align:center;}
 .res-trophy{font-size:68px;display:block;animation:bounce .6s .2s both;}
 @keyframes bounce{0%,100%{transform:translateY(0)}35%{transform:translateY(-18px)}65%{transform:translateY(-7px)}}
-.res-title{font-size:26px;font-weight:900;color:#fff;margin-bottom:5px;}
+.res-title{font-size:26px;font-weight:900;color:#fff;margin-bottom:4px;}
 .res-sub{font-size:14px;color:rgba(255,255,255,.8);}
-.stars-row{display:flex;justify-content:center;gap:6px;margin:12px 0;}
-.stars-row .star{font-size:36px;animation:starPop .4s ease both;}
+.stars-row{display:flex;justify-content:center;gap:6px;margin:10px 0;}
+.stars-row .star{font-size:34px;animation:starPop .4s ease both;}
 .stars-row .star:nth-child(2){animation-delay:.15s;}
 .stars-row .star:nth-child(3){animation-delay:.3s;}
 @keyframes starPop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
-.res-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px 14px;}
+.res-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px 12px;}
 .rc{background:rgba(255,255,255,.95);border-radius:var(--r);padding:16px;text-align:center;}
 .rc-num{font-size:24px;font-weight:900;margin-bottom:3px;}
 .rc-lbl{font-size:12px;color:var(--txtl);font-weight:600;}
-.ai-box{margin:0 16px 14px;background:rgba(255,255,255,.95);border-radius:var(--r);padding:14px 16px;}
-.ai-ttl{font-size:13px;font-weight:700;color:var(--p);margin-bottom:6px;}
+.ai-box{margin:0 16px 12px;background:rgba(255,255,255,.95);border-radius:var(--r);padding:14px 16px;}
+.ai-ttl{font-size:13px;font-weight:700;color:var(--p);margin-bottom:5px;}
 .ai-txt{font-size:13px;color:var(--txt);line-height:1.7;}
-.missed-box{margin:0 16px 14px;background:#FFF0F3;border-radius:var(--r);padding:12px 16px;border:2px solid #FFD0DA;}
-.missed-ttl{font-size:13px;font-weight:700;color:#C0392B;margin-bottom:5px;}
+.missed-box{margin:0 16px 12px;background:#FFF0F3;border-radius:var(--r);padding:12px 16px;border:2px solid #FFD0DA;}
+.missed-ttl{font-size:13px;font-weight:700;color:#C0392B;margin-bottom:4px;}
 .missed-w{font-size:12px;color:#922B21;line-height:1.8;}
 .res-acts{padding:0 16px 28px;display:flex;flex-direction:column;gap:10px;}
  
@@ -188,7 +216,6 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);min-height:100vh;colo
 .send-btn{width:42px;height:42px;border-radius:50%;background:var(--p);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
 .topics{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:4px;}
 .tpc{padding:6px 12px;background:var(--bdr);border-radius:100px;border:none;font-size:12px;font-weight:600;color:var(--p);cursor:pointer;font-family:'Tajawal',sans-serif;}
-.tpc:hover{background:#D4D0FF;}
  
 /* ADMIN */
 #s-admin{background:var(--bg);}
@@ -209,11 +236,9 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);min-height:100vh;colo
 .abtn{padding:9px 14px;background:var(--p);color:#fff;border:none;border-radius:var(--rs);font-size:13px;font-weight:700;cursor:pointer;font-family:'Tajawal',sans-serif;white-space:nowrap;}
 .abtn:hover{background:var(--pd);}
 .abtn-r{background:var(--err);}
-.abtn-r:hover{background:#e55370;}
-.abtn-g{background:var(--acc);}
 .word-list{display:flex;flex-direction:column;gap:7px;max-height:340px;overflow-y:auto;}
 .wi{background:var(--bg);border-radius:var(--rs);padding:9px 12px;display:flex;align-items:center;gap:9px;border:1px solid var(--bdr);}
-.wi-img{width:36px;height:36px;border-radius:8px;object-fit:cover;flex-shrink:0;background:var(--bdr);display:flex;align-items:center;justify-content:center;font-size:20px;}
+.wi-img{width:36px;height:36px;border-radius:8px;flex-shrink:0;background:var(--bdr);display:flex;align-items:center;justify-content:center;font-size:20px;}
 .wi-info{flex:1;}
 .wi-en{font-size:13px;font-weight:700;color:var(--txt);}
 .wi-ar{font-size:11px;color:var(--txtl);}
@@ -255,7 +280,7 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);min-height:100vh;colo
 .sm{background:var(--bg);border-radius:var(--rs);padding:9px;text-align:center;}
 .sm .smn{font-size:18px;font-weight:800;color:var(--p);}
 .sm .sml{font-size:10px;color:var(--txtl);margin-top:2px;}
-.sess-list{display:flex;flex-direction:column;gap:7px;}
+.sess-list{display:flex;flex-direction:column;gap:6px;}
 .si{background:var(--bg);border-radius:var(--rs);padding:9px 12px;display:flex;justify-content:space-between;align-items:center;}
 .si-l .sin{font-size:12px;font-weight:600;color:var(--txt);}
 .si-l .sid{font-size:10px;color:var(--txtl);}
@@ -277,85 +302,113 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);min-height:100vh;colo
 <!-- AUTH -->
 <div class="screen" id="s-auth">
   <div class="auth-top">
-    <h2>أهلاً بك 👋</h2>
-    <p>سجّل دخولك للمتابعة</p>
+    <h2>أهلاً بك 👋</h2><p>سجّل دخولك للمتابعة</p>
     <div class="auth-tabs">
-      <button class="auth-tab active" id="t-login" onclick="switchTab('login')">دخول</button>
-      <button class="auth-tab" id="t-reg" onclick="switchTab('reg')">حساب جديد</button>
+      <button class="auth-tab active" id="t-l" onclick="switchTab('login')">دخول</button>
+      <button class="auth-tab" id="t-r" onclick="switchTab('reg')">حساب جديد</button>
     </div>
   </div>
   <div class="auth-body">
     <div class="auth-err" id="aerr"></div>
     <div class="iw"><label>البريد الإلكتروني</label><input class="inp" type="email" id="aemail" placeholder="example@email.com" dir="ltr"></div>
     <div class="iw"><label>كلمة المرور</label><input class="inp" type="password" id="apass" placeholder="••••••••" dir="ltr"></div>
-    <div id="reg-extra" style="display:none;">
+    <div id="reg-x" style="display:none;">
       <div class="iw"><label>الاسم الكامل</label><input class="inp" type="text" id="aname" placeholder="اسمك هنا"></div>
-      <div style="margin-bottom:14px;">
-        <label style="display:block;font-size:13px;font-weight:600;color:var(--txtl);margin-bottom:8px;">الدور</label>
+      <div style="margin-bottom:13px;">
+        <label style="display:block;font-size:13px;font-weight:600;color:var(--txtl);margin-bottom:7px;">الدور</label>
         <div class="role-row">
           <div class="rb sel" id="rb-s" onclick="selR('student')"><span class="ri">👦</span><span class="rn">طالب</span></div>
           <div class="rb" id="rb-p" onclick="selR('parent')"><span class="ri">👨‍👩‍👦</span><span class="rn">ولي أمر</span></div>
         </div>
       </div>
-      <div id="pcode-wrap" style="display:none;"><div class="iw"><label>رمز الطالب</label><input class="inp" type="text" id="pcode" placeholder="أدخل رمز ابنك" maxlength="6" dir="ltr" style="letter-spacing:4px;text-align:center;"></div></div>
+      <div id="pcode-w" style="display:none;"><div class="iw"><label>رمز الطالب</label><input class="inp" type="text" id="pcode" placeholder="أدخل رمز ابنك" maxlength="6" dir="ltr" style="letter-spacing:4px;text-align:center;"></div></div>
     </div>
     <div class="code-reveal" id="code-reveal"><p>🎉 رمزك الخاص — أعطه لولي أمرك</p><div class="code" id="gen-code">------</div><div class="note">احتفظ بهذا الرمز!</div></div>
-    <button class="btn btn-p" id="auth-submit" onclick="doAuth()">دخول</button>
+    <button class="btn btn-p" id="auth-btn" onclick="doAuth()">دخول</button>
   </div>
 </div>
  
 <!-- HOME -->
 <div class="screen" id="s-home">
   <div style="padding:16px 16px 8px;">
-    <div class="home-top">
-      <div><div class="hn" id="hname">مرحباً!</div><div class="hs">استمر في التعلم</div></div>
-      <div class="xp">⭐ <span id="hxp">0</span></div>
+    <div class="home-hdr">
+      <div><div class="hn" id="hname">مرحباً!</div><div class="hs">استمر في التعلم 🚀</div></div>
+      <div class="xp-pill">⭐ <span id="hxp">0</span></div>
     </div>
   </div>
   <div class="home-menu">
-    <button class="menu-btn m-purple" onclick="go('s-map')">
-      <div class="menu-ico">🗺️</div><div class="menu-txt"><div class="menu-title">خريطة التعلم</div><div class="menu-sub">الصف العاشر — الفصل الثاني</div></div>
+    <button class="mbtn m-p" onclick="go('s-stage')">
+      <div class="mico">📚</div><div class="mtxt"><div class="mtitle">ابدأ التعلم</div><div class="msub">اختر مرحلتك الدراسية</div></div>
     </button>
-    <button class="menu-btn m-green" onclick="go('s-ai')">
-      <div class="menu-ico">🤖</div><div class="menu-txt"><div class="menu-title">المساعد الذكي</div><div class="menu-sub">شرح وحوار بالكلمات المقررة</div></div>
+    <button class="mbtn m-g" onclick="go('s-ai')">
+      <div class="mico">🤖</div><div class="mtxt"><div class="mtitle">المساعد الذكي</div><div class="msub">شرح وحوار بالكلمات المقررة</div></div>
     </button>
-    <button class="menu-btn m-dark" id="admin-menu" onclick="go('s-admin')" style="display:none;">
-      <div class="menu-ico">👑</div><div class="menu-txt"><div class="menu-title">لوحة الأدمن</div><div class="menu-sub">إدارة الكلمات والمشتركين</div></div>
+    <button class="mbtn m-d" id="admin-menu" onclick="go('s-admin')" style="display:none;">
+      <div class="mico">👑</div><div class="mtxt"><div class="mtitle">لوحة الأدمن</div><div class="msub">إدارة الكلمات والمشتركين</div></div>
     </button>
-    <button class="menu-btn m-orange" id="parent-menu" onclick="initParent();go('s-parent')" style="display:none;">
-      <div class="menu-ico">👨‍👩‍👦</div><div class="menu-txt"><div class="menu-title">متابعة أبنائي</div><div class="menu-sub">تقارير وإحصائيات التقدم</div></div>
+    <button class="mbtn m-o" id="parent-menu" onclick="initParent();go('s-parent')" style="display:none;">
+      <div class="mico">👨‍👩‍👦</div><div class="mtxt"><div class="mtitle">متابعة أبنائي</div><div class="msub">تقارير وإحصائيات التقدم</div></div>
     </button>
   </div>
   <button class="logout-btn" onclick="doLogout()">تسجيل الخروج</button>
   <div style="height:16px;"></div>
 </div>
  
+<!-- STAGE -->
+<div class="screen" id="s-stage">
+  <div class="page-hdr"><button class="back-btn" onclick="go('s-home')">←</button><h2>اختر مرحلتك</h2></div>
+  <div class="stage-list">
+    <button class="stage-card m-g" onclick="chooseStage('primary')"><div class="s-ico">🏫</div><div class="s-txt"><div class="s-title">ابتدائي</div><div class="s-sub">الصف الخامس فقط</div></div></button>
+    <button class="stage-card m-p" onclick="chooseStage('middle')"><div class="s-ico">📚</div><div class="s-txt"><div class="s-title">متوسط</div><div class="s-sub">الصف 6 — 9</div></div></button>
+    <button class="stage-card m-r" onclick="chooseStage('high')"><div class="s-ico">🎓</div><div class="s-txt"><div class="s-title">ثانوي</div><div class="s-sub">الصف 10 — 12</div></div></button>
+  </div>
+</div>
+ 
+<!-- GRADE -->
+<div class="screen" id="s-grade">
+  <div class="page-hdr"><button class="back-btn" onclick="go('s-stage')">←</button><h2 id="grade-hdr-title">اختر الصف</h2></div>
+  <div class="grade-list" id="grade-list"></div>
+</div>
+ 
+<!-- SEM -->
+<div class="screen" id="s-sem">
+  <div class="page-hdr"><button class="back-btn" onclick="go('s-grade')">←</button><h2 id="sem-hdr-title">اختر الفصل</h2></div>
+  <div class="sem-cards">
+    <div class="sem-card sem-1" id="sem1-card" onclick="chooseSem(1)">
+      <span class="sem-emo">☀️</span>
+      <div class="sem-title">الفصل الأول</div>
+      <div class="sem-info" id="sem1-info">الفصل الدراسي الأول</div>
+    </div>
+    <div class="sem-card sem-2" id="sem2-card" onclick="chooseSem(2)">
+      <span class="sem-emo">🌸</span>
+      <div class="sem-title">الفصل الثاني</div>
+      <div class="sem-info" id="sem2-info">الفصل الدراسي الثاني</div>
+    </div>
+  </div>
+</div>
+ 
 <!-- MAP -->
 <div class="screen" id="s-map">
   <div class="map-hdr">
     <div class="map-hdr-top">
-      <button class="back-btn" style="background:rgba(255,255,255,.2);color:#fff;" onclick="go('s-home')">←</button>
-      <div><div style="font-size:17px;font-weight:800;color:#fff;">الصف العاشر — فصل ثاني</div><div style="font-size:12px;color:rgba(255,255,255,.8);">١٧٨ كلمة • ٦ وحدات</div></div>
+      <button class="back-btn" onclick="go('s-sem')">←</button>
+      <div><div class="map-title" id="map-title">خريطة التعلم</div><div class="map-sub" id="map-sub">اختر مستوى</div></div>
     </div>
-    <div class="map-progress"><div class="map-prog-fill" id="map-prog" style="width:0%"></div></div>
-    <div class="map-prog-lbl"><span id="map-done">0 مكتمل</span><span id="map-total">0 مستوى</span></div>
+    <div class="map-prog-bar"><div class="map-prog-fill" id="map-prog" style="width:0%"></div></div>
+    <div class="map-prog-lbl"><span id="map-done-lbl">0 مكتمل</span><span id="map-total-lbl">0 مستوى</span></div>
   </div>
   <div class="map-body" id="map-body"></div>
 </div>
  
 <!-- LESSON -->
 <div class="screen" id="s-lesson">
-  <div class="lesson-hdr" id="lesson-hdr">
-    <div class="lh-row"><div class="hearts-bar" id="lhearts">❤️❤️❤️❤️❤️</div><div class="qcnt" id="lcnt">1/10</div></div>
+  <div class="lesson-hdr">
+    <div class="lh-row"><div class="hearts" id="lhearts">❤️❤️❤️❤️❤️</div><div class="qcnt" id="lcnt">1/10</div></div>
     <div class="prog-bar"><div class="prog-fill" id="lprog" style="width:0%"></div></div>
   </div>
   <div class="lesson-body">
     <div class="phase-tag" id="ptag">📖 تعلّم</div>
-    <div class="word-display">
-      <div id="wimgwrap" class="wph">🔤</div>
-      <div class="wen" id="wentext">Word</div>
-      <button class="listen-btn" onclick="speak()">🔊 استمع</button>
-    </div>
+    <div class="word-card"><div id="wimgwrap" class="wph">🔤</div><div class="wen" id="wentext">Word</div><button class="listen-btn" onclick="speak()">🔊 استمع</button></div>
     <div class="qlabel" id="qlabel">اختر المعنى الصحيح</div>
     <div id="optswrap"></div>
     <div class="fb" id="fb"></div>
@@ -368,14 +421,14 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);min-height:100vh;colo
   <div class="res-hero">
     <span class="res-trophy" id="rtrophy">🏆</span>
     <div class="res-title" id="rtitle">أحسنت!</div>
-    <div class="res-sub" id="rsub">الوحدة 7 — المستوى 1</div>
+    <div class="res-sub" id="rsub"></div>
     <div class="stars-row" id="rstars"></div>
   </div>
   <div class="res-cards">
     <div class="rc"><div class="rc-num" style="color:var(--acc);" id="rscore">-</div><div class="rc-lbl">إجابات صحيحة</div></div>
     <div class="rc"><div class="rc-num" style="color:var(--p);" id="rxp">+0⭐</div><div class="rc-lbl">نقاط XP</div></div>
   </div>
-  <div class="ai-box"><div class="ai-ttl">🤖 تحليل ذكي</div><div class="ai-txt" id="aitxt">جاري التحليل...</div></div>
+  <div class="ai-box"><div class="ai-ttl">🤖 تحليل ذكي</div><div class="ai-txt" id="aitxt"></div></div>
   <div class="missed-box" id="mbox" style="display:none;"><div class="missed-ttl">📌 راجع هذه الكلمات</div><div class="missed-w" id="mwords"></div></div>
   <div class="res-acts">
     <button class="btn btn-w" onclick="afterResult()">متابعة الخريطة 🗺️</button>
@@ -387,22 +440,22 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);min-height:100vh;colo
 <div class="screen" id="s-ai">
   <div class="ai-hdr">
     <div class="ai-hdr-top">
-      <button class="back-btn" style="background:rgba(255,255,255,.2);color:#fff;" onclick="go('s-home')">←</button>
+      <button class="back-btn" onclick="go('s-home')">←</button>
       <div class="ai-av">🤖</div>
       <div><div class="ai-hn">المساعد الذكي</div><div class="ai-hs">متاح دائماً للمساعدة</div></div>
     </div>
   </div>
   <div class="chat-area" id="chat-area">
-    <div class="cmsg cai">مرحباً! أنا مساعدك الذكي 🌟<br><br>يمكنني مساعدتك في شرح كلمات المنهج، إجراء محادثة معك، واختبارك بأسئلة سريعة.<br><br>اختر موضوعاً أو اكتب سؤالك:</div>
+    <div class="cmsg cai">مرحباً! أنا مساعدك الذكي للغة الإنجليزية 🌟<br><br>يمكنني مساعدتك في شرح الكلمات، إجراء محادثة معك، واختبارك بأسئلة سريعة.<br><br>اختر موضوعاً أو اكتب سؤالك:</div>
     <div class="topics">
-      <button class="tpc" onclick="sendTopic('اشرح لي كلمة من الوحدة السابعة')">📖 شرح كلمة</button>
-      <button class="tpc" onclick="sendTopic('دردش معي بالكلمات المقررة')">💬 محادثة</button>
-      <button class="tpc" onclick="sendTopic('اختبرني بسؤال سريع')">🎯 اختبار</button>
-      <button class="tpc" onclick="sendTopic('أعطني جملة مثال لكلمة hazardous')">✍️ جملة مثال</button>
+      <button class="tpc" onclick="sendTopic('اشرح لي كلمة')">📖 شرح كلمة</button>
+      <button class="tpc" onclick="sendTopic('اختبرني بسؤال')">🎯 اختبار</button>
+      <button class="tpc" onclick="sendTopic('دردش معي بالإنجليزي')">💬 محادثة</button>
+      <button class="tpc" onclick="sendTopic('أعطني جملة مثال')">✍️ جملة</button>
     </div>
   </div>
   <div class="chat-inp-row">
-    <input class="chat-inp" id="chat-inp" placeholder="اكتب سؤالك هنا..." onkeypress="if(event.key==='Enter')sendMsg()">
+    <input class="chat-inp" id="chat-inp" placeholder="اكتب سؤالك..." onkeypress="if(event.key==='Enter')sendMsg()">
     <button class="send-btn" onclick="sendMsg()">➤</button>
   </div>
 </div>
@@ -411,7 +464,7 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);min-height:100vh;colo
 <div class="screen" id="s-admin">
   <div class="adm-hdr">
     <div><h2>👑 الأدمن</h2><p>إدارة المحتوى والمشتركين</p></div>
-    <button class="back-btn" style="background:rgba(255,255,255,.15);color:#fff;" onclick="go('s-home')">←</button>
+    <button class="back-btn" onclick="go('s-home')">←</button>
   </div>
   <div class="adm-body">
     <div class="sg">
@@ -426,29 +479,28 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);min-height:100vh;colo
     </div>
     <div id="add-div">
       <div class="adm-sec">
-        <h3>إضافة كلمة</h3>
+        <h3>إضافة كلمة للمنهج</h3>
         <div class="arow">
-          <select class="asel" id="add-unit"><option value="unit7">الوحدة 7</option><option value="unit8">الوحدة 8</option><option value="unit9">الوحدة 9</option><option value="unit10">الوحدة 10</option><option value="unit11">الوحدة 11</option><option value="unit12">الوحدة 12</option></select>
+          <select class="asel" id="add-stage" onchange="updateAdminGrades()"><option value="primary">ابتدائي</option><option value="middle">متوسط</option><option value="high" selected>ثانوي</option></select>
+          <select class="asel" id="add-grade"></select>
+          <select class="asel" id="add-sem"><option value="1">فصل 1</option><option value="2" selected>فصل 2</option></select>
         </div>
         <div class="arow">
           <input class="ainp" id="add-en" placeholder="الكلمة بالإنجليزية" style="flex:1;">
           <input class="ainp" id="add-ar" placeholder="المعنى بالعربية" style="flex:1;">
         </div>
         <div class="arow"><input class="ainp" id="add-img" placeholder="رابط صورة (اختياري)" style="flex:1;direction:ltr;text-align:right;"></div>
-        <div class="arow"><input class="ainp" id="add-sent" placeholder="جملة مثال بـ ___ مكان الكلمة" style="flex:1;"></div>
-        <button class="abtn" onclick="addWord()" style="width:100%;padding:12px;border-radius:100px;font-size:15px;">حفظ ✓</button>
+        <div class="arow"><input class="ainp" id="add-sent" placeholder="جملة مثال: She was very ___ about it." style="flex:1;"></div>
+        <button class="abtn" onclick="addWord()" style="width:100%;padding:12px;border-radius:100px;font-size:15px;">حفظ الكلمة ✓</button>
       </div>
     </div>
     <div id="words-div" style="display:none;">
       <div class="adm-sec">
-        <h3>الكلمات المضافة</h3>
+        <h3>الكلمات المضافة يدوياً</h3>
         <div class="ff">
-          <select class="fs" id="f-unit" onchange="renderWL()">
-            <option value="all">كل الوحدات</option>
-            <option value="unit7">وحدة 7</option><option value="unit8">وحدة 8</option>
-            <option value="unit9">وحدة 9</option><option value="unit10">وحدة 10</option>
-            <option value="unit11">وحدة 11</option><option value="unit12">وحدة 12</option>
-          </select>
+          <select class="fs" id="f-stage" onchange="renderWL()"><option value="all">كل المراحل</option><option value="primary">ابتدائي</option><option value="middle">متوسط</option><option value="high">ثانوي</option></select>
+          <select class="fs" id="f-grade" onchange="renderWL()"><option value="all">كل الصفوف</option></select>
+          <select class="fs" id="f-sem" onchange="renderWL()"><option value="all">كل الفصول</option><option value="1">فصل 1</option><option value="2">فصل 2</option></select>
         </div>
         <div class="word-list" id="wl"></div>
       </div>
@@ -467,273 +519,300 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);min-height:100vh;colo
 <div class="screen" id="s-parent">
   <div class="par-hdr">
     <div><h2>متابعة أبنائي 👨‍👩‍👦</h2><p>تقارير تقدم أبنائك</p></div>
-    <button class="back-btn" style="background:rgba(255,255,255,.2);color:#fff;" onclick="go('s-home')">←</button>
+    <button class="back-btn" onclick="go('s-home')">←</button>
   </div>
   <div class="par-body">
     <div class="link-sec"><h3>➕ ربط طالب جديد</h3>
-      <div class="code-row">
-        <input class="code-inp" id="lcode" placeholder="رمز الطالب" maxlength="6" dir="ltr">
-        <button class="abtn abtn-g" onclick="linkSt()">ربط ✓</button>
-      </div>
+      <div class="code-row"><input class="code-inp" id="lcode" placeholder="رمز الطالب" maxlength="6" dir="ltr"><button class="abtn" onclick="linkSt()">ربط ✓</button></div>
     </div>
     <div id="linked-sts"></div>
   </div>
 </div>
  
-</div><!-- end app -->
+</div>
 <div class="toast" id="toast-el"></div>
  
 <script>
-// ===== ALL WORDS DATA (Grade 10, Sem 2) =====
-const CURRICULUM = {
-  unit7:{title:'الوحدة 7',words:[
-    {en:'crude oil',ar:'النفط الخام',sent:'___ is used to make fuel.'},
-    {en:'entirely',ar:'تماماً - كلياً',sent:'She was ___ wrong about that.'},
-    {en:'finite',ar:'محدود - غير متجدد',sent:'Oil is a ___ resource.'},
-    {en:'fossil fuel',ar:'وقود حفري',sent:'Coal is a type of ___.'},
-    {en:'fractional distillation',ar:'التقطير التجزيئي',sent:'___ separates crude oil into parts.'},
-    {en:'polymer',ar:'مركب كيميائي',sent:'Plastic is a ___.'},
-    {en:'refining',ar:'التصفية والتكرير',sent:'___ removes impurities from oil.'},
-    {en:'actually',ar:'في الحقيقة',sent:'He ___ likes studying English.'},
-    {en:'appliance',ar:'جهاز كهربائي',sent:'A washing machine is a household ___.'},
-    {en:'breakdown',ar:'عطل - توقف',sent:'The car had a ___ on the highway.'},
-    {en:'generate',ar:'يولد - ينتج',sent:'Solar panels ___ electricity.'},
-    {en:'last',ar:'يدوم - يستمر',sent:'How long will the battery ___?'},
-    {en:'motoring',ar:'قيادة السيارات',sent:'___ costs have increased recently.'},
-    {en:'strong',ar:'قوي',sent:'She is a ___ swimmer.'},
-    {en:'asthma',ar:'الربو',sent:'Air pollution can trigger ___.'},
-    {en:'congestion',ar:'ازدحام',sent:'Traffic ___ is a big problem in cities.'},
-    {en:'consult',ar:'يستشير',sent:'You should ___ a doctor about this.'},
-    {en:'diminish',ar:'يقل - ينقص',sent:'The noise began to ___ after midnight.'},
-    {en:'government',ar:'حكومة',sent:'The ___ introduced new laws.'},
-    {en:'hazardous',ar:'خطر - منطو على مخاطرة',sent:'Chemicals can be ___ to health.'},
-    {en:'irreversible',ar:'لا يمكن تغييره',sent:'Some environmental damage is ___.'},
-    {en:'motorist',ar:'سائق السيارة',sent:'Every ___ should follow traffic rules.'},
-    {en:'procure',ar:'يحصل على - يدبر',sent:'It is hard to ___ clean water there.'},
-    {en:'recently',ar:'مؤخراً - حديثاً',sent:'She ___ moved to Kuwait City.'},
-    {en:'self-employed',ar:'يعمل لحسابه',sent:'He is ___ and works from home.'},
-    {en:'smog',ar:'ضباب دخان',sent:'The city was covered in ___.'},
-    {en:'squander',ar:'يبذر - يسرف',sent:'Do not ___ your money on useless things.'},
-    {en:'waste',ar:'تبديد - إضاعة',sent:'We should not ___ electricity.'},
-    {en:'end up with',ar:'ينتهي به الحال',sent:'If you study hard, you will ___ a good job.'}
-  ]},
-  unit8:{title:'الوحدة 8',words:[
-    {en:'contact lens',ar:'عدسات لاصقة',sent:'She wears ___ instead of glasses.'},
-    {en:'cure-all',ar:'دواء لجميع الأمراض',sent:'Exercise is not a ___ for every problem.'},
-    {en:'currently',ar:'حالياً',sent:'She is ___ studying at university.'},
-    {en:'draw',ar:'يسحب',sent:'The magnet can ___ metal objects.'},
-    {en:'gold-coated',ar:'مطلي بالذهب',sent:'The ___ device is very expensive.'},
-    {en:'innovate',ar:'يبتكر - يجدد',sent:'Companies must ___ to stay competitive.'},
-    {en:'instantly',ar:'فوراً - حالاً',sent:'The app loads ___.'},
-    {en:'latest',ar:'آخر - أحدث',sent:'Have you seen the ___ news?'},
-    {en:'micro-robot',ar:'آلي دقيق الحجم',sent:'The ___ can enter the human body.'},
-    {en:'nanoshell',ar:'جهاز يزرع في الجسم',sent:'A ___ fights cancer cells from inside.'},
-    {en:'satnav',ar:'الملاحة بالأقمار',sent:'The ___ guided us to the hotel.'},
-    {en:'shock',ar:'صدمة',sent:'The news came as a ___ to everyone.'},
-    {en:'sophisticated',ar:'متطور - معقد',sent:'The robot uses ___ technology.'},
-    {en:'tumour',ar:'ورم',sent:'Doctors removed the ___ successfully.'},
-    {en:'bifocal',ar:'نظارة ثنائية البؤرة',sent:'He needs ___ glasses to read clearly.'},
-    {en:'frequent',ar:'متكرر الحدوث',sent:'She makes ___ trips to the library.'},
-    {en:'instigate',ar:'يحرض - يبادر',sent:'He tried to ___ a fight at school.'},
-    {en:'legible',ar:'واضح - مقروء',sent:'Please write in ___ handwriting.'},
-    {en:'obedient',ar:'مطيع - مذعن',sent:'The dog was very ___ to its owner.'},
-    {en:'patient',ar:'صبور - حليم',sent:'A good teacher must be ___.'},
-    {en:'reputation',ar:'سمعة - شهرة',sent:'The school has a great ___.'},
-    {en:'software',ar:'برامج الكومبيوتر',sent:'We need new ___ for the computers.'},
-    {en:'spot',ar:'منطقة - مكان',sent:'This is a beautiful ___ for a picnic.'},
-    {en:'anniversary',ar:'الذكرى السنوية',sent:'They celebrated their wedding ___.'},
-    {en:'heart rate',ar:'معدل نبضات القلب',sent:'Exercise increases your ___.'},
-    {en:'recharge',ar:'يعيد شحن',sent:'I need to ___ my phone.'},
-    {en:'remind',ar:'يذكر - ينبه',sent:'Please ___ me about the meeting.'},
-    {en:'terminal',ar:'جهاز إدخال المعلومات',sent:'She works at the airport ___.'},
-    {en:'torso',ar:'جذع الإنسان',sent:'He had a tattoo on his ___.'},
-    {en:'transmit',ar:'ينقل - يرسل',sent:'Radio waves ___ sound signals.'},
-    {en:'trespass',ar:'يتعدى على',sent:'Do not ___ on private property.'},
-    {en:'wearer',ar:'مرتدي - لابس',sent:'The ___ of the helmet was protected.'}
-  ]},
-  unit9:{title:'الوحدة 9',words:[
-    {en:'accounting',ar:'المحاسبة',sent:'She studied ___ at university.'},
-    {en:'barter',ar:'يقايض',sent:'In old times, people would ___ goods.'},
-    {en:'confidentiality',ar:'السرية',sent:'Doctors must maintain ___.'},
-    {en:'economics',ar:'علم الاقتصاد',sent:'He got a degree in ___.'},
-    {en:'insurance',ar:'تأمين',sent:'Everyone should have health ___.'},
-    {en:'invest',ar:'يستثمر - يوظف مالاً',sent:'It is wise to ___ in education.'},
-    {en:'investment',ar:'استثمار',sent:'Real estate is a good ___.'},
-    {en:'loan',ar:'القرض',sent:'He took a bank ___ to buy a house.'},
-    {en:'management',ar:'الإدارة',sent:'She is studying business ___.'},
-    {en:'transaction',ar:'معاملة تجارية',sent:'The bank completed the ___ in seconds.'},
-    {en:'billionaire',ar:'المليارديـر',sent:'He became a ___ at age 40.'},
-    {en:'charitable',ar:'خيري - إنساني',sent:'She made a ___ donation.'},
-    {en:'inherit',ar:'يرث',sent:'He will ___ his father\'s business.'},
-    {en:'philanthropic',ar:'محب للبشر - إنساني',sent:'Bill Gates is known for his ___ work.'},
-    {en:'tax return',ar:'نظام حساب الضريبة',sent:'She filed her ___ before the deadline.'},
-    {en:'auction',ar:'مزاد علني',sent:'The painting sold at ___ for millions.'},
-    {en:'complimentary',ar:'مجاني - مجاملة',sent:'The hotel offers ___ breakfast.'},
-    {en:'login',ar:'تسجيل الدخول',sent:'Enter your ___ details to access the account.'},
-    {en:'shipping',ar:'الشحن',sent:'Free ___ on orders over 20 KD.'},
-    {en:'tax',ar:'ضريبة',sent:'Everyone must pay ___ to the government.'},
-    {en:'affluent',ar:'ثري - غني',sent:'He grew up in an ___ family.'},
-    {en:'evil',ar:'فاسد - شرير',sent:'The villain in the story was truly ___.'},
-    {en:'extinct',ar:'منقرض - بائد',sent:'Dinosaurs are ___.'},
-    {en:'generosity',ar:'الكرم',sent:'His ___ surprised everyone at the party.'},
-    {en:'gross',ar:'يربح إجمالياً',sent:'The company will ___ millions this year.'},
-    {en:'profit',ar:'ربح - نفع',sent:'The store made a big ___ last month.'},
-    {en:'spur',ar:'يحث - يشجع',sent:'His words ___ her to work harder.'},
-    {en:'success',ar:'نجاح',sent:'Hard work leads to ___.'},
-    {en:'in this sense',ar:'بهذا المعنى',sent:'___ , both teams are equal.'}
-  ]},
-  unit10:{title:'الوحدة 10',words:[
-    {en:'composure',ar:'هدوء - رباطة الجأش',sent:'She kept her ___ during the storm.'},
-    {en:'constancy',ar:'ثبات - إيمان',sent:'His ___ impressed everyone.'},
-    {en:'enjoin',ar:'يحث على - يوصي',sent:'The teacher ___ students to study daily.'},
-    {en:'gratefulness',ar:'امتنان - عرفان',sent:'She showed ___ for the help she received.'},
-    {en:'injustice',ar:'ظلم',sent:'We must fight ___ in society.'},
-    {en:'insolence',ar:'غطرسة - تكبر',sent:'His ___ made everyone angry.'},
-    {en:'self-restraint',ar:'ضبط النفس',sent:'___ is important in difficult situations.'},
-    {en:'border',ar:'حد سياسي بين الدول',sent:'They crossed the ___ at midnight.'},
-    {en:'drop off',ar:'يوصل بالسيارة',sent:'Can you ___ me at the school?'},
-    {en:'pick up',ar:'يقل بالسيارة',sent:'I will ___ you from the airport.'},
-    {en:'register',ar:'يسجل بيانات',sent:'Please ___ your name at the front desk.'},
-    {en:'re-load',ar:'يعيد تعبئة',sent:'The soldier had to ___ his weapon.'},
-    {en:'set off',ar:'ينطلق - يبدأ رحلة',sent:'We ___ at 6am to avoid traffic.'},
-    {en:'smuggle',ar:'يهرب أشياء ممنوعة',sent:'They tried to ___ drugs across the border.'},
-    {en:'sudden',ar:'مفاجئ - مباغت',sent:'The ___ rain surprised everyone.'},
-    {en:'touch down',ar:'تهبط الطائرة',sent:'The plane will ___ in 10 minutes.'},
-    {en:'turn up',ar:'يصل مكان',sent:'He finally ___ after an hour late.'},
-    {en:'crazily',ar:'بجنون',sent:'She was driving ___ fast.'},
-    {en:'dreadful',ar:'سيئ جداً - فظيع',sent:'The weather was ___ yesterday.'},
-    {en:'emotive',ar:'عاطفي - مؤثر',sent:'The movie had an ___ ending.'},
-    {en:'knock off',ar:'يقع أرضاً',sent:'The wind ___ the cup from the table.'},
-    {en:'monotonous',ar:'ممل - رتيب',sent:'The job was ___ and repetitive.'},
-    {en:'overtake',ar:'يتجاوز',sent:'The car tried to ___ the truck.'},
-    {en:'recuperate',ar:'يتعافى من',sent:'She needs time to ___ after surgery.'},
-    {en:'stacks of',ar:'مقدار كبير - أكوام',sent:'There are ___ books in the library.'}
-  ]},
-  unit11:{title:'الوحدة 11',words:[
-    {en:'ASAP',ar:'بأسرع وقت ممكن',sent:'Please reply ___.'},
-    {en:'colleague',ar:'زميل',sent:'My ___ helped me finish the report.'},
-    {en:'current',ar:'تيار',sent:'The electric ___ was too strong.'},
-    {en:'impromptu',ar:'غير مخطط له',sent:'She gave an ___ speech.'},
-    {en:'rearrange',ar:'يعيد ترتيب',sent:'Can we ___ the meeting to Thursday?'},
-    {en:'starvation',ar:'مجاعة',sent:'Many children suffer from ___ in poor countries.'},
-    {en:'unreliable',ar:'لا يعتمد عليه',sent:'The internet connection is ___ today.'},
-    {en:'urgent',ar:'طارئ - عاجل',sent:'There is an ___ message for you.'},
-    {en:'well-sealed',ar:'مغلق بطريقة محكمة',sent:'The container must be ___ to stay fresh.'},
-    {en:'activate',ar:'ينشط - يفعل',sent:'You need to ___ your account by email.'},
-    {en:'band',ar:'طول الموجة',sent:'The radio uses a specific ___ frequency.'},
-    {en:'conference call',ar:'مكالمة جماعية',sent:'We had a ___ with the team.'},
-    {en:'deadline',ar:'آخر موعد',sent:'The ___ for the project is Friday.'},
-    {en:'flash',ar:'يومض',sent:'The light began to ___ rapidly.'},
-    {en:'frequency',ar:'تردد موجات',sent:'The ___ of the signal was too low.'},
-    {en:'handy',ar:'في المتناول - مفيد',sent:'A pocket dictionary is very ___.'},
-    {en:'harmony',ar:'انسجام - توافق',sent:'The team worked in perfect ___.'},
-    {en:'hassle',ar:'إزعاج - مشكلة',sent:'Parking in the city is a real ___.'},
-    {en:'portable',ar:'يمكن حمله',sent:'A ___ charger is useful for travel.'},
-    {en:'slide',ar:'ينزلق',sent:'The child loves to ___ down the slide.'},
-    {en:'unlock',ar:'يفتح قفل',sent:'You need a password to ___ the phone.'},
-    {en:'upgrade',ar:'يطور مستوى',sent:'I want to ___ my phone.'},
-    {en:'alarm',ar:'ينبه',sent:'The smoke detector will ___ if there is fire.'},
-    {en:'answerphone',ar:'جهاز الرد الآلي',sent:'Leave a message on the ___.'},
-    {en:'briefly',ar:'بإيجاز - باختصار',sent:'Please explain the idea ___.'},
-    {en:'confident',ar:'واثق',sent:'She was ___ about passing the exam.'},
-    {en:'next of kin',ar:'أقرب الأقارب',sent:'Please list your ___ on the form.'},
-    {en:'ring',ar:'مكالمة - اتصال',sent:'Give me a ___ when you arrive.'},
-    {en:'tone',ar:'نغمة',sent:'The phone has a pleasant ___.'},
-    {en:'tutor',ar:'مدرس خصوصي',sent:'She hired a ___ to help her son.'}
-  ]},
-  unit12:{title:'الوحدة 12',words:[
-    {en:'aviation',ar:'ملاحة جوية - طيران',sent:'He works in the ___ industry.'},
-    {en:'coincide with',ar:'يتصادف مع',sent:'The meeting ___ my holiday.'},
-    {en:'exemplary',ar:'قدوة',sent:'She is an ___ student.'},
-    {en:'gliding',ar:'طيران شراعي',sent:'He enjoys ___ on weekends.'},
-    {en:'instructor',ar:'معلم',sent:'The swimming ___ was very patient.'},
-    {en:'intensely',ar:'بجهد - بقوة',sent:'She studied ___ for the exam.'},
-    {en:'notably',ar:'بشكل خاص',sent:'He is ___ good at mathematics.'},
-    {en:'acclaimed',ar:'ذو مكانة رفيعة',sent:'She is an ___ author.'},
-    {en:'attendant',ar:'مضيف',sent:'The flight ___ served food to passengers.'},
-    {en:'cabin',ar:'كابينة - مقصورة',sent:'Please remain seated in the ___.'},
-    {en:'confrontational',ar:'يحب الجدل',sent:'He has a ___ personality.'},
-    {en:'corporation',ar:'شركة - مجموعة شركات',sent:'She works for a large ___.'},
-    {en:'courteously',ar:'بلطف - بشكل مهذب',sent:'The staff treated guests ___.'},
-    {en:'expression',ar:'تعبير الوجه',sent:'His ___ showed sadness.'},
-    {en:'mumble',ar:'يتمتم - يهمهم',sent:'Do not ___ when you speak to people.'},
-    {en:'resemble',ar:'يشابه',sent:'She ___ her mother a lot.'},
-    {en:'stern',ar:'صارم - قاس',sent:'The captain gave a ___ warning.'},
-    {en:'stunned',ar:'مذهول',sent:'Everyone was ___ by the news.'},
-    {en:'altitude',ar:'ارتفاع',sent:'The plane flew at a high ___.'},
-    {en:'aviate',ar:'يقود طائرة',sent:'It is amazing to ___ over the clouds.'},
-    {en:'baby carriage',ar:'عربة أطفال',sent:'She pushed the ___ through the park.'},
-    {en:'buzzing',ar:'طنين',sent:'There was a ___ sound in the room.'},
-    {en:'control',ar:'جهاز التحكم',sent:'He pressed the ___ button to land.'},
-    {en:'co-pilot',ar:'مساعد طيار',sent:'The ___ helped the captain land safely.'},
-    {en:'custom-built',ar:'ذو مواصفات خاصة',sent:'The plane was ___ for the president.'},
-    {en:'endeavour',ar:'يحاول - يسعى',sent:'Always ___ to do your best.'},
-    {en:'eyewitness',ar:'شاهد عيان',sent:'The ___ described what happened.'},
-    {en:'fog',ar:'ضباب',sent:'Dense ___ caused flight delays.'},
-    {en:'headline',ar:'عنوان رئيسي',sent:'The story made the ___.'},
-    {en:'incident',ar:'حادثة - واقعة',sent:'Police investigated the ___.'},
-    {en:'radar',ar:'الرادار',sent:'The ___ detected the incoming plane.'},
-    {en:'velocity',ar:'السرعة',sent:'The rocket reached high ___.'},
-    {en:'voice-activated',ar:'يتحكم به بالصوت',sent:'The system is ___.'}
-  ]}
+// ===== GRADE 10 SEM 2 WORDS (178 words) =====
+const G10S2 = [
+  // Unit 7
+  {en:'crude oil',ar:'النفط الخام',sent:'___ is used to make fuel.'},
+  {en:'entirely',ar:'تماماً - كلياً',sent:'She was ___ wrong about that.'},
+  {en:'finite',ar:'محدود - غير متجدد',sent:'Oil is a ___ resource.'},
+  {en:'fossil fuel',ar:'وقود حفري',sent:'Coal is a type of ___.'},
+  {en:'fractional distillation',ar:'التقطير التجزيئي',sent:'___ separates crude oil.'},
+  {en:'polymer',ar:'مركب كيميائي',sent:'Plastic is a ___.'},
+  {en:'refining',ar:'التصفية والتكرير',sent:'___ removes impurities from oil.'},
+  {en:'actually',ar:'في الحقيقة',sent:'He ___ likes studying English.'},
+  {en:'appliance',ar:'جهاز كهربائي',sent:'A washing machine is a household ___.'},
+  {en:'breakdown',ar:'عطل - توقف',sent:'The car had a ___ on the highway.'},
+  {en:'generate',ar:'يولد - ينتج',sent:'Solar panels ___ electricity.'},
+  {en:'last',ar:'يدوم - يستمر',sent:'How long will the battery ___?'},
+  {en:'motoring',ar:'قيادة السيارات',sent:'___ costs have increased recently.'},
+  {en:'asthma',ar:'الربو',sent:'Air pollution can trigger ___.'},
+  {en:'congestion',ar:'ازدحام',sent:'Traffic ___ is a big problem in cities.'},
+  {en:'consult',ar:'يستشير',sent:'You should ___ a doctor about this.'},
+  {en:'diminish',ar:'يقل - ينقص',sent:'The noise began to ___ after midnight.'},
+  {en:'government',ar:'حكومة',sent:'The ___ introduced new laws.'},
+  {en:'hazardous',ar:'خطر - منطو على مخاطرة',sent:'Chemicals can be ___ to health.'},
+  {en:'irreversible',ar:'لا يمكن تغييره',sent:'Some environmental damage is ___.'},
+  {en:'motorist',ar:'سائق السيارة',sent:'Every ___ should follow traffic rules.'},
+  {en:'procure',ar:'يحصل على - يدبر',sent:'It is hard to ___ clean water there.'},
+  {en:'recently',ar:'مؤخراً - حديثاً',sent:'She ___ moved to Kuwait City.'},
+  {en:'self-employed',ar:'يعمل لحسابه',sent:'He is ___ and works from home.'},
+  {en:'smog',ar:'ضباب دخان',sent:'The city was covered in ___.'},
+  {en:'squander',ar:'يبذر - يسرف',sent:'Do not ___ your money on useless things.'},
+  {en:'waste',ar:'تبديد - إضاعة',sent:'We should not ___ electricity.'},
+  {en:'end up with',ar:'ينتهي به الحال',sent:'If you study hard, you will ___ a good job.'},
+  {en:'strong',ar:'قوي',sent:'She is a ___ swimmer.'},
+  // Unit 8
+  {en:'contact lens',ar:'عدسات لاصقة',sent:'She wears ___ instead of glasses.'},
+  {en:'cure-all',ar:'دواء لجميع الأمراض',sent:'Exercise is not a ___ for every problem.'},
+  {en:'currently',ar:'حالياً',sent:'She is ___ studying at university.'},
+  {en:'gold-coated',ar:'مطلي بالذهب',sent:'The ___ device is very expensive.'},
+  {en:'innovate',ar:'يبتكر - يجدد',sent:'Companies must ___ to stay competitive.'},
+  {en:'instantly',ar:'فوراً - حالاً',sent:'The app loads ___.'},
+  {en:'latest',ar:'آخر - أحدث',sent:'Have you seen the ___ news?'},
+  {en:'micro-robot',ar:'آلي دقيق الحجم',sent:'The ___ can enter the human body.'},
+  {en:'nanoshell',ar:'جهاز يزرع في الجسم',sent:'A ___ fights cancer cells from inside.'},
+  {en:'satnav',ar:'الملاحة بالأقمار',sent:'The ___ guided us to the hotel.'},
+  {en:'shock',ar:'صدمة',sent:'The news came as a ___ to everyone.'},
+  {en:'sophisticated',ar:'متطور - معقد',sent:'The robot uses ___ technology.'},
+  {en:'tumour',ar:'ورم',sent:'Doctors removed the ___ successfully.'},
+  {en:'bifocal',ar:'نظارة ثنائية البؤرة',sent:'He needs ___ glasses to read.'},
+  {en:'frequent',ar:'متكرر الحدوث',sent:'She makes ___ trips to the library.'},
+  {en:'instigate',ar:'يحرض - يبادر',sent:'He tried to ___ a fight at school.'},
+  {en:'legible',ar:'واضح - مقروء',sent:'Please write in ___ handwriting.'},
+  {en:'obedient',ar:'مطيع - مذعن',sent:'The dog was very ___ to its owner.'},
+  {en:'patient',ar:'صبور - حليم',sent:'A good teacher must be ___.'},
+  {en:'reputation',ar:'سمعة - شهرة',sent:'The school has a great ___.'},
+  {en:'software',ar:'برامج الكومبيوتر',sent:'We need new ___ for the computers.'},
+  {en:'spot',ar:'منطقة - مكان',sent:'This is a beautiful ___ for a picnic.'},
+  {en:'anniversary',ar:'الذكرى السنوية',sent:'They celebrated their wedding ___.'},
+  {en:'heart rate',ar:'معدل نبضات القلب',sent:'Exercise increases your ___.'},
+  {en:'recharge',ar:'يعيد شحن',sent:'I need to ___ my phone.'},
+  {en:'remind',ar:'يذكر - ينبه',sent:'Please ___ me about the meeting.'},
+  {en:'terminal',ar:'جهاز إدخال المعلومات',sent:'She works at the airport ___.'},
+  {en:'torso',ar:'جذع الإنسان',sent:'He had a tattoo on his ___.'},
+  {en:'transmit',ar:'ينقل - يرسل',sent:'Radio waves ___ sound signals.'},
+  {en:'trespass',ar:'يتعدى على',sent:'Do not ___ on private property.'},
+  {en:'wearer',ar:'مرتدي - لابس',sent:'The ___ of the helmet was protected.'},
+  // Unit 9
+  {en:'accounting',ar:'المحاسبة',sent:'She studied ___ at university.'},
+  {en:'barter',ar:'يقايض',sent:'In old times, people would ___ goods.'},
+  {en:'confidentiality',ar:'السرية',sent:'Doctors must maintain ___.'},
+  {en:'economics',ar:'علم الاقتصاد',sent:'He got a degree in ___.'},
+  {en:'insurance',ar:'تأمين',sent:'Everyone should have health ___.'},
+  {en:'invest',ar:'يستثمر',sent:'It is wise to ___ in education.'},
+  {en:'investment',ar:'استثمار',sent:'Real estate is a good ___.'},
+  {en:'loan',ar:'القرض',sent:'He took a bank ___ to buy a house.'},
+  {en:'management',ar:'الإدارة',sent:'She is studying business ___.'},
+  {en:'transaction',ar:'معاملة تجارية',sent:'The bank completed the ___ in seconds.'},
+  {en:'billionaire',ar:'المليارديـر',sent:'He became a ___ at age 40.'},
+  {en:'charitable',ar:'خيري - إنساني',sent:'She made a ___ donation.'},
+  {en:'inherit',ar:'يرث',sent:'He will ___ his father\'s business.'},
+  {en:'philanthropic',ar:'محب للبشر',sent:'Bill Gates is known for his ___ work.'},
+  {en:'tax return',ar:'نظام حساب الضريبة',sent:'She filed her ___ before the deadline.'},
+  {en:'auction',ar:'مزاد علني',sent:'The painting sold at ___ for millions.'},
+  {en:'complimentary',ar:'مجاني',sent:'The hotel offers ___ breakfast.'},
+  {en:'login',ar:'تسجيل الدخول',sent:'Enter your ___ details to access the account.'},
+  {en:'shipping',ar:'الشحن',sent:'Free ___ on orders over 20 KD.'},
+  {en:'tax',ar:'ضريبة',sent:'Everyone must pay ___ to the government.'},
+  {en:'affluent',ar:'ثري - غني',sent:'He grew up in an ___ family.'},
+  {en:'evil',ar:'فاسد - شرير',sent:'The villain in the story was truly ___.'},
+  {en:'extinct',ar:'منقرض - بائد',sent:'Dinosaurs are ___.'},
+  {en:'generosity',ar:'الكرم',sent:'His ___ surprised everyone at the party.'},
+  {en:'gross',ar:'يربح إجمالياً',sent:'The company will ___ millions this year.'},
+  {en:'profit',ar:'ربح - نفع',sent:'The store made a big ___ last month.'},
+  {en:'spur',ar:'يحث - يشجع',sent:'His words ___ her to work harder.'},
+  {en:'success',ar:'نجاح',sent:'Hard work leads to ___.'},
+  {en:'in this sense',ar:'بهذا المعنى',sent:'___ both teams are equal.'},
+  // Unit 10
+  {en:'composure',ar:'هدوء - رباطة الجأش',sent:'She kept her ___ during the storm.'},
+  {en:'constancy',ar:'ثبات - إيمان',sent:'His ___ impressed everyone.'},
+  {en:'enjoin',ar:'يحث على - يوصي',sent:'The teacher ___ students to study daily.'},
+  {en:'gratefulness',ar:'امتنان - عرفان',sent:'She showed ___ for the help she received.'},
+  {en:'injustice',ar:'ظلم',sent:'We must fight ___ in society.'},
+  {en:'insolence',ar:'غطرسة - تكبر',sent:'His ___ made everyone angry.'},
+  {en:'self-restraint',ar:'ضبط النفس',sent:'___ is important in difficult situations.'},
+  {en:'border',ar:'حد سياسي بين الدول',sent:'They crossed the ___ at midnight.'},
+  {en:'drop off',ar:'يوصل بالسيارة',sent:'Can you ___ me at the school?'},
+  {en:'pick up',ar:'يقل بالسيارة',sent:'I will ___ you from the airport.'},
+  {en:'register',ar:'يسجل بيانات',sent:'Please ___ your name at the front desk.'},
+  {en:'re-load',ar:'يعيد تعبئة',sent:'The soldier had to ___ his weapon.'},
+  {en:'set off',ar:'ينطلق - يبدأ رحلة',sent:'We ___ at 6am to avoid traffic.'},
+  {en:'smuggle',ar:'يهرب أشياء ممنوعة',sent:'They tried to ___ drugs across the border.'},
+  {en:'sudden',ar:'مفاجئ - مباغت',sent:'The ___ rain surprised everyone.'},
+  {en:'touch down',ar:'تهبط الطائرة',sent:'The plane will ___ in 10 minutes.'},
+  {en:'turn up',ar:'يصل مكان',sent:'He finally ___ after an hour late.'},
+  {en:'crazily',ar:'بجنون',sent:'She was driving ___ fast.'},
+  {en:'dreadful',ar:'سيئ جداً - فظيع',sent:'The weather was ___ yesterday.'},
+  {en:'emotive',ar:'عاطفي - مؤثر',sent:'The movie had an ___ ending.'},
+  {en:'knock off',ar:'يقع أرضاً',sent:'The wind ___ the cup from the table.'},
+  {en:'monotonous',ar:'ممل - رتيب',sent:'The job was ___ and repetitive.'},
+  {en:'overtake',ar:'يتجاوز',sent:'The car tried to ___ the truck.'},
+  {en:'recuperate',ar:'يتعافى من',sent:'She needs time to ___ after surgery.'},
+  {en:'stacks of',ar:'مقدار كبير - أكوام',sent:'There are ___ books in the library.'},
+  // Unit 11
+  {en:'ASAP',ar:'بأسرع وقت ممكن',sent:'Please reply ___.'},
+  {en:'colleague',ar:'زميل',sent:'My ___ helped me finish the report.'},
+  {en:'current',ar:'تيار',sent:'The electric ___ was too strong.'},
+  {en:'impromptu',ar:'غير مخطط له',sent:'She gave an ___ speech.'},
+  {en:'rearrange',ar:'يعيد ترتيب',sent:'Can we ___ the meeting to Thursday?'},
+  {en:'starvation',ar:'مجاعة',sent:'Many children suffer from ___ in poor countries.'},
+  {en:'unreliable',ar:'لا يعتمد عليه',sent:'The internet connection is ___ today.'},
+  {en:'urgent',ar:'طارئ - عاجل',sent:'There is an ___ message for you.'},
+  {en:'well-sealed',ar:'مغلق بطريقة محكمة',sent:'The container must be ___ to stay fresh.'},
+  {en:'activate',ar:'ينشط - يفعل',sent:'You need to ___ your account by email.'},
+  {en:'band',ar:'طول الموجة',sent:'The radio uses a specific ___ frequency.'},
+  {en:'conference call',ar:'مكالمة جماعية',sent:'We had a ___ with the team.'},
+  {en:'deadline',ar:'آخر موعد',sent:'The ___ for the project is Friday.'},
+  {en:'flash',ar:'يومض',sent:'The light began to ___ rapidly.'},
+  {en:'frequency',ar:'تردد موجات',sent:'The ___ of the signal was too low.'},
+  {en:'handy',ar:'في المتناول - مفيد',sent:'A pocket dictionary is very ___.'},
+  {en:'harmony',ar:'انسجام - توافق',sent:'The team worked in perfect ___.'},
+  {en:'hassle',ar:'إزعاج - مشكلة',sent:'Parking in the city is a real ___.'},
+  {en:'portable',ar:'يمكن حمله',sent:'A ___ charger is useful for travel.'},
+  {en:'slide',ar:'ينزلق',sent:'The child loves to ___ down the slide.'},
+  {en:'unlock',ar:'يفتح قفل',sent:'You need a password to ___ the phone.'},
+  {en:'upgrade',ar:'يطور مستوى',sent:'I want to ___ my phone.'},
+  {en:'alarm',ar:'ينبه',sent:'The smoke detector will ___ if there is fire.'},
+  {en:'answerphone',ar:'جهاز الرد الآلي',sent:'Leave a message on the ___.'},
+  {en:'briefly',ar:'بإيجاز - باختصار',sent:'Please explain the idea ___.'},
+  {en:'confident',ar:'واثق',sent:'She was ___ about passing the exam.'},
+  {en:'next of kin',ar:'أقرب الأقارب',sent:'Please list your ___ on the form.'},
+  {en:'ring',ar:'مكالمة - اتصال',sent:'Give me a ___ when you arrive.'},
+  {en:'tone',ar:'نغمة',sent:'The phone has a pleasant ___.'},
+  {en:'tutor',ar:'مدرس خصوصي',sent:'She hired a ___ to help her son.'},
+  // Unit 12
+  {en:'aviation',ar:'ملاحة جوية - طيران',sent:'He works in the ___ industry.'},
+  {en:'coincide with',ar:'يتصادف مع',sent:'The meeting ___ my holiday.'},
+  {en:'exemplary',ar:'قدوة',sent:'She is an ___ student.'},
+  {en:'gliding',ar:'طيران شراعي',sent:'He enjoys ___ on weekends.'},
+  {en:'instructor',ar:'معلم',sent:'The swimming ___ was very patient.'},
+  {en:'intensely',ar:'بجهد - بقوة',sent:'She studied ___ for the exam.'},
+  {en:'notably',ar:'بشكل خاص',sent:'He is ___ good at mathematics.'},
+  {en:'acclaimed',ar:'ذو مكانة رفيعة',sent:'She is an ___ author.'},
+  {en:'attendant',ar:'مضيف',sent:'The flight ___ served food to passengers.'},
+  {en:'cabin',ar:'كابينة - مقصورة',sent:'Please remain seated in the ___.'},
+  {en:'confrontational',ar:'يحب الجدل',sent:'He has a ___ personality.'},
+  {en:'corporation',ar:'شركة - مجموعة شركات',sent:'She works for a large ___.'},
+  {en:'courteously',ar:'بلطف - بشكل مهذب',sent:'The staff treated guests ___.'},
+  {en:'expression',ar:'تعبير الوجه',sent:'His ___ showed sadness.'},
+  {en:'mumble',ar:'يتمتم - يهمهم',sent:'Do not ___ when you speak to people.'},
+  {en:'resemble',ar:'يشابه',sent:'She ___ her mother a lot.'},
+  {en:'stern',ar:'صارم - قاس',sent:'The captain gave a ___ warning.'},
+  {en:'stunned',ar:'مذهول',sent:'Everyone was ___ by the news.'},
+  {en:'altitude',ar:'ارتفاع',sent:'The plane flew at a high ___.'},
+  {en:'aviate',ar:'يقود طائرة',sent:'It is amazing to ___ over the clouds.'},
+  {en:'baby carriage',ar:'عربة أطفال',sent:'She pushed the ___ through the park.'},
+  {en:'buzzing',ar:'طنين',sent:'There was a ___ sound in the room.'},
+  {en:'control',ar:'جهاز التحكم',sent:'He pressed the ___ button to land.'},
+  {en:'co-pilot',ar:'مساعد طيار',sent:'The ___ helped the captain land safely.'},
+  {en:'custom-built',ar:'ذو مواصفات خاصة',sent:'The plane was ___ for the president.'},
+  {en:'endeavour',ar:'يحاول - يسعى',sent:'Always ___ to do your best.'},
+  {en:'eyewitness',ar:'شاهد عيان',sent:'The ___ described what happened.'},
+  {en:'fog',ar:'ضباب',sent:'Dense ___ caused flight delays.'},
+  {en:'headline',ar:'عنوان رئيسي',sent:'The story made the ___.'},
+  {en:'incident',ar:'حادثة - واقعة',sent:'Police investigated the ___.'},
+  {en:'radar',ar:'الرادار',sent:'The ___ detected the incoming plane.'},
+  {en:'velocity',ar:'السرعة',sent:'The rocket reached high ___.'},
+  {en:'voice-activated',ar:'يتحكم به بالصوت',sent:'The system is ___.'}
+];
+ 
+// Demo words for other grades/sems
+const DEMO_WORDS = {
+  primary_5_1:[
+    {en:'apple',ar:'تفاحة',sent:'I eat an ___ every day.'},
+    {en:'book',ar:'كتاب',sent:'She reads a ___ at night.'},
+    {en:'dog',ar:'كلب',sent:'The ___ barks loudly.'},
+    {en:'sun',ar:'شمس',sent:'The ___ rises in the east.'},
+    {en:'water',ar:'ماء',sent:'We drink ___ every day.'},
+    {en:'house',ar:'بيت',sent:'We live in a ___.'},
+    {en:'tree',ar:'شجرة',sent:'The ___ is very tall.'},
+    {en:'fish',ar:'سمكة',sent:'I caught a big ___.'},
+    {en:'bread',ar:'خبز',sent:'I eat ___ for breakfast.'},
+    {en:'ball',ar:'كرة',sent:'The ___ is round.'},
+    {en:'cat',ar:'قطة',sent:'The ___ is sleeping.'},
+    {en:'car',ar:'سيارة',sent:'My father drives a ___.'}
+  ],
+  primary_5_2:[
+    {en:'school',ar:'مدرسة',sent:'I go to ___ every day.'},
+    {en:'teacher',ar:'معلم',sent:'My ___ is very kind.'},
+    {en:'pen',ar:'قلم',sent:'I write with a ___.'},
+    {en:'bird',ar:'طائر',sent:'The ___ can fly.'},
+    {en:'milk',ar:'حليب',sent:'I drink ___ every morning.'},
+    {en:'flower',ar:'زهرة',sent:'The ___ is beautiful.'},
+    {en:'mother',ar:'أم',sent:'My ___ cooks delicious food.'},
+    {en:'friend',ar:'صديق',sent:'My best ___ is very funny.'},
+    {en:'happy',ar:'سعيد',sent:'I am ___ today.'},
+    {en:'big',ar:'كبير',sent:'The elephant is very ___.'},
+    {en:'small',ar:'صغير',sent:'The ant is very ___.'},
+    {en:'run',ar:'يركض',sent:'I love to ___ in the park.'}
+  ]
 };
  
 // ===== DB =====
-let DB = JSON.parse(localStorage.getItem('lughatiDB3')||JSON.stringify({
-  users:[{email:'adel.dahe@gmail.com',pass:'adel.dahe@123456',name:'الأدمن',role:'admin',xp:0,code:'',sessions:[]}],
+let DB = JSON.parse(localStorage.getItem('lughatiDB4')||JSON.stringify({
+  users:[{email:'adel.dahe@gmail.com',pass:'adel.dahe@123456',name:'الأدمن',role:'admin',xp:0,code:'',sessions:[],progress:{}}],
   extraWords:[],
   sessions:[]
 }));
-let CU = JSON.parse(sessionStorage.getItem('CU3')||'null');
-let LS = {unit:'',levelIdx:0,words:[],qi:0,hearts:5,score:0,missed:[],phase:'learn'};
+let CU = JSON.parse(sessionStorage.getItem('CU4')||'null');
+let NAV = {stage:'',grade:0,sem:0};
+let LS = {words:[],qi:0,hearts:5,score:0,missed:[],phase:'learn',levelIdx:0,levelKey:''};
 let selRole='student';
+const GRADES = {primary:[5],middle:[6,7,8,9],high:[10,11,12]};
+const GN = {5:'الخامس',6:'السادس',7:'السابع',8:'الثامن',9:'التاسع',10:'العاشر',11:'الحادي عشر',12:'الثاني عشر'};
+const SN = {primary:'ابتدائي',middle:'متوسط',high:'ثانوي'};
+const COLORS = {primary:'#43D39E',middle:'#6C63FF',high:'#FF6584'};
  
-function saveDB(){localStorage.setItem('lughatiDB3',JSON.stringify(DB));}
+function saveDB(){localStorage.setItem('lughatiDB4',JSON.stringify(DB));}
 function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 function toast(m){const t=document.getElementById('toast-el');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600);}
 function genCode(){return Math.floor(100000+Math.random()*900000).toString();}
  
-// ===== BUILD LEVELS =====
-function getLevels(unit){
-  const base = CURRICULUM[unit]?.words||[];
-  const extra = DB.extraWords.filter(w=>w.unit===unit);
-  const all = [...base,...extra];
-  const levels=[];
-  for(let i=0;i<all.length;i+=10){
-    levels.push({words:all.slice(i,i+10),idx:Math.floor(i/10)});
-  }
-  return levels;
+// Get words for a specific stage/grade/sem
+function getWords(stage,grade,sem){
+  if(stage==='high'&&grade===10&&sem===2) return [...G10S2,...DB.extraWords.filter(w=>w.stage===stage&&w.grade===grade&&w.sem===sem)];
+  const key=`${stage}_${grade}_${sem}`;
+  if(DEMO_WORDS[key]) return [...DEMO_WORDS[key],...DB.extraWords.filter(w=>w.stage===stage&&w.grade===grade&&w.sem===sem)];
+  return DB.extraWords.filter(w=>w.stage===stage&&w.grade===grade&&w.sem===sem);
 }
  
-function getUserProgress(){
-  const u=DB.users.find(u=>u.email===CU.email);
-  return u?.progress||{};
+function getAllWords(){
+  const all=[...G10S2];
+  Object.values(DEMO_WORDS).forEach(arr=>all.push(...arr));
+  DB.extraWords.forEach(w=>all.push(w));
+  return all;
 }
-function saveUserProgress(prog){
-  const u=DB.users.find(u=>u.email===CU.email);
-  if(u){u.progress=prog;saveDB();}
-  CU.progress=prog;
-  sessionStorage.setItem('CU3',JSON.stringify(CU));
+ 
+// Build levels (10 words each)
+function buildLevels(words){
+  const levels=[];
+  for(let i=0;i<words.length;i+=10) levels.push(words.slice(i,i+10));
+  return levels;
 }
  
 // ===== AUTH =====
 function switchTab(t){
   const r=t==='reg';
-  document.getElementById('t-login').classList.toggle('active',!r);
-  document.getElementById('t-reg').classList.toggle('active',r);
-  document.getElementById('reg-extra').style.display=r?'block':'none';
+  document.getElementById('t-l').classList.toggle('active',!r);
+  document.getElementById('t-r').classList.toggle('active',r);
+  document.getElementById('reg-x').style.display=r?'block':'none';
   document.getElementById('code-reveal').style.display='none';
-  document.getElementById('auth-submit').textContent=r?'إنشاء حساب':'دخول';
+  document.getElementById('auth-btn').textContent=r?'إنشاء حساب':'دخول';
 }
 function selR(r){
   selRole=r;
-  ['s','p'].forEach(x=>document.getElementById('rb-'+x).classList.toggle('sel',x===(r==='student'?'s':'p')));
-  document.getElementById('pcode-wrap').style.display=r==='parent'?'block':'none';
+  document.getElementById('rb-s').classList.toggle('sel',r==='student');
+  document.getElementById('rb-p').classList.toggle('sel',r==='parent');
+  document.getElementById('pcode-w').style.display=r==='parent'?'block':'none';
 }
 function doAuth(){
   const email=document.getElementById('aemail').value.trim().toLowerCase();
   const pass=document.getElementById('apass').value;
-  const isReg=document.getElementById('reg-extra').style.display!=='none';
+  const isReg=document.getElementById('reg-x').style.display!=='none';
   const err=document.getElementById('aerr');
   err.style.display='none';
   if(!email||!pass){err.textContent='أدخل البريد وكلمة المرور';err.style.display='block';return;}
@@ -747,15 +826,11 @@ function doAuth(){
       if(!DB.users.find(u=>u.code===sc&&u.role==='student')){err.textContent='رمز الطالب غير صحيح';err.style.display='block';return;}
     }
     const user={email,pass,name,role:selRole,xp:0,code,sessions:[],linkedStudents:[],progress:{}};
-    if(selRole==='parent'){
-      const sc=document.getElementById('pcode').value.trim();
-      user.linkedStudents=[sc];
-    }
+    if(selRole==='parent'){user.linkedStudents=[document.getElementById('pcode').value.trim()];}
     DB.users.push(user);saveDB();CU=user;
     if(selRole==='student'){
       document.getElementById('gen-code').textContent=code;
       document.getElementById('code-reveal').style.display='block';
-      setTimeout(()=>afterLogin(),0);return;
     }
   } else {
     const u=DB.users.find(u=>u.email===email&&u.pass===pass);
@@ -770,86 +845,100 @@ function afterLogin(){
   document.getElementById('admin-menu').style.display=CU.role==='admin'?'flex':'none';
   document.getElementById('parent-menu').style.display=CU.role==='parent'?'flex':'none';
   updateAdminStats();
-  sessionStorage.setItem('CU3',JSON.stringify(CU));
+  sessionStorage.setItem('CU4',JSON.stringify(CU));
   go('s-home');
 }
-function doLogout(){CU=null;sessionStorage.removeItem('CU3');go('s-auth');}
+function doLogout(){CU=null;sessionStorage.removeItem('CU4');go('s-auth');}
+ 
+// ===== NAVIGATION =====
+function chooseStage(s){
+  NAV.stage=s;
+  document.getElementById('grade-hdr-title').textContent=SN[s]+' — اختر الصف';
+  const list=document.getElementById('grade-list');
+  list.innerHTML='';
+  GRADES[s].forEach(g=>{
+    const wc=getWords(s,g,1).length+getWords(s,g,2).length;
+    const d=document.createElement('div');
+    d.className='grade-card';
+    d.innerHTML=`<div class="g-num" style="background:${COLORS[s]}20;color:${COLORS[s]};">${g}</div><div class="g-info"><div class="g-name">الصف ${GN[g]}</div><div class="g-sub">${wc} كلمة متاحة</div></div><span style="color:var(--txtl);font-size:18px;">›</span>`;
+    d.onclick=()=>chooseGrade(g);
+    list.appendChild(d);
+  });
+  go('s-grade');
+}
+ 
+function chooseGrade(g){
+  NAV.grade=g;
+  document.getElementById('sem-hdr-title').textContent='الصف '+GN[g]+' — اختر الفصل';
+  const w1=getWords(NAV.stage,g,1).length;
+  const w2=getWords(NAV.stage,g,2).length;
+  document.getElementById('sem1-info').textContent=w1+' كلمة — '+(Math.ceil(w1/10)||0)+' مستويات';
+  document.getElementById('sem2-info').textContent=w2+' كلمة — '+(Math.ceil(w2/10)||0)+' مستويات';
+  go('s-sem');
+}
+ 
+function chooseSem(s){
+  NAV.sem=s;
+  const words=getWords(NAV.stage,NAV.grade,s);
+  if(words.length<2){toast('⚠️ لا توجد كلمات كافية، يرجى إضافتها من لوحة الأدمن');return;}
+  buildMap(NAV.stage,NAV.grade,s,words);
+  go('s-map');
+}
  
 // ===== MAP =====
-function buildMap(){
-  const prog=getUserProgress();
+function buildMap(stage,grade,sem,words){
+  const levels=buildLevels(words);
+  const prog=CU.progress||{};
+  const baseKey=`${stage}_${grade}_${sem}`;
+  document.getElementById('map-title').textContent=`الصف ${GN[grade]} — الفصل ${sem===1?'الأول':'الثاني'}`;
+  document.getElementById('map-sub').textContent=`${words.length} كلمة • ${levels.length} مستوى`;
+  let doneLevels=levels.filter((_,i)=>(prog[`${baseKey}_${i}`]||0)>=1).length;
+  const pct=levels.length>0?Math.round(doneLevels/levels.length*100):0;
+  document.getElementById('map-prog').style.width=pct+'%';
+  document.getElementById('map-done-lbl').textContent=doneLevels+' مكتمل';
+  document.getElementById('map-total-lbl').textContent=levels.length+' مستوى';
   const body=document.getElementById('map-body');
   body.innerHTML='';
-  let totalLevels=0,doneLevels=0;
-  Object.keys(CURRICULUM).forEach(unit=>{
-    const levels=getLevels(unit);
-    const sec=document.createElement('div');
-    sec.className='unit-section';
-    const utitle=document.createElement('div');
-    utitle.className='unit-title';
-    utitle.textContent=CURRICULUM[unit].title;
-    sec.appendChild(utitle);
-    const path=document.createElement('div');
-    path.className='levels-path';
-    levels.forEach((lv,i)=>{
-      totalLevels++;
-      const key=`${unit}_${i}`;
-      const stars=prog[key]||0;
-      const prevKey=i===0?(unit==='unit7'?null:`${getPrevUnit(unit)}_${getLevels(getPrevUnit(unit)).length-1}`):`${unit}_${i-1}`;
-      const isFirst=i===0&&unit==='unit7';
-      const prevDone=isFirst||(prevKey&&(prog[prevKey]||0)>=1);
-      const done=stars>=1;
-      if(done)doneLevels++;
-      if(done){}
-      // connector
-      if(i>0){
-        const conn=document.createElement('div');
-        conn.className='connector'+(done?' done':'');
-        path.appendChild(conn);
-      }
-      const dir=i%3===0?'center':i%3===1?'right':'left';
-      const row=document.createElement('div');
-      row.className='level-row '+dir;
-      const node=document.createElement('div');
-      node.className='level-node '+(done?'done':prevDone?'active':'locked');
-      node.innerHTML=`<div class="lico">${done?'✓':'🔤'}</div><div class="lnum">م${i+1}</div>`;
+  const path=document.createElement('div');
+  path.className='levels-path';
+  levels.forEach((lv,i)=>{
+    const key=`${baseKey}_${i}`;
+    const stars=prog[key]||0;
+    const done=stars>=1;
+    const isFirst=i===0;
+    const prevDone=isFirst||(prog[`${baseKey}_${i-1}`]||0)>=1;
+    // connector
+    if(i>0){const conn=document.createElement('div');conn.className='connector'+(done?' done':'');path.appendChild(conn);}
+    const dirs=['center','right','left'];
+    const dir=dirs[i%3];
+    const row=document.createElement('div');
+    row.className='lv-row '+dir;
+    const node=document.createElement('div');
+    node.className='lv-node '+(done?'done':prevDone?'active':'locked');
+    if(!prevDone){
+      node.innerHTML=`<div class="lv-ico" style="opacity:.4;">🔒</div><div class="lv-num" style="color:var(--txtl);">م${i+1}</div>`;
+    } else {
+      node.innerHTML=`<div class="lv-ico">${done?'✓':'▶'}</div><div class="lv-num">م${i+1}</div>`;
       if(stars>0){
-        const sv=document.createElement('div');
-        sv.className='level-stars';
-        sv.innerHTML='⭐'.repeat(stars)+'☆'.repeat(3-stars);
-        node.appendChild(sv);
+        const sv=document.createElement('div');sv.className='lv-stars';
+        sv.innerHTML='⭐'.repeat(stars)+'☆'.repeat(3-stars);node.appendChild(sv);
       }
-      if(!prevDone){
-        node.innerHTML=`<div class="lico" style="font-size:20px;">🔒</div><div class="lnum" style="color:var(--txtl);">م${i+1}</div>`;
-      }
-      if(prevDone&&!done||done){
-        node.onclick=()=>startLevel(unit,i,lv.words);
-      }
-      const info=document.createElement('div');
-      info.className='level-info';
-      info.innerHTML=`<div class="li-title">المستوى ${i+1}</div><div class="li-sub">${lv.words.length} كلمة${stars>0?' • '+stars+'⭐':''}</div>`;
-      if(dir==='right'){row.appendChild(info);row.appendChild(node);}
-      else if(dir==='left'){row.appendChild(node);row.appendChild(info);}
-      else{row.appendChild(node);}
-      path.appendChild(row);
-    });
-    sec.appendChild(path);
-    body.appendChild(sec);
+      node.onclick=()=>startLevel(key,lv,i);
+    }
+    const info=document.createElement('div');
+    info.className='lv-info';
+    info.innerHTML=`<div class="li-name">المستوى ${i+1}</div><div class="li-sub">${lv.length} كلمة${stars>0?' • '+stars+'⭐':''}</div>`;
+    if(dir==='right'){row.appendChild(info);row.appendChild(node);}
+    else if(dir==='left'){row.appendChild(node);row.appendChild(info);}
+    else{row.appendChild(node);}
+    path.appendChild(row);
   });
-  const pct=totalLevels>0?Math.round(doneLevels/totalLevels*100):0;
-  document.getElementById('map-prog').style.width=pct+'%';
-  document.getElementById('map-done').textContent=doneLevels+' مكتمل';
-  document.getElementById('map-total').textContent=totalLevels+' مستوى';
-}
-function getPrevUnit(unit){
-  const units=Object.keys(CURRICULUM);
-  const i=units.indexOf(unit);
-  return i>0?units[i-1]:null;
+  body.appendChild(path);
 }
  
 // ===== LESSON =====
-function startLevel(unit,idx,words){
-  LS={unit,levelIdx:idx,words:shuffle([...words]),qi:0,hearts:5,score:0,missed:[],phase:'learn'};
+function startLevel(key,words,idx){
+  LS={words:shuffle([...words]),qi:0,hearts:5,score:0,missed:[],phase:'learn',levelIdx:idx,levelKey:key};
   loadQ();go('s-lesson');
 }
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
@@ -874,9 +963,8 @@ function loadLearnQ(){
   const iw=document.getElementById('wimgwrap');
   if(q.img){iw.innerHTML=`<img class="wimg" src="${q.img}" onerror="this.parentElement.className='wph';this.parentElement.textContent='🔤'">`;iw.className='';}
   else{iw.className='wph';iw.textContent=emoji(q.en);}
-  // Get wrong answers from all curriculum
-  const allWords=getAllWords();
-  const wrongs=shuffle(allWords.filter(w=>w.ar!==q.ar)).slice(0,3).map(w=>w.ar);
+  const all=getAllWords();
+  const wrongs=shuffle(all.filter(w=>w.ar!==q.ar)).slice(0,3).map(w=>w.ar);
   while(wrongs.length<3)wrongs.push(['معنى أ','معنى ب','معنى ج'][wrongs.length]);
   const opts=shuffle([q.ar,...wrongs]);
   const wrap=document.getElementById('optswrap');
@@ -889,12 +977,11 @@ function loadSentQ(){
   const q=LS.words[LS.qi];
   document.getElementById('ptag').innerHTML='🧩 اختبار الجمل';
   document.getElementById('qlabel').textContent='اختر الكلمة الصحيحة في الجملة';
-  const sent=q.sent||`She was very ___ about the topic.`;
+  const sent=q.sent?q.sent.replace('___','______'):`The word ___ is used in this sentence.`;
   document.getElementById('wentext').textContent=sent;
-  const iw=document.getElementById('wimgwrap');
-  iw.className='wph';iw.textContent='📝';
-  const allWords=getAllWords();
-  const wrongs=shuffle(allWords.filter(w=>w.en!==q.en)).slice(0,3).map(w=>w.en);
+  const iw=document.getElementById('wimgwrap');iw.className='wph';iw.textContent='📝';
+  const all=getAllWords();
+  const wrongs=shuffle(all.filter(w=>w.en!==q.en)).slice(0,3).map(w=>w.en);
   while(wrongs.length<3)wrongs.push(['Option A','Option B','Option C'][wrongs.length]);
   const opts=shuffle([q.en,...wrongs]);
   const wrap=document.getElementById('optswrap');
@@ -902,7 +989,8 @@ function loadSentQ(){
   wrap.innerHTML=opts.map(o=>`<button class="opt" onclick="answer(this,'${esc(o)}','${esc(q.en)}','${esc(q.en)}')">${o}</button>`).join('');
 }
  
-function esc(s){return s.replace(/'/g,"\\'").replace(/"/g,'\\"');}
+function esc(s){return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'");}
+function emoji(w){const m={apple:'🍎',book:'📖',dog:'🐕',sun:'☀️',water:'💧',house:'🏠',tree:'🌳',fish:'🐟',cat:'🐱',car:'🚗',school:'🏫',bird:'🐦',milk:'🥛',flower:'🌸'};return m[String(w).toLowerCase()]||'🔤';}
  
 function answer(el,chosen,correct,word){
   document.querySelectorAll('.opt').forEach(b=>{b.classList.add('dis');b.onclick=null;});
@@ -923,30 +1011,13 @@ function answer(el,chosen,correct,word){
   }
   document.getElementById('nxtbtn').style.display='block';
 }
- 
 function nextQ(){
   LS.qi++;
   if(LS.phase==='learn'&&LS.qi>=LS.words.length){LS.phase='sentence';LS.qi=0;}
   if(LS.phase==='sentence'&&LS.qi>=LS.words.length){showResult();return;}
   loadQ();
 }
- 
-function speak(){
-  const w=document.getElementById('wentext').textContent;
-  if('speechSynthesis' in window){const u=new SpeechSynthesisUtterance(w);u.lang='en-US';u.rate=0.8;speechSynthesis.speak(u);}
-}
- 
-function emoji(w){
-  const m={apple:'🍎',book:'📖',dog:'🐕',sun:'☀️',water:'💧',house:'🏠',tree:'🌳',fish:'🐟',bread:'🍞',ball:'⚽',cat:'🐱'};
-  return m[w.toLowerCase()]||'🔤';
-}
- 
-function getAllWords(){
-  const all=[];
-  Object.values(CURRICULUM).forEach(u=>all.push(...u.words));
-  DB.extraWords.forEach(w=>all.push(w));
-  return all;
-}
+function speak(){const w=document.getElementById('wentext').textContent;if('speechSynthesis' in window){const u=new SpeechSynthesisUtterance(w);u.lang='en-US';u.rate=0.8;speechSynthesis.speak(u);}}
  
 function showResult(){
   const total=LS.words.length*2;
@@ -954,21 +1025,20 @@ function showResult(){
   const pct=Math.round(LS.score/total*100);
   const stars=pct>=90?3:pct>=70?2:pct>=50?1:0;
   // Save progress
-  const prog=getUserProgress();
-  const key=`${LS.unit}_${LS.levelIdx}`;
-  if((prog[key]||0)<stars)prog[key]=stars;
-  saveUserProgress(prog);
-  // Save XP and session
+  if(!CU.progress)CU.progress={};
+  if((CU.progress[LS.levelKey]||0)<stars)CU.progress[LS.levelKey]=stars;
   CU.xp=(CU.xp||0)+xp;
-  const session={id:Date.now(),unit:LS.unit,levelIdx:LS.levelIdx,score:LS.score,total,xp,stars,date:new Date().toLocaleDateString('ar-KW'),missed:LS.missed};
+  const session={id:Date.now(),levelKey:LS.levelKey,levelIdx:LS.levelIdx,score:LS.score,total,xp,stars,date:new Date().toLocaleDateString('ar-KW'),missed:LS.missed};
   if(!CU.sessions)CU.sessions=[];
   CU.sessions.unshift(session);
   const u=DB.users.find(u=>u.email===CU.email);
-  if(u){u.xp=CU.xp;u.sessions=CU.sessions;saveDB();}
-  DB.sessions=(DB.sessions||[]);DB.sessions.push({...session,userName:CU.name,userEmail:CU.email});saveDB();
-  sessionStorage.setItem('CU3',JSON.stringify(CU));
+  if(u){u.xp=CU.xp;u.sessions=CU.sessions;u.progress=CU.progress;saveDB();}
+  if(!DB.sessions)DB.sessions=[];
+  DB.sessions.push({...session,userName:CU.name,userEmail:CU.email});saveDB();
+  sessionStorage.setItem('CU4',JSON.stringify(CU));
   document.getElementById('hxp').textContent=CU.xp;
-  document.getElementById('rsub').textContent=CURRICULUM[LS.unit].title+' — المستوى '+(LS.levelIdx+1);
+  const semName=NAV.sem===1?'الأول':'الثاني';
+  document.getElementById('rsub').textContent=`الصف ${GN[NAV.grade]} — الفصل ${semName} — م${LS.levelIdx+1}`;
   document.getElementById('rscore').textContent=LS.score+'/'+total;
   document.getElementById('rxp').textContent='+'+xp+'⭐';
   let trophy='🏆',title='أحسنت!';
@@ -976,85 +1046,55 @@ function showResult(){
   else if(stars===0){trophy='💪';title='حاول مجدداً!';}
   document.getElementById('rtrophy').textContent=trophy;
   document.getElementById('rtitle').textContent=title;
-  // Stars animation
-  const sr=document.getElementById('rstars');
-  sr.innerHTML='';
-  for(let i=0;i<3;i++){
-    const s=document.createElement('span');
-    s.className='star';
-    s.style.animationDelay=(i*.15)+'s';
-    s.textContent=i<stars?'⭐':'☆';
-    sr.appendChild(s);
-  }
-  // AI analysis
+  const sr=document.getElementById('rstars');sr.innerHTML='';
+  for(let i=0;i<3;i++){const s=document.createElement('span');s.className='star';s.style.animationDelay=(i*.15)+'s';s.textContent=i<stars?'⭐':'☆';sr.appendChild(s);}
   let msg='';
-  if(pct===100)msg='🌟 مثالي! أجبت على كل الأسئلة بشكل صحيح. استمر في هذا المستوى الرائع!';
-  else if(pct>=80)msg='💪 أداء ممتاز! الكلمات التي أخطأت فيها ستُكرر تلقائياً في الجلسات القادمة.';
-  else if(pct>=60)msg='📖 أداء جيد! يُنصح بمراجعة الكلمات الصعبة قبل الانتقال للمستوى التالي.';
-  else msg='🔄 لا تيأس! أعد المحاولة ليفتح المستوى التالي. التكرار مفتاح النجاح!';
+  if(pct===100)msg='🌟 مثالي! أجبت على كل الأسئلة. استمر في هذا المستوى الرائع!';
+  else if(pct>=80)msg='💪 أداء ممتاز! تقدمت للمستوى التالي. الكلمات الصعبة ستظهر مجدداً.';
+  else if(pct>=60)msg='📖 أداء جيد! راجع الكلمات الصعبة قبل الانتقال للمستوى التالي.';
+  else msg='🔄 أعد المحاولة لتحصل على نجمة وتفتح المستوى التالي!';
   document.getElementById('aitxt').textContent=msg;
-  if(LS.missed.length>0){
-    document.getElementById('mbox').style.display='block';
-    document.getElementById('mwords').textContent=LS.missed.join(' — ');
-  } else document.getElementById('mbox').style.display='none';
+  if(LS.missed.length>0){document.getElementById('mbox').style.display='block';document.getElementById('mwords').textContent=LS.missed.join(' — ');}
+  else document.getElementById('mbox').style.display='none';
   go('s-result');
 }
- 
-function afterResult(){buildMap();go('s-map');}
-function replayLevel(){
-  const lvs=getLevels(LS.unit);
-  startLevel(LS.unit,LS.levelIdx,lvs[LS.levelIdx].words);
+function afterResult(){
+  const words=getWords(NAV.stage,NAV.grade,NAV.sem);
+  buildMap(NAV.stage,NAV.grade,NAV.sem,words);
+  go('s-map');
 }
+function replayLevel(){startLevel(LS.levelKey,LS.words,LS.levelIdx);}
  
-// ===== AI CHAT =====
+// ===== AI =====
 function getAIReply(msg){
   const m=msg.toLowerCase();
   const all=getAllWords();
   const fw=all.find(w=>m.includes(w.en.toLowerCase())||m.includes(w.ar));
   if(m.includes('شرح')||m.includes('معنى')||m.includes('explain')){
-    if(fw)return `📚 **${fw.en}** = **${fw.ar}**\n\n✍️ مثال:\n"${fw.sent?.replace('___',fw.en)||fw.en+' is important.'}"\n\n💡 جرّب تكوين جملة بنفسك!`;
-    const rw=all[Math.floor(Math.random()*all.length)];
-    return `📚 **${rw.en}** = **${rw.ar}**\n\n"${rw.sent?.replace('___',rw.en)||rw.en+' is used in daily life.'}"`;
+    const w=fw||all[Math.floor(Math.random()*all.length)];
+    return `📚 **${w.en}** = **${w.ar}**\n\n✍️ مثال:\n"${w.sent?w.sent.replace('___',w.en):w.en+' is important.'}"\n\n💡 جرّب تكوين جملة بنفسك!`;
   }
   if(m.includes('جملة')||m.includes('مثال')){
-    if(fw)return `✍️ جملة بكلمة **${fw.en}**:\n\n"${fw.sent?.replace('___',fw.en)||fw.en+' is very important.'}"\n\n🔤 المعنى: "${fw.ar}"`;
-    const rw=all[Math.floor(Math.random()*all.length)];
-    return `✍️ جملة بكلمة **${rw.en}**:\n\n"${rw.sent?.replace('___',rw.en)||rw.en+'.'}"\n\n🔤 المعنى: "${rw.ar}"`;
+    const w=fw||all[Math.floor(Math.random()*all.length)];
+    return `✍️ جملة بكلمة **${w.en}**:\n\n"${w.sent?w.sent.replace('___',w.en):w.en+' is used daily.'}"\n\n🔤 المعنى: "${w.ar}"`;
   }
-  if(m.includes('اختبر')||m.includes('quiz')||m.includes('سؤال')){
+  if(m.includes('اختبر')||m.includes('سؤال')){
     if(all.length>=2){
       const rw=all[Math.floor(Math.random()*all.length)];
       const wr=shuffle(all.filter(w=>w.ar!==rw.ar)).slice(0,3).map(w=>w.ar);
-      return `🎯 سؤال!\n\nما معنى: **${rw.en}**?\n\nأ) ${rw.ar}\nب) ${wr[0]}\nج) ${wr[1]}\nد) ${wr[2]}\n\n(اكتب الحرف الصحيح!)`;
+      return `🎯 سؤال!\n\nما معنى: **${rw.en}**?\n\nأ) ${rw.ar}\nب) ${wr[0]||'كلمة'}\nج) ${wr[1]||'كلمة'}\nد) ${wr[2]||'كلمة'}\n\n(اكتب الحرف الصحيح!)`;
     }
   }
   if(m==='أ'||m==='a')return '✅ ممتاز! الإجابة صحيحة! اكتب "اختبرني" لسؤال آخر.';
   if(m.includes('دردش')||m.includes('conversation'))return '💬 هيا نتحدث!\n\nTell me about yourself. What do you like to study?\n\n(أجب بالإنجليزي وسأصحح لك!)';
-  if(m.includes('مرحب')||m.includes('هلا'))return 'مرحباً! 👋 أنا مساعدك الذكي للغة الإنجليزية.\n\nيمكنك كتابة:\n• "شرح [كلمة]" لشرح أي كلمة\n• "اختبرني" لسؤال سريع\n• "جملة [كلمة]" لمثال';
+  if(m.includes('مرحب')||m.includes('هلا'))return 'مرحباً! 👋 أنا مساعدك للغة الإنجليزية.\n\nاكتب:\n• "شرح [كلمة]" لشرح أي كلمة\n• "اختبرني" لسؤال سريع\n• "جملة [كلمة]" لمثال\n• "دردش معي" لمحادثة';
   const rw=all[Math.floor(Math.random()*all.length)];
-  return `كلمة اليوم: **${rw.en}** = ${rw.ar}\n"${rw.sent?.replace('___',rw.en)||rw.en+'.'}"\n\nاكتب "شرح [كلمة]" أو "اختبرني" للمزيد! 😊`;
+  return `كلمة اليوم من المنهج:\n**${rw.en}** = ${rw.ar}\n"${rw.sent?rw.sent.replace('___',rw.en):rw.en+'.'}"\n\nاكتب "شرح" أو "اختبرني" للمزيد! 😊`;
 }
- 
-function addMsg(txt,isUser){
-  const a=document.getElementById('chat-area');
-  const d=document.createElement('div');
-  d.className='cmsg '+(isUser?'cuser':'cai');
-  d.textContent=txt;a.appendChild(d);a.scrollTop=a.scrollHeight;
-}
-function addTyping(){
-  const a=document.getElementById('chat-area');
-  const d=document.createElement('div');
-  d.className='ctyping';d.id='typing';
-  d.innerHTML='<div class="dots"><span></span><span></span><span></span></div>';
-  a.appendChild(d);a.scrollTop=a.scrollHeight;
-}
+function addMsg(txt,isUser){const a=document.getElementById('chat-area');const d=document.createElement('div');d.className='cmsg '+(isUser?'cuser':'cai');d.textContent=txt;a.appendChild(d);a.scrollTop=a.scrollHeight;}
+function addTyping(){const a=document.getElementById('chat-area');const d=document.createElement('div');d.className='ctyping';d.id='typing';d.innerHTML='<div class="dots"><span></span><span></span><span></span></div>';a.appendChild(d);a.scrollTop=a.scrollHeight;}
 function removeTyping(){const t=document.getElementById('typing');if(t)t.remove();}
-function sendMsg(){
-  const inp=document.getElementById('chat-inp');
-  const m=inp.value.trim();if(!m)return;inp.value='';
-  addMsg(m,true);addTyping();
-  setTimeout(()=>{removeTyping();addMsg(getAIReply(m),false);},700+Math.random()*500);
-}
+function sendMsg(){const inp=document.getElementById('chat-inp');const m=inp.value.trim();if(!m)return;inp.value='';addMsg(m,true);addTyping();setTimeout(()=>{removeTyping();addMsg(getAIReply(m),false);},700+Math.random()*500);}
 function sendTopic(t){document.getElementById('chat-inp').value=t;sendMsg();}
  
 // ===== PARENT =====
@@ -1067,36 +1107,26 @@ function linkSt(){
   if(!CU.linkedStudents)CU.linkedStudents=[];
   if(CU.linkedStudents.includes(code)){toast('⚠️ مرتبط مسبقاً');return;}
   CU.linkedStudents.push(code);
-  const u=DB.users.find(u=>u.email===CU.email);
-  if(u){u.linkedStudents=CU.linkedStudents;saveDB();}
-  sessionStorage.setItem('CU3',JSON.stringify(CU));
+  const u=DB.users.find(u=>u.email===CU.email);if(u){u.linkedStudents=CU.linkedStudents;saveDB();}
+  sessionStorage.setItem('CU4',JSON.stringify(CU));
   toast('✅ تم ربط '+st.name);
-  document.getElementById('lcode').value='';
-  renderLinked();
+  document.getElementById('lcode').value='';renderLinked();
 }
 function renderLinked(){
   const cont=document.getElementById('linked-sts');
-  if(!CU.linkedStudents||CU.linkedStudents.length===0){
-    cont.innerHTML='<div style="text-align:center;padding:24px;color:var(--txtl);"><p style="font-size:32px;margin-bottom:8px;">👨‍👩‍👦</p><p>لا يوجد أبناء مرتبطون بعد</p></div>';return;
-  }
+  if(!CU.linkedStudents||CU.linkedStudents.length===0){cont.innerHTML='<div style="text-align:center;padding:24px;color:var(--txtl);"><p style="font-size:32px;margin-bottom:8px;">👨‍👩‍👦</p><p>لا يوجد أبناء مرتبطون</p><p style="font-size:12px;margin-top:4px;">أدخل رمز ابنك أعلاه</p></div>';return;}
   cont.innerHTML='';
   CU.linkedStudents.forEach(code=>{
     const st=DB.users.find(u=>u.code===code);if(!st)return;
     const sessions=st.sessions||[];
     const total=sessions.length;
     const avgS=total>0?Math.round(sessions.reduce((a,s)=>a+(s.score/s.total*100),0)/total):0;
-    const prog=st.progress||{};
-    const done=Object.values(prog).filter(v=>v>=1).length;
-    const card=document.createElement('div');
-    card.className='sc';
+    const done=Object.values(st.progress||{}).filter(v=>v>=1).length;
+    const card=document.createElement('div');card.className='sc';
     card.innerHTML=`<div class="sc-top"><div class="sc-av">${st.name.charAt(0)}</div><div style="flex:1;"><div class="sc-name">${st.name}</div><div class="sc-grade">${st.email}</div></div><span class="ap">${total>0?'نشط':'جديد'}</span></div>
-    <div class="smini">
-      <div class="sm"><div class="smn">${st.xp||0}⭐</div><div class="sml">نقاط XP</div></div>
-      <div class="sm"><div class="smn">${total}</div><div class="sml">جلسة</div></div>
-      <div class="sm"><div class="smn">${done}</div><div class="sml">مستوى مكتمل</div></div>
-    </div>
+    <div class="smini"><div class="sm"><div class="smn">${st.xp||0}⭐</div><div class="sml">نقاط XP</div></div><div class="sm"><div class="smn">${total}</div><div class="sml">جلسة</div></div><div class="sm"><div class="smn">${done}</div><div class="sml">مستوى مكتمل</div></div></div>
     <div style="font-size:13px;font-weight:700;color:var(--txtl);margin-bottom:8px;">آخر الجلسات</div>
-    <div class="sess-list">${sessions.slice(0,5).map(s=>`<div class="si"><div class="si-l"><div class="sin">${CURRICULUM[s.unit]?.title||s.unit} — م${s.levelIdx+1}</div><div class="sid">${s.date} • ${s.stars||0}⭐</div></div><div class="si-r" style="color:${s.score/s.total>=0.7?'var(--acc)':'var(--err)'};">${s.score}/${s.total}</div></div>`).join('')||'<div style="text-align:center;padding:12px;color:var(--txtl);font-size:13px;">لم يبدأ بعد</div>'}</div>`;
+    <div class="sess-list">${sessions.slice(0,5).map(s=>`<div class="si"><div class="si-l"><div class="sin">${s.levelKey||'جلسة'} — م${(s.levelIdx||0)+1}</div><div class="sid">${s.date} • ${'⭐'.repeat(s.stars||0)}</div></div><div class="si-r" style="color:${s.score/s.total>=0.7?'var(--acc)':'var(--err)'};">${s.score}/${s.total}</div></div>`).join('')||'<div style="text-align:center;padding:12px;color:var(--txtl);font-size:13px;">لم يبدأ بعد</div>'}</div>`;
     cont.appendChild(card);
   });
 }
@@ -1104,42 +1134,48 @@ function renderLinked(){
 // ===== ADMIN =====
 function switchAT(t){
   ['add','words','users'].forEach(x=>{
-    document.getElementById('at-'+x[0]).classList.toggle('active',x===t);
-    document.getElementById(x+'-div').style.display=x===t?'block':'none';
+    const btn=document.getElementById('at-'+x[0]);if(btn)btn.classList.toggle('active',x===t);
+    const div=document.getElementById(x+'-div');if(div)div.style.display=x===t?'block':'none';
   });
-  if(t==='words')renderWL();
-  if(t==='users')renderUT();
+  if(t==='words')renderWL();if(t==='users')renderUT();
+}
+function updateAdminGrades(){
+  const s=document.getElementById('add-stage').value;
+  document.getElementById('add-grade').innerHTML=GRADES[s].map(g=>`<option value="${g}">صف ${g}</option>`).join('');
 }
 function addWord(){
-  const unit=document.getElementById('add-unit').value;
+  const stage=document.getElementById('add-stage').value;
+  const grade=parseInt(document.getElementById('add-grade').value);
+  const sem=parseInt(document.getElementById('add-sem').value);
   const en=document.getElementById('add-en').value.trim();
   const ar=document.getElementById('add-ar').value.trim();
   const img=document.getElementById('add-img').value.trim();
   const sent=document.getElementById('add-sent').value.trim();
   if(!en||!ar){toast('❗ أدخل الكلمة ومعناها');return;}
-  DB.extraWords.push({id:Date.now(),unit,en,ar,img,sent});
+  DB.extraWords.push({id:Date.now(),stage,grade,sem,en,ar,img,sent});
   saveDB();updateAdminStats();
   ['add-en','add-ar','add-img','add-sent'].forEach(id=>document.getElementById(id).value='');
   toast('✅ تمت إضافة "'+en+'"');
 }
-function deleteWord(id){
-  DB.extraWords=DB.extraWords.filter(w=>w.id!==id);saveDB();updateAdminStats();renderWL();toast('🗑️ تم الحذف');
-}
+function deleteWord(id){DB.extraWords=DB.extraWords.filter(w=>w.id!==id);saveDB();updateAdminStats();renderWL();toast('🗑️ تم الحذف');}
 function renderWL(){
-  const fu=document.getElementById('f-unit').value;
+  const fs=document.getElementById('f-stage').value;
+  const fg=document.getElementById('f-grade').value;
+  const fse=document.getElementById('f-sem').value;
   let words=DB.extraWords;
-  if(fu!=='all')words=words.filter(w=>w.unit===fu);
+  if(fs!=='all')words=words.filter(w=>w.stage===fs);
+  if(fg!=='all')words=words.filter(w=>w.grade===parseInt(fg));
+  if(fse!=='all')words=words.filter(w=>w.sem===parseInt(fse));
   const list=document.getElementById('wl');
-  if(words.length===0){list.innerHTML='<div class="ee"><p>📭</p><p>لا توجد كلمات مضافة</p></div>';return;}
-  list.innerHTML=words.map(w=>`<div class="wi"><div class="wi-img">${w.img?`<img src="${w.img}" style="width:36px;height:36px;border-radius:8px;object-fit:cover;" onerror="this.parentElement.textContent='🔤'">`:emoji(w.en)}</div><div class="wi-info"><div class="wi-en">${w.en} → ${w.ar}</div><div class="wi-ar">${CURRICULUM[w.unit]?.title||w.unit}</div></div><button class="wi-del" onclick="deleteWord(${w.id})">🗑️</button></div>`).join('');
+  if(words.length===0){list.innerHTML='<div class="ee"><p>📭</p><p>لا توجد كلمات مضافة</p><p style="font-size:12px;margin-top:4px;">كلمات الصف العاشر فصل ثاني مدمجة في البرنامج</p></div>';return;}
+  list.innerHTML=words.map(w=>`<div class="wi"><div class="wi-img">${w.img?`<img src="${w.img}" style="width:36px;height:36px;border-radius:8px;object-fit:cover;" onerror="this.parentElement.textContent='🔤'">`:emoji(w.en)}</div><div class="wi-info"><div class="wi-en">${w.en} → ${w.ar}</div><div class="wi-ar">صف ${w.grade} | فصل ${w.sem} | ${SN[w.stage]||w.stage}</div></div><button class="wi-del" onclick="deleteWord(${w.id})">🗑️</button></div>`).join('');
 }
 function renderUT(){
   const users=DB.users.filter(u=>u.role!=='admin');
   document.getElementById('utbody').innerHTML=users.map(u=>`<tr><td>${u.name}</td><td style="font-size:11px;direction:ltr;">${u.email}</td><td><span class="rp ${u.role==='student'?'rps':'rpp'}">${u.role==='student'?'طالب':'ولي أمر'}</span></td><td>${u.xp||0}⭐</td><td style="direction:ltr;letter-spacing:2px;">${u.code||'-'}</td></tr>`).join('')||'<tr><td colspan="5" style="text-align:center;padding:16px;color:var(--txtl);">لا يوجد مشتركون</td></tr>';
 }
 function updateAdminStats(){
-  const allW=getAllWords();
-  document.getElementById('aw').textContent=allW.length;
+  document.getElementById('aw').textContent=G10S2.length+DB.extraWords.length+Object.values(DEMO_WORDS).reduce((a,v)=>a+v.length,0);
   document.getElementById('au').textContent=DB.users.filter(u=>u.role!=='admin').length;
   document.getElementById('as2').textContent=(DB.sessions||[]).length;
 }
@@ -1152,12 +1188,9 @@ function exportXLS(){
 }
  
 // ===== INIT =====
+updateAdminGrades();
 if(CU)afterLogin();
 </script>
 </body>
 </html>
  
-
-
-
-
